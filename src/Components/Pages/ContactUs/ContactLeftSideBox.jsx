@@ -8,6 +8,9 @@ const ContactLeftSideBox = () => {
   const { themeOption } = useContext(ThemeOptionContext);
   const { t } = useTranslation("common");
 
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+
   return (
     <Col xs="12">
       <div className="contact-right">
@@ -17,8 +20,8 @@ const ContactLeftSideBox = () => {
               <RiPhoneFill />
             </div>
             <Media body>
-              <h6>{themeOption?.contact_us?.detail_1?.label}</h6>
-              <p>{themeOption?.contact_us?.detail_1?.text}</p>
+              <h6>{themeOption?.contact_us?.[currentLanguage]?.detail_1?.label}</h6>
+              <p>{themeOption?.contact_us?.[currentLanguage]?.detail_1?.text}</p>
             </Media>
           </li>
           <li>
@@ -26,8 +29,8 @@ const ContactLeftSideBox = () => {
               <RiMapPinFill />
             </div>
             <Media body>
-              <h6>{themeOption?.contact_us?.detail_2?.label}</h6>
-              <p>{themeOption?.contact_us?.detail_2?.text}</p>
+              <h6>{themeOption?.contact_us?.[currentLanguage]?.detail_2?.label}</h6>
+              <p>{themeOption?.contact_us?.[currentLanguage]?.detail_2?.text}</p>
             </Media>
           </li>
           <li>
@@ -35,8 +38,8 @@ const ContactLeftSideBox = () => {
               <RiMailFill />
             </div>
             <Media body>
-              <h6>{themeOption?.contact_us?.detail_3?.label}</h6>
-              <p>{themeOption?.contact_us?.detail_3?.text}</p>
+              <h6>{themeOption?.contact_us?.[currentLanguage]?.detail_3?.label}</h6>
+              <p>{themeOption?.contact_us?.[currentLanguage]?.detail_3?.text}</p>
             </Media>
           </li>
           <li>
@@ -44,8 +47,8 @@ const ContactLeftSideBox = () => {
               <RiCellphoneFill />
             </div>
             <Media body>
-              <h6>{themeOption?.contact_us?.detail_4?.label}</h6>
-              <p>{themeOption?.contact_us?.detail_4?.text}</p>
+              <h6>{themeOption?.contact_us?.[currentLanguage]?.detail_4?.label}</h6>
+              <p>{themeOption?.contact_us?.[currentLanguage]?.detail_4?.text}</p>
             </Media>
           </li>
         </ul>

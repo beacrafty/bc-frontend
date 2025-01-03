@@ -12,6 +12,7 @@ button {
     font-weight: 700;
     border-radius: 0;
     transition: 0.3s ease-in-out;
+    border-radius: 18px;
 
     &:hover {
         transition: 0.3s ease-in-out;
@@ -37,6 +38,7 @@ button {
     background-repeat: no-repeat;
     background-position: 0;
     transition: background 300ms ease-in-out;
+    border-radius: 18px;
 
     &:active {
         border-color: var(--theme-color);
@@ -93,6 +95,7 @@ button {
     position: relative;
     color: var(--theme-color);
     background-color: transparent;
+    border-radius: 18px;
 
     &:before {
         transition: 0.5s all ease;

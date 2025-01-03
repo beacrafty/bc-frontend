@@ -1,6 +1,6 @@
 {
-  "name": "my-app",
-  "version": "0.1.0",
+  "name": "bea-crafty-frontend",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -35,6 +35,7 @@
     "reactstrap": "^9.2.2",
     "remixicon": "^4.2.0",
     "sass": "^1.70.0",
+    "sharp": "^0.33.5",
     "slick-carousel": "^1.8.1",
     "swiper": "^11.1.1",
     "themify-icons": "^1.0.0",

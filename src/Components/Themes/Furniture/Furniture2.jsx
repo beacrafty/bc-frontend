@@ -18,6 +18,9 @@ import HomeCategorySidebar from "../Widgets/HomeCategorySidebar";
 import HomeProduct from "../Widgets/HomeProduct";
 import HomeSlider from "../Widgets/HomeSlider";
 import HomeSocialMedia from "../Widgets/HomeSocialMedia";
+import BrowserFaq from "@/Components/Pages/Faq";
+import VideoBanner from "../Widgets/VideoBanner";
+import { useTranslation } from "react-i18next";
 
 const Furniture2 = ({ slug }) => {
   const [banners, setBanners] = useState([]);
@@ -26,6 +29,12 @@ const Furniture2 = ({ slug }) => {
   const { setGetBrandIds, isLoading: brandLoading } = useContext(BrandIdsContext);
   const videoType = ["mp4", "webm", "ogg"];
   const { data, isLoading, refetch } = useCustomDataQuery({ params: "furniture_two" });
+  console.log(data)
+
+  
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;  
+
 
   useEffect(() => {
     if (data?.products_ids?.length > 0) {
@@ -81,34 +90,8 @@ const Furniture2 = ({ slug }) => {
       {/* Home Banners */}
       <WrapperComponent classes={{ sectionClass: "p-0 overflow-hidden" }}>
         <div className="slide-1 home-slider">
-          <HomeSlider bannerData={data?.home_banner} height={650} width={1920} />
+          <HomeSlider bannerData={data?.home_banner?.[currentLanguage]} height={650} width={1920} />
         </div>
-      </WrapperComponent>
-
-      {/* Offer Banners  */}
-      <WrapperComponent classes={{ sectionClass: "banner-padding banner-section absolute-banner pb-0 ratio2_1", fluidClass: "container overflow-hidden absolute-bg" }} customCol={true}>
-        {banners.map(
-          (banner, i) =>
-            banner?.status && (
-              <div key={i} className={`${banners.length === 3 ? "col-md-4 col-sm-6" : banners.length === 2 ? "col-md-6" : "col-12"}`}>
-                <div className="position-relative">
-                  <ImageLink imgUrl={banner} bgImage={true} height={261} width={581} />
-                  <div className="banner-skeleton">
-                    <div className="skeleton-content">
-                      <p className="card-text placeholder-glow row g-lg-3 g-0">
-                        <span className="col-lg-7 col-9">
-                          <span className="placeholder"></span>
-                        </span>
-                        <span className="col-lg-9 col-12">
-                          <span className="placeholder"></span>
-                        </span>
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            )
-        )}
       </WrapperComponent>
 
       {/* Categories */}
@@ -128,60 +111,13 @@ const Furniture2 = ({ slug }) => {
         </>
       )}
 
-      {/* Grid Banners */}
-      {data?.grid_banner?.status && (
-        <div className="category-bg ratio3_2">
-          <Container fluid className="p-0">
-            <Row className="order-section">
-              {data?.grid_banner?.banners.map((banner, index) => {
-                if (banner?.image_url) {
-                  if (videoType.includes(banner?.image_url.substring(banner?.image_url.lastIndexOf(".") + 1))) {
-                    return (
-                      <Col sm="8" className=" p-0">
-                        <a href={Href} className="image-block">
-                          <div id="block" className="video-sec">
-                            <div>
-                              <video autoPlay loop>
-                                <source src={storageURL + banner?.image_url} type="video/mp4" />
-                              </video>
-                            </div>
-                          </div>
-                        </a>
-                      </Col>
-                    );
-                  } else {
-                    return (
-                      <Col sm="4" className=" p-0">
-                        <ImageLink imgUrl={banner} height={200} width={200} />
-                      </Col>
-                    );
-                  }
-                } else {
-                  return (
-                    <Col sm="4" className=" p-0">
-                      <div className="contain-block even">
-                        <div>
-                          <h6>{banner?.tag}</h6>
-                          <a href={Href}>
-                            <h2>{banner?.title}</h2>
-                          </a>
-                          <Btn href={Href} className=" btn-solid category-btn">
-                            {banner?.button_text}
-                          </Btn>
-                          <a href={Href}>
-                            <h6>
-                              <span>shop now</span>
-                            </h6>
-                          </a>
-                        </div>
-                      </div>
-                    </Col>
-                  );
-                }
-              })}
-            </Row>
-          </Container>
-        </div>
+      {/* Video Banner */}
+      {data?.video_banner?.status && (
+        <>
+          <WrapperComponent classes={{ sectionClass: "p-0 height-85", fluidClass: "container" }}>
+            <VideoBanner videoBannerSrc={data?.video_banner?.original_url} height={535} width={'auto'} />
+          </WrapperComponent>
+        </>
       )}
 
       {/* Products List 2 */}
@@ -228,10 +164,19 @@ const Furniture2 = ({ slug }) => {
       )}
 
       {/* Brands */}
-      {data?.brand?.status && (
+      {/* {data?.brand?.status && (
         <WrapperComponent classes={{ sectionClass: "tools-brand" }}>
           <HomeBrand sliderOptions={brandSlider4} brandIds={data?.brand?.brand_ids || []} bgLight={true} />
         </WrapperComponent>
+      )} */}
+
+      {data?.faq?.[currentLanguage]?.status && (
+        <>
+          <TitleBox title={data?.faq?.[currentLanguage]} type="basic" />
+          <WrapperComponent classes={{ sectionClass: "section-b-space pt-0", fluidClass: "container" }}>
+            <BrowserFaq />
+          </WrapperComponent>
+        </>
       )}
 
       {/* Social Media */}

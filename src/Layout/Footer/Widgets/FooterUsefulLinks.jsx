@@ -8,20 +8,29 @@ const FooterUsefulLinks = () => {
   const { themeOption } = useContext(ThemeOptionContext);
   const { t } = useTranslation("common");
 
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+
   return (
     <div className="footer-content">
-      {themeOption?.footer?.useful_link?.length ? (
-        <ul>
-          {themeOption?.footer?.useful_link?.map((item, i) => (
-            <li key={i}>
-              <Link href={`/${item?.value}`}>{t(item?.name)}</Link>
-            </li>
-          ))}
-        </ul>
-      ) : (
+      {themeOption?.footer?.[currentLanguage]?.our_shops_enable ? (
+      <ul>
+        <li>
+          <Link href={`${themeOption?.footer?.[currentLanguage]?.our_shops.etsy}`}>{t('Etsy')}</Link>
+        </li>
+        <li>
+          <Link href={`${themeOption?.footer?.[currentLanguage]?.our_shops.ebay}`}>{t('Ebay')}</Link>
+        </li>
+        <li>
+          <Link href={`${themeOption?.footer?.[currentLanguage]?.our_shops.amazon}`}>{t('Amazon')}</Link>
+        </li>
+        <li>
+          <Link href={`${themeOption?.footer?.[currentLanguage]?.our_shops.products_with_love}`}>{t('ProductsWithLove')}</Link>
+        </li>
+      </ul>) : (
         <NoDataFound customClass={"no-data-footer"} title={"No Link Found"} />
-      )}
-    </div>  
+      )} 
+    </div>
   );
 };
 

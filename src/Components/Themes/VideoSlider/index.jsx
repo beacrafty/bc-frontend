@@ -26,6 +26,7 @@ const VideoSlider = ({ slug }) => {
   const { setGetProductIds, isRefetching: productLoad } = useContext(ProductIdsContext);
   const { setGetBrandIds, isLoading: brandLoading } = useContext(BrandIdsContext);
   const { isLoading: blogLoading } = useContext(BlogIdsContext);
+  console.log(data?.home_banner)
   const [collectionBanners, setBanners] = useState([]);
 
   useEffect(() => {

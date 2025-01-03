@@ -9,6 +9,7 @@ import ClientSection from "./ClientSection";
 import CreativeTeam from "./CreativeTeam";
 import ServiceSection from "./ServicesSection";
 import Loader from "@/Layout/Loader";
+import BrowserFaq from "../Faq";
 
 const AboutUsContent = () => {
   const { themeOption, isLoading } = useContext(ThemeOptionContext);
@@ -25,6 +26,7 @@ const AboutUsContent = () => {
       >
         <AboutUsImage />
         <AboutUsText />
+        <BrowserFaq heading={true} />
       </WrapperComponent>
       {themeOption?.about_us?.testimonial?.status && themeOption?.about_us?.testimonial?.reviews?.length && <ClientSection />}
       {themeOption?.about_us?.team?.status && themeOption?.about_us?.team?.members?.length && <CreativeTeam />}

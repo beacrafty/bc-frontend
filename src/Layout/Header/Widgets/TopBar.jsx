@@ -11,6 +11,8 @@ const TopBar = ({ classes }) => {
   const { t } = useTranslation("common");
   const { themeOption } = useContext(ThemeOptionContext);
   const { settingData } = useContext(SettingContext);
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;  
 
   return (
     <div className={`top-header ${classes?.top_bar_class ? classes?.top_bar_class : ""}`}>
@@ -23,7 +25,7 @@ const TopBar = ({ classes }) => {
                   {t("WelcomeTo")} {settingData?.general?.site_name}
                 </li>
                 <li>
-                  <i className="ri-phone-fill"></i> {t("CallUs")} : {themeOption?.header?.support_number}
+                  <i className="ri-phone-fill"></i> {t("CallUs")} : {themeOption?.header?.support_number?.[currentLanguage]}
                 </li>
               </ul>
             </div>

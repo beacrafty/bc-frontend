@@ -1,44 +1,47 @@
 import ThemeOptionContext from "@/Context/ThemeOptionsContext";
 import Link from "next/link";
 import React, { useContext } from "react";
-import { RiFacebookFill, RiInstagramFill, RiPinterestFill, RiTwitterFill } from "react-icons/ri";
+import { RiFacebookFill, RiInstagramFill, RiLinkedinFill } from "react-icons/ri";
+import { useTranslation } from "react-i18next";
+import NoDataFound from "@/Components/Widgets/NoDataFound";
 
 const FooterSocial = () => {
   const { themeOption } = useContext(ThemeOptionContext)
+
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage; 
+
   return (
     <>
-      <div className="footer-social">
-        <ul>
-          {themeOption?.footer?.facebook && (
-            <li>
-              <Link href={themeOption?.footer?.facebook} target="_blank">
-                <RiFacebookFill />
-              </Link>
-            </li>
-          )}
-          {themeOption?.footer?.twitter && (
-            <li>
-              <Link href={themeOption?.footer?.twitter} target="_blank">
-                <RiTwitterFill />
-              </Link>
-            </li>
-          )}
-          {themeOption?.footer?.instagram && (
-            <li>
-              <Link href={themeOption?.footer?.instagram} target="_blank">
-                <RiInstagramFill />
-              </Link>
-            </li>
-          )}
-          {themeOption?.footer?.pinterest && (
-            <li>
-              <Link href={themeOption?.footer?.pinterest} target="_blank">
-                <RiPinterestFill />
-              </Link>
-            </li>
-          )}
-        </ul>
-      </div>
+      {themeOption?.footer?.[currentLanguage]?.social_media_enable ? (
+        <div className="footer-social">
+          <ul>
+            {themeOption?.footer?.[currentLanguage]?.social_media?.facebook && (
+              <li>
+                <Link href={themeOption?.footer?.[currentLanguage]?.social_media?.facebook} target="_blank">
+                  <RiFacebookFill />
+                </Link>
+              </li>
+            )}
+            {themeOption?.footer?.[currentLanguage]?.social_media?.instagram && (
+              <li>
+                <Link href={themeOption?.footer?.[currentLanguage]?.social_media?.instagram} target="_blank">
+                  <RiInstagramFill />
+                </Link>
+              </li>
+            )}
+            {themeOption?.footer?.[currentLanguage]?.social_media?.linkedin && (
+              <li>
+                <Link href={themeOption?.footer?.[currentLanguage]?.social_media?.linkedin} target="_blank">
+                  <RiLinkedinFill />
+                </Link>
+              </li>
+            )}
+          </ul>
+        </div>
+        ) : ( 
+        <NoDataFound customClass={"no-data-footer"} title={"No Link Found"} /> )
+      }
     </>
   );
 };

@@ -18,7 +18,7 @@ const HomeSlider = ({ bannerData, height, width, sliderClass }) => {
                   <div className="slider-contain" id="block" style={{ width: "100%", position: "relative" }} data-vide-bg="../assets/video/video.mp4" data-vide-options="position: 0% 50%">
                     <div style={{ position: "absolute", zIndex: -1, inset: "0px", overflow: "hidden", backgroundSize: "cover", backgroundColor: "transparent", backgroundRepeat: "no-repeat", backgroundPosition: "0% 50%", backgroundImage: "none" }}>
                       <video autoPlay loop muted style={{ margin: "auto", position: "absolute", zIndex: "-1", top: "50%", left: " 0%", transform: "translate(0%, -50%)", visibility: "visible", opacity: "1", width: "1907px", height: "auto" }}>
-                        <source src={storageURL + banner?.image_url} type="video/mp4" />
+                        <source src={banner?.image_url} type="video/mp4" />
                       </video>
                     </div>
                   </div>
@@ -36,7 +36,7 @@ const HomeSlider = ({ bannerData, height, width, sliderClass }) => {
           <div className="slider-contain" id="block" data-vide-bg="../assets/video/video.mp4" data-vide-options="position: 0% 50%">
             <div style={{ position: "absolute", zIndex: -1, inset: "0px", overflow: "hidden", backgroundSize: "cover", backgroundColor: "transparent", backgroundRepeat: "no-repeat", backgroundPosition: "0% 50%", backgroundImage: "none" }}>
               <video autoPlay loop muted style={{ margin: "auto", position: "absolute", zIndex: "-1", top: "50%", left: " 0%", transform: "translate(0%, -50%)", visibility: "visible", opacity: "1", width: "1907px", height: "auto" }}>
-                <source src={storageURL + bannerData?.banners?.[0]?.image_url || bannerData?.image_url} type="video/mp4" />
+                <source src={bannerData?.banners?.[0]?.image_url || bannerData?.image_url} type="video/mp4" />
               </video>
             </div>
           </div>

@@ -7,24 +7,28 @@ const FooterStoreInformation = ({ icon }) => {
   const { t } = useTranslation("common");
   const { themeOption } = useContext(ThemeOptionContext);
 
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage; 
+
+
   return (
     <ul className={icon ? "contact-list" : "contact-details"}>
-      {themeOption?.footer?.about_address && (
+      {themeOption?.footer?.[currentLanguage]?.about_address && (
         <li>
           {icon && <RiMapPinLine />}
-          {themeOption?.footer?.about_address}
+          {themeOption?.footer?.[currentLanguage]?.about_address}
         </li>
       )}
-      {themeOption?.footer?.support_number && (
+      {themeOption?.footer?.[currentLanguage]?.support_number && (
         <li>
           {icon && <RiPhoneLine />}
-          {t("CallUs")}: {themeOption?.footer?.support_number}
+          {t("CallUs")}: {themeOption?.footer?.[currentLanguage]?.support_number}
         </li>
       )}
-      {themeOption?.footer?.about_email && (
+      {themeOption?.footer?.[currentLanguage]?.about_email && (
         <li>
           {icon && <RiMailLine />}
-          {t("EmailUs")}: {themeOption?.footer?.about_email}
+          {t("EmailUs")}: {themeOption?.footer?.[currentLanguage]?.about_email}
         </li>
       )}
     </ul>

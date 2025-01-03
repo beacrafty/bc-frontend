@@ -8,11 +8,15 @@ const FooterHelpCenter = () => {
   const { themeOption } = useContext(ThemeOptionContext);
   const { t } = useTranslation("common");
 
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;  
+
+
   return (
     <div className="footer-content">
-      {themeOption?.footer?.help_center?.length ? (
+      {themeOption?.footer?.our_policies?.length ? (
         <ul>
-          {themeOption?.footer?.help_center?.map((item, i) => (
+          {themeOption?.footer?.our_policies?.map((item, i) => (
             <li key={i}>
               <Link href={item?.value?.charAt(0) == "/" ? item?.value : `/${item?.value}`} className="text-content">
                 {t(item?.name)}

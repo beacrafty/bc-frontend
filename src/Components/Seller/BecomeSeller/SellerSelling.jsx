@@ -6,16 +6,22 @@ import { useTranslation } from "react-i18next";
 const SellerSelling = () => {
   const { themeOption } = useContext(ThemeOptionContext);
   const { t } = useTranslation("common");
+
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+  
   return (
+    themeOption?.seller?.start_selling?.[currentLanguage]?.status ? (
     <WrapperComponent classes={{ sectionClass: "start-selling section-b-space", fluidClass: "container" }} noRowCol={true}>
-      <h4>{themeOption?.seller?.start_selling?.title}</h4>
-      <p>{themeOption?.seller?.start_selling?.description}</p>
-      {themeOption?.general?.seller_register_url ? (
-        <a href={themeOption?.general?.seller_register_url} className='btn btn-solid btn-sm'>
+      <h4>{themeOption?.seller?.start_selling?.[currentLanguage]?.title}</h4>
+      <p>{themeOption?.seller?.start_selling?.[currentLanguage]?.description}</p>
+        {themeOption?.seller?.start_selling?.[currentLanguage]?.call_to_action ? (
+          <a href={themeOption?.seller?.start_selling?.[currentLanguage]?.call_to_action} className='btn btn-solid btn-sm'>
           {t("StartSelling")}{" "}
         </a>
       ) : null}
-    </WrapperComponent>
+      </WrapperComponent>
+    ) : <></>
   );
 };
 

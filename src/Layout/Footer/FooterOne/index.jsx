@@ -15,6 +15,10 @@ import SubFooter from "../Widgets/SubFooter";
 const FooterOne = () => {
   const { themeOption } = useContext(ThemeOptionContext);
   const { t } = useTranslation("common");
+
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;  
+
   const [openClose, setOpenClose] = useState({
     helpCenter: false,
     categories: false,
@@ -38,7 +42,7 @@ const FooterOne = () => {
               <div className="footer-content h-auto">
                 <FooterLogo />
                 <FooterAbout />
-                {themeOption?.footer?.social_media_enable && <FooterSocial />}
+                {themeOption?.footer?.[currentLanguage]?.social_media_enable && <FooterSocial />}
               </div>
             </Col>
             <Col xl="2" lg="3" md="4" onClick={() => toggle("categories")}>
@@ -52,7 +56,7 @@ const FooterOne = () => {
             <Col lg="2" md="3" className="col-xl">
               <div className="sub-title" onClick={() => toggle("useFulLinks")}>
                 <div className={`footer-title ${openClose?.useFulLinks ? "show" : ""}`}>
-                  <h4>{t("UsefulLinks")}</h4>
+                  <h4>{t("Our Shops")}</h4>
                 </div>
                 <FooterUsefulLinks />
               </div>
@@ -60,7 +64,7 @@ const FooterOne = () => {
             <Col xl="2" md="3" onClick={() => toggle("helpCenter")}>
               <div className="sub-title">
                 <div className={`footer-title ${openClose?.helpCenter ? "show" : ""}`}>
-                  <h4>{t("HelpCenter")}</h4>
+                  <h4>{t("Our Policies")}</h4>
                 </div>
                 <FooterHelpCenter />
               </div>

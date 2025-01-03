@@ -10,7 +10,7 @@ import { useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Accordion, AccordionBody, AccordionHeader, AccordionItem, Container } from "reactstrap";
 
-const BrowserFaq = () => {
+const BrowserFaq = ({ heading = false }) => {
   const { t } = useTranslation("common");
   const [open, setOpen] = useState(1);
   const toggle = (id) => {
@@ -29,9 +29,10 @@ const BrowserFaq = () => {
   if (isLoading) return <Loader />;
   return (
     <>
-      <Breadcrumbs title={`FAQ's`} subNavigation={[{ name: `FAQ's` }]} />
+      {/* <Breadcrumbs title={`FAQ's`} subNavigation={[{ name: `FAQ's` }]} /> */}
       {data?.length > 0 ? (
-        <WrapperComponent classes={{ sectionClass: "faq-section section-b-space", fluidClass: "container", colClass: "col-sm-12" }}>
+        <WrapperComponent classes={{ sectionClass: "faq-section", colClass: "col-sm-12" }}>
+          {heading && <h3>{t("FrequentlyAskedQuestions")}</h3>}
           <Accordion className="faq-accordion" aria-expanded={toggle} open={open} toggle={toggle}>
             {data?.map((faq, i) => (
               <AccordionItem className="card" key={i}>
