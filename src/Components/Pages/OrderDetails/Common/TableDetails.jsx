@@ -14,6 +14,20 @@ const TableDetails = ({ data }) => {
     setStoreData(product);
     setModal(product?.id);
   };
+
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+
+  const getProductName = (name) => {
+    try {
+      const productNameObject = JSON.parse(name);
+      return productNameObject[currentLanguage] || productNameObject.en;
+    } catch (error) {
+      console.error("Failed to parse product name:", error);
+      return name;
+    }
+  };
+
   return (
     <>
       <Card className='border-0 dashboard-table'>
@@ -43,12 +57,12 @@ const TableDetails = ({ data }) => {
                                   ? product?.product_thumbnail
                                   : placeHolderImage
                             }
-                            name={product?.pivot?.variation ? product?.pivot?.variation?.name : product?.name}
+                            name={product?.pivot?.variation ? product?.pivot?.variation?.name : getProductName(product?.name)}
                             customImageClass='img-fluid'
                           />
                         </td>
                         <td>
-                          <h6>{product?.pivot?.variation ? product?.pivot?.variation?.name : product?.name}</h6>
+                          <h6>{product?.pivot?.variation ? product?.pivot?.variation?.name : getProductName(product?.name)}</h6>
                         </td>
                         <td>
                           <h6>{convertCurrency(product?.pivot?.single_price)}</h6>

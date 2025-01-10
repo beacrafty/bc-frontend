@@ -32,6 +32,19 @@ const WishlistContent = () => {
 
   if (WishlistAPILoading) return <Loader />;
 
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+
+  const getProductName = (name) => {
+    try {
+      const productNameObject = JSON.parse(name);
+      return productNameObject[currentLanguage] || productNameObject.en;
+    } catch (error) {
+      console.error("Failed to parse product name:", error);
+      return name;
+    }
+  };
+
   return (
     <>
       <Breadcrumbs title={"Wishlist"} subNavigation={[{ name: "Wishlist" }]} />
@@ -57,7 +70,7 @@ const WishlistContent = () => {
                       </Link>
                     </td>
                     <td>
-                      <Link href={`/product/${product?.slug}`}>{product?.name}</Link>
+                      <Link href={`/product/${product?.slug}`}>{getProductName(product?.name)}</Link>
                       <div className="mobile-cart-content row">
                         <div className="col">
                           <p>{product?.stock_status?.replaceAll("_", " ")}</p>

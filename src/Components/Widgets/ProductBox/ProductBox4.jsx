@@ -1,22 +1,41 @@
 import SettingContext from "@/Context/SettingContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import CartButton from "./Widgets/CartButton";
 import WishlistButton from "./Widgets/HoverButton/WishlistButton";
 import ProductHoverButton from "./Widgets/ProductHoverButton";
 import ProductRatingBox from "./Widgets/ProductRatingBox";
+import { useTranslation } from "react-i18next";
 
 const ProductBox4 = ({ productState }) => {
   const router = useRouter();
   const { convertCurrency } = useContext(SettingContext);
+
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+  const [productName, setProductName] = useState({});
+
+  useEffect(() => {
+    if (productState.product.name) {
+      if (typeof productState?.product?.name === "string") {
+        try {
+          setProductName(JSON.parse(productState.product.name));
+        } catch (error) {
+          console.error("Failed to parse values.name:", error);
+        }
+      }
+
+    }
+  }, [productState.product.name]);
+
   return (
     <>
       <div className={`basic-product theme-product-3 ${productState?.product?.stock_status === "out_of_stock" ? "sold-out" : ""}`}>
         <div className="img-wrapper">
           {productState?.product?.discount && <div className="ribbon-round">{productState?.product?.discount}%</div>}
           <Link href={`/product/${productState?.product?.slug}`}>
-            <img src={productState?.product?.product_thumbnail?.original_url} className="img-fluid bg-img" alt={productState?.product?.name} />
+            <img src={productState?.product?.product_thumbnail?.original_url} className="img-fluid bg-img" alt={productName?.[currentLanguage]} />
           </Link>
           <div className="cart-info">
             <WishlistButton productstate={productState?.product} classes="wishlist-icon" />
@@ -26,7 +45,7 @@ const ProductBox4 = ({ productState }) => {
         </div>
         <div className="product-detail">
           <a className="product-title" onClick={() => router.push(`/product/${productState?.product?.slug}`)}>
-            {productState?.product?.name}
+            {productName?.[currentLanguage]}
           </a>
           <div className="rating-w-count">
             <div className="rating">

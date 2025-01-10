@@ -12,6 +12,7 @@ import { placeHolderImage } from "@/Components/Widgets/Placeholder";
 import Btn from "@/Elements/Buttons/Btn";
 import ProductRatingBox from "@/Components/Widgets/ProductBox/Widgets/ProductRatingBox";
 import RatingBox from "@/Components/Collection/CollectionSidebar/RatingBox";
+import { useEffect } from "react";
 
 const ReviewModal = ({ modal, setModal, productState, refetch }) => {
   const { t } = useTranslation("common");
@@ -21,6 +22,21 @@ const ReviewModal = ({ modal, setModal, productState, refetch }) => {
       setModal(false);
     }
   });
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+
+  useEffect(() => {
+    if (productState.product.name) {
+      if (typeof productState?.product?.name === "string") {
+        try {
+          setProductState((prev) => ({ ...prev, product: { ...prev.product, name: JSON.parse(productState.product.name) } }));
+        } catch (error) {
+          console.error("Failed to parse values.name:", error);
+        }
+      }
+
+    }
+  }, [productState?.product?.name])
   return (
     <CustomModal modal={modal ? true : false} setModal={setModal} classes={{ modalClass: "theme-modal-2", title: productState?.product?.user_review ? "EditReview" : "Writeareview" }}>
       <Formik
@@ -39,10 +55,10 @@ const ReviewModal = ({ modal, setModal, productState, refetch }) => {
           <Form className="product-review-form">
             <div className="product-wrapper">
               <div className="product-image">
-                <Avatar data={productState?.product?.product_thumbnail ? productState?.product?.product_thumbnail : placeHolderImage} customImageClass="img-fluid" name={productState?.product?.name} />
+                <Avatar data={productState?.product?.product_thumbnail ? productState?.product?.product_thumbnail : placeHolderImage} customImageClass="img-fluid" name={productState?.product?.name?.[currentLanguage]} />
               </div>
               <div className="product-content">
-                <h5 className="name">{productState?.product?.name}</h5>
+                <h5 className="name">{productState?.product?.name?.[currentLanguage]}</h5>
                 <div className="product-review-rating">
                   <label>{"Rating"}</label>
                   <div className="product-rating">

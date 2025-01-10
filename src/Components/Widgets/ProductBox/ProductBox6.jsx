@@ -1,7 +1,7 @@
 import SettingContext from "@/Context/SettingContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import CartButton from "./Widgets/CartButton";
 import ProductHoverButton from "./Widgets/ProductHoverButton";
@@ -12,13 +12,31 @@ const ProductBox6 = ({ productState }) => {
   const { convertCurrency } = useContext(SettingContext);
   const router = useRouter();
   const { t } = useTranslation("common");
+
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+  const [productName, setProductName] = useState({});
+
+  useEffect(() => {
+    if (productState.product.name) {
+      if (typeof productState?.product?.name === "string") {
+        try {
+          setProductName(JSON.parse(productState.product.name));
+        } catch (error) {
+          console.error("Failed to parse values.name:", error);
+        }
+      }
+
+    }
+  }, [productState.product.name]);
+
   return (
     <>
       <div className="basic-product theme-product-5">
         <div className="img-wrapper">
           {productState?.product?.sale_starts_at && productState?.product?.sale_expired_at && <div className="d-none d-sm-flex"><OfferTimer productState={productState} noHeading /></div>}
           <Link href={`/product/${productState?.product?.slug}`}>
-            <img src={productState?.selectedVariation ? productState?.selectedVariation.variation_image.original_url : productState?.product?.product_thumbnail?.original_url} className="img-fluid bg-img" alt={productState?.product?.name} />
+            <img src={productState?.selectedVariation ? productState?.selectedVariation.variation_image.original_url : productState?.product?.product_thumbnail?.original_url} className="img-fluid bg-img" alt={productName?.[currentLanguage]} />
           </Link>
           <div className="cart-info">
             <CartButton productState={productState} selectedVariation={productState.selectedVariation} />
@@ -40,7 +58,7 @@ const ProductBox6 = ({ productState }) => {
               <span>({productState?.product?.reviews_count})</span>
             </div>
           </div>
-          <h6>{productState?.product?.name}</h6>
+          <h6>{productName?.[currentLanguage]}</h6>
           <h4 className="price">
             {productState?.selectedVariation ? convertCurrency(productState?.selectedVariation?.sale_price) : convertCurrency(productState?.product?.sale_price)}{" "}
             {productState?.selectedVariation ? (

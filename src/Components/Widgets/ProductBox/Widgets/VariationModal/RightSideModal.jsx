@@ -8,9 +8,23 @@ import { useTranslation } from "react-i18next";
 const RightVariationModal = ({ cloneVariation }) => {
   const { convertCurrency } = useContext(SettingContext);
   const { t } = useTranslation("common");
+
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+
+  const getProductName = (name) => {
+    try {
+      const productNameObject = JSON.parse(name);
+      return productNameObject[currentLanguage] || productNameObject.en;
+    } catch (error) {
+      console.error("Failed to parse product name:", error);
+      return name;
+    }
+  };
+
   return (
     <>
-      <h2 className="main-title">{cloneVariation?.selectedVariation ? cloneVariation?.selectedVariation?.name : cloneVariation?.product?.name}</h2>
+      <h2 className="main-title">{cloneVariation?.selectedVariation ? cloneVariation?.selectedVariation?.name : getProductName(cloneVariation?.product?.name)}</h2>
       <div className="product-rating">
         <ProductRating totalRating={cloneVariation?.product?.rating_count} />
         <span className="divider">|</span>

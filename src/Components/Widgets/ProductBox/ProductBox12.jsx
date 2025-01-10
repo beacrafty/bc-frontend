@@ -1,7 +1,7 @@
 import SettingContext from "@/Context/SettingContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ProductRating from "../ProductRating";
 import CartButton from "./Widgets/CartButton";
@@ -12,12 +12,30 @@ const ProductBox12 = ({ productState, setProductState }) => {
   const { convertCurrency } = useContext(SettingContext);
   const router = useRouter();
   const { t } = useTranslation("common");
+
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+  const [productName, setProductName] = useState({});
+
+  useEffect(() => {
+    if (productState.product.name) {
+      if (typeof productState?.product?.name === "string") {
+        try {
+          setProductName(JSON.parse(productState.product.name));
+        } catch (error) {
+          console.error("Failed to parse values.name:", error);
+        }
+      }
+
+    }
+  }, [productState.product.name]);
+
   return (
     <>
       <div className="basic-product theme-product-11">
         <div className="img-wrapper">
           <Link href={`/product/${productState?.product?.slug}`}>
-            <img src={productState?.selectedVariation?.variation_image ? productState?.selectedVariation.variation_image.original_url : productState?.product?.product_thumbnail?.original_url} className="img-fluid" alt={productState?.product?.name} />
+            <img src={productState?.selectedVariation?.variation_image ? productState?.selectedVariation.variation_image.original_url : productState?.product?.product_thumbnail?.original_url} className="img-fluid" alt={productName?.[currentLanguage]} />
           </Link>
           <div className="cart-info">
             <ProductHoverButton productstate={productState?.product} />
@@ -30,7 +48,7 @@ const ProductBox12 = ({ productState, setProductState }) => {
               {productState?.product?.brand?.name}
             </Link>
           )}
-          <h6>{productState?.product?.name}</h6>
+          <h6>{productName?.[currentLanguage]}</h6>
           <h4 className="price">
             {productState?.selectedVariation ? convertCurrency(Number(productState?.selectedVariation.sale_price).toFixed(2)) : convertCurrency(Number(productState?.product?.sale_price))}
             {productState?.selectedVariation

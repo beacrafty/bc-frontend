@@ -50,6 +50,22 @@ const QuestionAnswerModal = ({ modal, setModal, productState, update, refetch })
     return () => setShowBoxMessage();
   }, [message, isAuth]);
 
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+
+  useEffect(() => {
+    if (productState.product.name) {
+      if (typeof productState?.product?.name === "string") {
+        try {
+          setProductState((prev) => ({ ...prev, product: { ...prev.product, name: JSON.parse(productState.product.name) } }));
+        } catch (error) {
+          console.error("Failed to parse values.name:", error);
+        }
+      }
+
+    }
+  }, [productState?.product?.name])
+
   return (
     <CustomModal modal={modal ? true : false} setModal={setModal} classes={{ modalClass: "theme-modal-2 question-answer-modal", modalHeaderClass: "p-0", customChildren: true }}>
       <ModalHeader className="border-color" toggle={toggle}>
@@ -74,9 +90,9 @@ const QuestionAnswerModal = ({ modal, setModal, productState, update, refetch })
             <Form>
               <div className="product-review-form">
                 <div className="product-wrapper">
-                  <div className="product-image">{productState?.product.product_thumbnail && <Image src={productState?.product.product_thumbnail ? productState?.product.product_thumbnail.original_url : placeHolderImage} className="img-fluid" height={80} width={80} alt={productState?.product?.name} />}</div>
+                  <div className="product-image">{productState?.product.product_thumbnail && <Image src={productState?.product.product_thumbnail ? productState?.product.product_thumbnail.original_url : placeHolderImage} className="img-fluid" height={80} width={80} alt={productState?.product?.name?.[currentLanguage]} />}</div>
                   <div className="product-content">
-                    <h5 className="name">{productState?.product?.name}</h5>
+                    <h5 className="name">{productState?.product?.name?.[currentLanguage]}</h5>
                     <div className="product-review-rating">
                       <div className="product-rating">
                         <h6 className="price-number">{convertCurrency(productState?.product?.sale_price)}</h6>

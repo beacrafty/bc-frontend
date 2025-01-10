@@ -4,7 +4,7 @@ import SettingContext from "@/Context/SettingContext";
 import ThemeOptionContext from "@/Context/ThemeOptionsContext";
 import { Href } from "@/Utils/Constants";
 import { useRouter } from "next/navigation";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { RiQuestionnaireLine, RiRulerLine, RiTruckLine } from "react-icons/ri";
 import AddToCartButton from "./AddToCartButton";
@@ -35,11 +35,27 @@ const ProductContent = ({ productState, setProductState, productAccordion, noDet
     qna: <QuestionAnswerModal modal={modal} setModal={setModal} productState={productState} />,
   };
 
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;  
+
+  useEffect(() => {
+    if (productState.product.name) {
+      if (typeof productState?.product?.name === "string") {
+        try {
+          setProductState((prev) => ({ ...prev, product: { ...prev.product, name: JSON.parse(productState.product.name) } }));
+        } catch (error) {
+          console.error("Failed to parse values.name:", error);
+        }
+      }
+
+    }
+  }, [productState?.product?.name])
+
   return (
     <>
       {!noDetails && (
         <>
-          <h2 className="main-title">{productState?.selectedVariation?.name ?? productState?.product?.name}</h2>
+          <h2 className="main-title">{productState?.selectedVariation?.name ?? productState?.product?.name?.[currentLanguage]}</h2>
           {!productState?.product?.is_external && (
             <div className="product-rating">
               <RatingBox totalRating={productState?.selectedVariation?.rating_count ?? productState?.product?.rating_count} />

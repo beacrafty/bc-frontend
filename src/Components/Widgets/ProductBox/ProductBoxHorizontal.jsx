@@ -1,14 +1,33 @@
 import SettingContext from "@/Context/SettingContext";
 import { ImagePath } from "@/Utils/Constants";
 import Link from "next/link";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import ProductRating from "../ProductRating";
 import CartButton from "./Widgets/CartButton";
 import ImageVariant from "./Widgets/ImageVariant";
 import ProductBoxVariantAttribute from "./Widgets/ProductBoxVariantAttributes";
+import { useTranslation } from "react-i18next";
 
 const ProductBoxHorizontal = ({ productState, style }) => {
   const { convertCurrency } = useContext(SettingContext);
+
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+  const [productName, setProductName] = useState({});
+
+  useEffect(() => {
+    if (productState.product.name) {
+      if (typeof productState?.product?.name === "string") {
+        try {
+          setProductName(JSON.parse(productState.product.name));
+        } catch (error) {
+          console.error("Failed to parse values.name:", error);
+        }
+      }
+
+    }
+  }, [productState.product.name]);
+
   return (
     <>
       {style == "single_product" ? (
@@ -23,7 +42,7 @@ const ProductBoxHorizontal = ({ productState, style }) => {
               </Link>
             )}
             <Link href={`/product/ ${productState?.product?.slug}`}>
-              <h2>{productState?.selectedVariation ? productState?.selectedVariation?.name : productState?.product?.name}</h2>
+              <h2>{productState?.selectedVariation ? productState?.selectedVariation?.name : productName?.[currentLanguage]}</h2>
             </Link>
             {productState?.product?.short_description && <p>{productState?.product?.short_description}</p>}
             <ProductBoxVariantAttribute productState={productState} showVariableType={["color", "rectangle", "circle", "radio", "dropdown", "image"]} />
@@ -40,7 +59,7 @@ const ProductBoxHorizontal = ({ productState, style }) => {
           <div className="media-body align-self-center">
             <ProductRating totalRating={productState?.product?.rating_count} />
             <Link href={`/product/${productState?.product?.slug}`}>
-              <h6>{productState?.product?.name}</h6>
+              <h6>{productName?.[currentLanguage]}</h6>
             </Link>
             <h4>
               {productState?.product?.discount ? (

@@ -1,7 +1,7 @@
 import SettingContext from "@/Context/SettingContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import CartButton from "./Widgets/CartButton";
 import WishlistButton from "./Widgets/HoverButton/WishlistButton";
@@ -13,6 +13,24 @@ const ProductBox9 = ({ productState, setProductState }) => {
   const router = useRouter();
   const { t } = useTranslation("common");
   const { convertCurrency } = useContext(SettingContext);
+
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+  const [productName, setProductName] = useState({});
+
+  useEffect(() => {
+    if (productState.product.name) {
+      if (typeof productState?.product?.name === "string") {
+        try {
+          setProductName(JSON.parse(productState.product.name));
+        } catch (error) {
+          console.error("Failed to parse values.name:", error);
+        }
+      }
+
+    }
+  }, [productState.product.name]);
+
   return (
     <>
       <div className={`basic-product theme-product-8 ${productState?.product?.stock_status === "out-of-stock" ? "sold-out" : ""}`}>
@@ -32,7 +50,7 @@ const ProductBox9 = ({ productState, setProductState }) => {
         </div>
         <div className="product-detail">
           <Link href={`/product/${productState?.product?.slug}`} className="product-title">
-            {productState?.product?.name}
+            {productState?.product?.name?.[currentLanguage]}
           </Link>
           <h4 className="price">
             {convertCurrency(productState?.product?.sale_price)}{" "}

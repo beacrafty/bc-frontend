@@ -41,6 +41,19 @@ const SelectedCart = ({ modal, setSelectedVariation, setModal }) => {
     });
   }, [modal]);
 
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+
+  const getProductName = (name) => {
+    try {
+      const productNameObject = JSON.parse(name);
+      return productNameObject[currentLanguage] || productNameObject.en;
+    } catch (error) {
+      console.error("Failed to parse product name:", error);
+      return name;
+    }
+  };
+
   return (
     <>
       <div className="cart_media">
@@ -49,12 +62,12 @@ const SelectedCart = ({ modal, setSelectedVariation, setModal }) => {
             <li className="product-box-contain" key={i}>
               <div className="media">
                 <Link href={`/product/${elem?.product?.slug}`}>
-                  <Avatar customeClass={""} data={elem?.variation?.variation_image ?? elem?.product?.product_thumbnail} placeHolder={placeHolderImage} name={elem?.product?.name} height={72} width={87} />
+                  <Avatar customeClass={""} data={elem?.variation?.variation_image ?? elem?.product?.product_thumbnail} placeHolder={placeHolderImage} name={getProductName(elem?.product?.name)} height={72} width={87} />
                 </Link>
 
                 <div className="media-body">
                   <Link href={`/product/${elem?.product?.slug}`}>
-                    <h4>{elem?.variation?.name ?? elem?.product?.name}</h4>
+                    <h4>{elem?.variation?.name ?? getProductName(elem?.product?.name)}</h4>
                   </Link>
                   <h4 className="quantity">
                     <span>{convertCurrency(elem?.variation?.sale_price ?? elem?.product?.sale_price)}</span>

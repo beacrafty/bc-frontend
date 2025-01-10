@@ -4,7 +4,7 @@ import { WishlistAPI } from "@/Utils/AxiosUtils/API";
 import { Href } from "@/Utils/Constants";
 import useCreate from "@/Utils/Hooks/useCreate";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { RiCloseLine } from "react-icons/ri";
 import { Col, Row } from "reactstrap";
@@ -21,11 +21,28 @@ const CartData = ({ elem }) => {
     removeCart(elem?.variation_id ? elem?.variation_id : elem.product_id, elem?.id);
   };
 
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+  const [productName, setProductName] = useState({});
+
+  useEffect(() => {
+    if (elem.product.name) {
+      if (typeof elem?.product?.name === "string") {
+        try {
+          setProductName(JSON.parse(elem.product.name));
+        } catch (error) {
+          console.error("Failed to parse values.name:", error);
+        }
+      }
+
+    }
+  }, [elem]);
+
   return (
     <tr>
       <CartProductDetail elem={elem} />
       <td>
-        <Link href={`/product/${elem?.product?.slug}`}>{elem?.variation?.name ?? elem?.product?.name}</Link>
+        <Link href={`/product/${elem?.product?.slug}`}>{elem?.variation?.name ?? productName?.[currentLanguage]}</Link>
         <Row className="mobile-cart-content">
           <Col>
             <div className="qty-box">

@@ -26,6 +26,7 @@ const DetailsTable = ({ data }) => {
     }));
 
   const ref = useRef(null);
+  
   return (
     <>
       <Card className="dashboard-table">

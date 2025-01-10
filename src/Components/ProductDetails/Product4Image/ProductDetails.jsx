@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import ProductBox1Rating from "@/Components/Widgets/ProductBox/ProductBox1/ProductBox1Rating";
 import SettingContext from "@/Context/SettingContext";
 import { useTranslation } from "react-i18next";
@@ -6,9 +6,26 @@ import { useTranslation } from "react-i18next";
 const ProductDetails = ({ productState }) => {
   const { t } = useTranslation("common");
   const { convertCurrency } = useContext(SettingContext);
+
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+
+  useEffect(() => {
+    if (productState.product.name) {
+      if (typeof productState?.product?.name === "string") {
+        try {
+          setProductState((prev) => ({ ...prev, product: { ...prev.product, name: JSON.parse(productState.product.name) } }));
+        } catch (error) {
+          console.error("Failed to parse values.name:", error);
+        }
+      }
+
+    }
+  }, [productState?.product?.name])
+
   return (
     <>
-      <h2 className="name">{productState?.selectedVariation?.name ?? productState?.product?.name}</h2>
+      <h2 className="name">{productState?.selectedVariation?.name ?? productState?.product?.name?.[currentLanguage]}</h2>
       <div className="price-rating">
         <h3 className="theme-color price">
           {productState?.selectedVariation?.sale_price ? convertCurrency(productState?.selectedVariation?.sale_price) : convertCurrency(productState?.product?.sale_price)}

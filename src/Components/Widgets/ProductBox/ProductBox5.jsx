@@ -1,6 +1,6 @@
 import SettingContext from "@/Context/SettingContext";
 import Link from "next/link";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import CartButton from "./Widgets/CartButton";
 import WishlistButton from "./Widgets/HoverButton/WishlistButton";
@@ -11,12 +11,30 @@ import ProductRatingBox from "./Widgets/ProductRatingBox";
 const ProductBox5 = ({ productState, setProductState }) => {
   const { convertCurrency } = useContext(SettingContext);
   const { t } = useTranslation("common");
+
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+  const [productName, setProductName] = useState({});
+
+  useEffect(() => {
+    if (productState.product.name) {
+      if (typeof productState?.product?.name === "string") {
+        try {
+          setProductName(JSON.parse(productState.product.name));
+        } catch (error) {
+          console.error("Failed to parse values.name:", error);
+        }
+      }
+
+    }
+  }, [productState.product.name]);
+
   return (
     <>
       <div className={`basic-product theme-product-4 ${productState?.product?.stock_status === "out_of_stock" ? "sold-out" : ""}`}>
         <div className="img-wrapper">
           <Link href={`/product/${productState?.product?.slug}`}>
-            <img src={productState?.selectedVariation?.variation_image ? productState?.selectedVariation.variation_image.original_url : productState?.product?.product_thumbnail.original_url} className="img-fluid bg-img" alt={productState?.product?.name} />
+            <img src={productState?.selectedVariation?.variation_image ? productState?.selectedVariation.variation_image.original_url : productState?.product?.product_thumbnail.original_url} className="img-fluid bg-img" alt={productName?.[currentLanguage]} />
           </Link>
           <ul className="trending-label">
             {productState?.product?.stock_status === "out_of_stock" ? <li className="out_of_stock">{t("SoldOut")}</li> : null}
@@ -38,7 +56,7 @@ const ProductBox5 = ({ productState, setProductState }) => {
 
         <div className="product-detail">
           <a className="product-title mb-2" onClick={() => router.push(`/product/${productState?.product?.slug}`)}>
-            {productState?.selectedVariation ? productState?.selectedVariation.name : productState?.product?.name}
+            {productState?.selectedVariation ? productState?.selectedVariation.name : productName?.[currentLanguage]}
           </a>
 
           <div className="rating-w-count">

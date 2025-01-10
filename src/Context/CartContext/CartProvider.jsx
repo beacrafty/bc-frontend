@@ -342,7 +342,7 @@ const CartProvider = (props) => {
   const storeInCookies = () => {
     setCartTotal(total);
     var newArray = cartProducts.filter(function (el) {
-      return el.product.product_type == "digital";
+      // return el.product.product_type == "digital";
     });
     Cookies.set("cartData", newArray.length ? newArray[0].product?.product_type : "physical");
     //  Cookies.set("cartData", JSON.stringify({ items: cartProducts, total: total }));

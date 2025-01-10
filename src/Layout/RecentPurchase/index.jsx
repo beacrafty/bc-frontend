@@ -8,7 +8,7 @@ import { RiCloseLine } from "react-icons/ri";
 import { Media } from "reactstrap";
 
 const RecentPurchase = () => {
-  const { t } = useTranslation("common");
+  const { t, i18n } = useTranslation("common");
   const { filteredProduct } = useContext(ProductIdsContext);
   const [show, setShow] = useState(false);
   const [min, setMin] = useState(10);
@@ -49,15 +49,28 @@ const RecentPurchase = () => {
   if (!popupEnable || !product) {
     return null; // Return null when the popup is not enabled or there's no product to display.
   }
+
+  const currentLanguage = i18n.resolvedLanguage;
+
+  const getProductName = (name) => {
+    try {
+      const productNameObject = JSON.parse(name);
+      return productNameObject[currentLanguage] || productNameObject.en;
+    } catch (error) {
+      console.error("Failed to parse product name:", error);
+      return name;
+    }
+  };
+
   return (
     <Media className={`recently-purchase ${show ? "show" : ""}`}>
-      <Image height={64} width={85} src={product?.product_thumbnail?.original_url ? product?.product_thumbnail?.original_url : `${ImagePath}/placeholder/product.png`} alt={product?.name || "product"} />
+      <Image height={64} width={85} src={product?.product_thumbnail?.original_url ? product?.product_thumbnail?.original_url : `${ImagePath}/placeholder/product.png`} alt={getProductName(product?.name) || "product"} />
       <Media body>
         <div>
           <div className="title">{t("SomeoneRecentlyPurchased")}</div>
           {product?.name && (
             <Link href={`/product/${product?.slug}`}>
-              <span className="product-name">{product?.name}</span>
+              <span className="product-name">{getProductName(product?.name)}</span>
             </Link>
           )}
           <small className="timeAgo">

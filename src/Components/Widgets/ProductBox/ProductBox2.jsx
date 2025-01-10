@@ -3,7 +3,7 @@ import ThemeOptionContext from "@/Context/ThemeOptionsContext";
 import WishlistContext from "@/Context/WishlistContext";
 import { Href, audioFile } from "@/Utils/Constants";
 import Cookies from "js-cookie";
-import React, { useContext, useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { RiDiscountPercentFill, RiStarSFill } from "react-icons/ri";
 import CartButton from "./Widgets/CartButton";
@@ -36,6 +36,24 @@ const ProductBox2 = ({ productState, setProductState }) => {
   };
 
   const { convertCurrency } = useContext(SettingContext);
+
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+  const [productName, setProductName] = useState({});
+
+  useEffect(() => {
+    if (productState.product.name) {
+      if (typeof productState?.product?.name === "string") {
+        try {
+          setProductName(JSON.parse(productState.product.name));
+        } catch (error) {
+          console.error("Failed to parse values.name:", error);
+        }
+      }
+
+    }
+  }, [productState.product.name]);
+  
   return (
     <div className={`basic-product theme-product-1 ${productState?.product?.stock_status === "out_of_stock" ? "sold-out" : ""}`}>
       <div className="overflow-hidden">
@@ -47,7 +65,7 @@ const ProductBox2 = ({ productState, setProductState }) => {
           ) : null}
 
           <Link href={`/product/${productState?.product?.slug}`}>
-            <img src={productState?.selectedVariation?.variation_image ? productState?.selectedVariation.variation_image.original_url : productState?.product?.product_thumbnail?.original_url ? productState?.product?.product_thumbnail?.original_url : placeHolderImage} className="img-fluid bg-img" alt={productState?.product?.name} />
+            <img src={productState?.selectedVariation?.variation_image ? productState?.selectedVariation.variation_image.original_url : productState?.product?.product_thumbnail?.original_url ? productState?.product?.product_thumbnail?.original_url : placeHolderImage} className="img-fluid bg-img" alt={productName?.[currentLanguage]} />
           </Link>
           <div className="rating-label">
             <RiStarSFill />
@@ -70,7 +88,7 @@ const ProductBox2 = ({ productState, setProductState }) => {
               </div>
             </div>
             <a href={`/product/${productState?.product?.slug}`}>
-              <h6>{productState?.selectedVariation ? productState?.selectedVariation?.name : productState?.product?.name}</h6>
+              <h6>{productState?.selectedVariation ? productState?.selectedVariation?.name : productName?.[currentLanguage]}</h6>
             </a>
             <h4 className="price">
               {productState?.selectedVariation ? convertCurrency(productState?.selectedVariation.sale_price) : convertCurrency(productState?.product?.sale_price)} {/* Adjust currencySymbol based on your implementation */}

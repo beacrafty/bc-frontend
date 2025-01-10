@@ -135,12 +135,12 @@ const Furniture2 = ({ slug }) => {
                       <Row className="g-4">
                         {data?.product_list_2?.products?.product_banner?.banner_1?.status && (
                           <div className={data?.product_list_2?.products?.product_banner?.banner_2?.status ? "col-md-6" : "col-12"}>
-                            <ImageLink imgUrl={data?.product_list_2?.products?.product_banner?.banner_1} bgImg={true} />
+                            <ImageLink imgUrl={data?.product_list_2?.products?.product_banner?.banner_1?.[currentLanguage]} bgImg={true} />
                           </div>
                         )}
                         {data?.product_list_2?.products?.product_banner?.banner_2?.status && (
                           <div className={data?.product_list_2?.products?.product_banner?.banner_1?.status ? "col-md-6" : "col-12"}>
-                            <ImageLink imgUrl={data?.product_list_2?.products?.product_banner?.banner_2} bgImg={true} />
+                            <ImageLink imgUrl={data?.product_list_2?.products?.product_banner?.banner_2?.[currentLanguage]} bgImg={true} />
                           </div>
                         )}
                       </Row>

@@ -23,6 +23,19 @@ const LeftSideModal = ({ cloneVariation, productObj }) => {
 
   const currentVariation = cloneVariation?.selectedVariation?.variation_galleries?.length ? cloneVariation?.selectedVariation?.variation_galleries : cloneVariation?.product?.product_galleries;
 
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+
+  const getProductName = (name) => {
+    try {
+      const productNameObject = JSON.parse(name);
+      return productNameObject[currentLanguage] || productNameObject.en;
+    } catch (error) {
+      console.error("Failed to parse product name:", error);
+      return name;
+    }
+  };
+
   return (
     <Col lg="6">
       <div className="sticky-top-custom position-relative top-0">
@@ -44,7 +57,7 @@ const LeftSideModal = ({ cloneVariation, productObj }) => {
                           </audio>
                         </div>
                       ) : (
-                        item?.original_url && <Image src={item ? item?.original_url : placeHolderImage} className="img-fluid" alt={cloneVariation?.product?.name} width={500} height={500} />
+                        item?.original_url && <Image src={item ? item?.original_url : placeHolderImage} className="img-fluid" alt={getProductName(cloneVariation?.product?.name)} width={500} height={500} />
                       )}
                     </div>
                   ))}
@@ -73,7 +86,7 @@ const LeftSideModal = ({ cloneVariation, productObj }) => {
                           </audio>
                         </div>
                       ) : (
-                        item?.original_url && <Image src={item ? item?.original_url : placeHolderImage} className="img-fluid" alt={cloneVariation?.product?.name} width={500} height={500} />
+                        item?.original_url && <Image src={item ? item?.original_url : placeHolderImage} className="img-fluid" alt={getProductName(cloneVariation?.product?.name)} width={500} height={500} />
                       )}
                     </div>
                   ))}

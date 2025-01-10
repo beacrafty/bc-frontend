@@ -1,6 +1,6 @@
 import SettingContext from "@/Context/SettingContext";
 import Link from "next/link";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import CartButton from "./Widgets/CartButton";
 import CompareButton from "./Widgets/HoverButton/CompareButton";
@@ -12,12 +12,30 @@ import ProductRatingBox from "./Widgets/ProductRatingBox";
 const ProductBox3 = ({ productState, setProductState }) => {
   const { convertCurrency } = useContext(SettingContext);
   const { t } = useTranslation("common");
+
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+  const [productName, setProductName] = useState({});
+
+  useEffect(() => {
+    if (productState.product.name) {
+      if (typeof productState?.product?.name === "string") {
+        try {
+          setProductName(JSON.parse(productState.product.name));
+        } catch (error) {
+          console.error("Failed to parse values.name:", error);
+        }
+      }
+
+    }
+  }, [productState.product.name]);
+
   return (
     <>
       <div className={`basic-product theme-product-2 ${productState?.product?.stock_status === "out_of_stock" ? "sold-out" : ""}`}>
         <div className="product-detail mt-0">
           <Link className="product-title" href={`/product/${productState?.product?.slug}`}>
-            {productState?.selectedVariation ? productState?.selectedVariation.name : productState?.product?.name}
+            {productState?.selectedVariation ? productState?.selectedVariation.name : productName?.[currentLanguage]}
           </Link>
           <div className="rating">
             <ProductRatingBox ratingCount={productState?.rating_count} />
@@ -33,7 +51,7 @@ const ProductBox3 = ({ productState, setProductState }) => {
         </div>
         <div className="img-wrapper">
           <Link href={`/product/${productState?.product?.slug}`}>
-            <img src={productState?.selectedVariation?.variation_image ? productState?.selectedVariation.variation_image.original_url : productState?.product?.product_thumbnail?.original_url} className="img-fluid" alt={productState?.product?.name} />
+            <img src={productState?.selectedVariation?.variation_image ? productState?.selectedVariation.variation_image.original_url : productState?.product?.product_thumbnail?.original_url} className="img-fluid" alt={productName?.[currentLanguage]} />
           </Link>
           <div className="quick-view-part">
             <QuickViewButton product={productState?.product} />

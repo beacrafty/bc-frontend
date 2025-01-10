@@ -15,6 +15,7 @@ import EmptyImage from "../../../../public/assets/images/svg/empty-items.svg";
 import CompareAction from "./CompareAction";
 import CompareWrapper from "./CompareWrapper";
 import { RiCloseLine } from "react-icons/ri";
+import { useTranslation } from "react-i18next";
 
 const CompareData = () => {
   const { setCompareState, compareState, refetch } = useContext(CompareContext);
@@ -31,6 +32,19 @@ const CompareData = () => {
   };
   let settings = compareSlider(compareState.length)
 
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+
+  const getProductName = (name) => {
+    try {
+      const productNameObject = JSON.parse(name);
+      return productNameObject[currentLanguage] || productNameObject.en;
+    } catch (error) {
+      console.error("Failed to parse product name:", error);
+      return name;
+    }
+  };
+
   return (
     <>
       {compareState?.length > 0 ? (
@@ -44,7 +58,7 @@ const CompareData = () => {
                 <div className="img-section">
                   <div>{product.product_thumbnail.original_url && <Image src={product.product_thumbnail ? product.product_thumbnail.original_url : placeHolderImage} className="img-fluid" alt={product.name} height={156} width={156} />}</div>
                   <Link href={`/product/${product?.slug}`}>
-                    <h5 className="text-title">{product?.name}</h5>
+                    <h5 className="text-title">{getProductName(product?.name)}</h5>
                   </Link>
                 </div>
                 <CompareWrapper data={{ title: "Discount", value: product?.discount ? product?.discount : "-" }} />

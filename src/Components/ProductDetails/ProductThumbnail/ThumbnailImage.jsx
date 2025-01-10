@@ -63,6 +63,23 @@ const ThumbnailProductImage = ({ productState, slideToShow }) => {
       },
     ],
   };
+
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+
+  useEffect(() => {
+    if (productState.product.name) {
+      if (typeof productState?.product?.name === "string") {
+        try {
+          setProductState((prev) => ({ ...prev, product: { ...prev.product, name: JSON.parse(productState.product.name) } }));
+        } catch (error) {
+          console.error("Failed to parse values.name:", error);
+        }
+      }
+
+    }
+  }, [productState?.product?.name])
+
   return (
     <div className="sticky-top-custom">
       <div className="thumbnail-image-slider">
@@ -101,7 +118,7 @@ const ThumbnailProductImage = ({ productState, slideToShow }) => {
                 ))}
               </Slider>
               {/* ):null} */}
-              {!currentVariation?.length && <img src={productState?.product?.product_thumbnail ? productState?.product?.product_thumbnail?.original_url : placeHolderImage} className="img-fluid" alt={productState?.product?.name} />}
+              {!currentVariation?.length && <img src={productState?.product?.product_thumbnail ? productState?.product?.product_thumbnail?.original_url : placeHolderImage} className="img-fluid" alt={productState?.product?.name?.currentLanguage} />}
 
               {productState?.product?.product_type == "digital" && <DigitalImageOptions product={productState?.product} />}
             </div>

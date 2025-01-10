@@ -1,5 +1,5 @@
 import SettingContext from "@/Context/SettingContext";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { RiDiscountPercentFill, RiStarFill } from "react-icons/ri";
 import CartButton from "./Widgets/CartButton";
@@ -11,6 +11,23 @@ const ProductBox10 = ({ productState }) => {
   const { convertCurrency } = useContext(SettingContext);
   const { t } = useTranslation("common");
   const router = useRouter();
+
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+  const [productName, setProductName] = useState({});
+
+  useEffect(() => {
+    if (productState.product.name) {
+      if (typeof productState?.product?.name === "string") {
+        try {
+          setProductName(JSON.parse(productState.product.name));
+        } catch (error) {
+          console.error("Failed to parse values.name:", error);
+        }
+      }
+
+    }
+  }, [productState.product.name]);
 
   return (
     <>
@@ -40,7 +57,7 @@ const ProductBox10 = ({ productState }) => {
           ) : null}
 
           <a onClick={() => router.push(`/product/${productState?.product?.slug}`)} className="product-title">
-            {productState?.product?.name}
+            {productName?.[currentLanguage]}
           </a>
 
           <div className="bottom-details">

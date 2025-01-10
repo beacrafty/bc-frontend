@@ -1,6 +1,6 @@
 import SettingContext from "@/Context/SettingContext";
 import Link from "next/link";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { RiStarSFill } from "react-icons/ri";
 import CartButton from "./Widgets/CartButton";
@@ -11,6 +11,23 @@ import ProductHoverButton from "./Widgets/ProductHoverButton";
 const ProductBox1 = ({ productState, setProductState }) => {
   const { convertCurrency } = useContext(SettingContext);
   const { t } = useTranslation("common");
+
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+  const [productName, setProductName] = useState({});
+
+  useEffect(() => {
+    if (productState.product.name) {
+      if (typeof productState?.product?.name === "string") {
+        try {
+          setProductName(JSON.parse(productState.product.name));
+        } catch (error) {
+          console.error("Failed to parse values.name:", error);
+        }
+      }
+
+    }
+  }, [productState.product.name]);
 
   return (
     <div className={`basic-product ${productState?.product?.stock_status === "out_of_stock" ? "sold-out" : ""}`}>
@@ -43,7 +60,7 @@ const ProductBox1 = ({ productState, setProductState }) => {
         )}
 
         <Link href={`/product/${productState?.product?.slug}`}>
-          <h6>{productState?.selectedVariation ? productState?.selectedVariation?.name : productState?.product?.name}</h6>
+          <h6>{productState?.selectedVariation ? productState?.selectedVariation?.name : productName?.[currentLanguage]}</h6>
         </Link>
 
         <h4 className="price">
