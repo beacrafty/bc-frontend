@@ -12,7 +12,7 @@ import CartProductDetail from "./CartProductDetail";
 import HandleQuantity from "./HandleQuantity";
 
 const CartData = ({ elem }) => {
-  const { t } = useTranslation("common");
+  const { t, i18n } = useTranslation("common");
   const { removeCart } = useContext(CartContext);
   const { convertCurrency } = useContext(SettingContext);
   const { mutate } = useCreate(WishlistAPI, false);
@@ -21,7 +21,6 @@ const CartData = ({ elem }) => {
     removeCart(elem?.variation_id ? elem?.variation_id : elem.product_id, elem?.id);
   };
 
-  const { i18n } = useTranslation("common");
   const currentLanguage = i18n.resolvedLanguage;
   const [productName, setProductName] = useState({});
 

@@ -166,13 +166,13 @@ const HeaderCartData = () => {
           </div>
           <HeaderCartBottom modal={modal} setModal={setModal} shippingCal={shippingCal} shippingFreeAmt={shippingFreeAmt} />
         </div>
-        {themeOption?.general?.celebration_effect && confetti === 1 && cartCanvas && (
+        {/* {themeOption?.general?.celebration_effect && confetti === 1 && cartCanvas && (
           <div className="confetti-wrapper show">
             {confettiItems.map((elem, i) => (
               <div className={`confetti-${elem}`} key={i}></div>
             ))}
           </div>
-        )}
+        )} */}
       </div>
     </>
   );

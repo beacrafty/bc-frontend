@@ -19,9 +19,12 @@ import ProductSlider from "./ProductSlider";
 import ProductSticky from "./ProductSticky";
 import ProductThumbnail from "./ProductThumbnail";
 import ProductVerticalTab from "./ProductVerticalTab";
+import { useTranslation } from "react-i18next";
 
 const ProductDetailContent = ({ params }) => {
   const router = useRouter();
+
+  const { i18n } = useTranslation("common");
   const { themeOption } = useContext(ThemeOptionContext);
   const { setGetProductIds, isLoading: productLoader } = useContext(ProductIdsContext);
   const searchParams = useSearchParams();
@@ -48,6 +51,8 @@ const ProductDetailContent = ({ params }) => {
     }
   }, [isLoading]);
 
+  const currentLanguage = i18n.resolvedLanguage;
+  
   useEffect(() => {
     const handleScroll = () => {
       const button = document.querySelector(".scroll-button");
@@ -86,10 +91,11 @@ const ProductDetailContent = ({ params }) => {
     product_sidebar_left: <ProductSidebarLayout productState={productState} setProductState={setProductState} direction="left" />,
     product_sidebar_right: <ProductSidebarLayout productState={productState} setProductState={setProductState} direction="right" />,
     product_column_thumbnail: <ProductColumn productState={productState} setProductState={setProductState} direction="bottom" />,
-  };
+  }; 
+
   return (
     <>
-      {<Breadcrumbs title={params} subNavigation={[{ name: "Product" }, { name: params }]} />}
+      {<Breadcrumbs title={`${productState?.product?.name?.[currentLanguage]}`} subNavigation={[{ name: "Product" }, { name: productState?.product?.name?.[currentLanguage] }]} />}
       {showProductLayout[isProductLayout]}
       {ProductData && <StickyCheckout ProductData={ProductData} isLoading={isLoading} />}
     </>
