@@ -5,6 +5,7 @@ import WrapperComponent from "@/Components/Widgets/WrapperComponent";
 import Breadcrumbs from "@/Utils/CommonComponents/Breadcrumb";
 import AboutUsImage from "./AboutUsImage";
 import AboutUsText from "./AboutUsText";
+import AboutUsBanner from "./AboutUsBanner";
 import ClientSection from "./ClientSection";
 import CreativeTeam from "./CreativeTeam";
 import ServiceSection from "./ServicesSection";
@@ -26,7 +27,8 @@ const AboutUsContent = () => {
       >
         <AboutUsImage />
         <AboutUsText />
-        <BrowserFaq heading={true} />
+        <AboutUsBanner />
+        {/* <BrowserFaq heading={true} /> */}
       </WrapperComponent>
       {themeOption?.about_us?.testimonial?.status && themeOption?.about_us?.testimonial?.reviews?.length && <ClientSection />}
       {themeOption?.about_us?.team?.status && themeOption?.about_us?.team?.members?.length && <CreativeTeam />}

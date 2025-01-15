@@ -625,5 +625,20 @@
   "Yousaved": "Vous avez économisé",
   "withthiscode": "avec ce code",
   "CouponApplied": "Coupon Appliqué",
-  "remove": "remove"
+  "remove": "remove",
+  "AboutUsBanner1": "Matériaux bruts durables",
+  "AboutUsBanner2": "Production locale et artisanale",
+  "AboutUsBanner3": "Production écologiquement responsable",
+  "CustomizeTitle1": "Personnalisez vos articles avec des gravures uniques",
+  "CustomizeDescription1": "Rendez votre achat vraiment unique avec notre service de gravure exclusif. Que vous célébriez un moment spécial ou offriez un cadeau, nous proposons des gravures personnalisées pour ajouter une touche personnelle à vos articles.",
+  "CustomizeHowItWorks": "Comment ça marche",
+  "CustomizeChooseYourItem": "Choisissez votre article",
+  "CustomizeChooseYourItemDescription": "Sélectionnez parmi notre gamme de produits haut de gamme.",
+  "CustomizeRequestPersonalization": "Demandez la personnalisation",
+  "CustomizeRequestPersonalizationDescription": "Indiquez-nous la gravure souhaitée, comme un nom, une date ou un message significatif.",
+  "CustomizePrecisionCraftmanship": "Artisanat de précision",
+  "CustomizePrecisionCraftmanshipDescription": "Nos artisans experts graveront soigneusement le texte choisi avec précision et soin.",
+  "CustomizeReadyToPersonalize": "Prêt à personnaliser ?",
+  "CustomizeReadyToPersonalizeDescription": "Sélectionnez simplement l'option de personnalisation lors de votre commande ou contactez-nous directement pour des demandes sur mesure. Laissez-nous vous aider à créer un souvenir précieux qui durera toute une vie.",
+  "CustomizeReadyToPersonalizeCTA": "Ajouter au Panier"
 }

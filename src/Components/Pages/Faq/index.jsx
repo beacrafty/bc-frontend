@@ -11,7 +11,8 @@ import { useTranslation } from "react-i18next";
 import { Accordion, AccordionBody, AccordionHeader, AccordionItem, Container } from "reactstrap";
 
 const BrowserFaq = ({ heading = false }) => {
-  const { t } = useTranslation("common");
+  const { t, i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
   const [open, setOpen] = useState(1);
   const toggle = (id) => {
     if (open === id) {
@@ -26,6 +27,22 @@ const BrowserFaq = ({ heading = false }) => {
     select: (data) => data?.data?.data,
   });
 
+  const getTitle = (faq) => {
+    try {
+        return JSON.parse(faq?.title)?.[currentLanguage]
+    } catch(err) {
+        return faq?.title;
+    }
+  }
+
+  const getDescription = (faq) => {
+    try {
+        return JSON.parse(faq?.description)?.[currentLanguage]
+    } catch(err) {
+        return faq?.description;
+    }
+  }
+
   if (isLoading) return <Loader />;
   return (
     <>
@@ -37,10 +54,12 @@ const BrowserFaq = ({ heading = false }) => {
             {data?.map((faq, i) => (
               <AccordionItem className="card" key={i}>
                 <AccordionHeader className="card-header" targetId={i + 1}>
-                  {faq?.title}
+                  {
+                      getTitle(faq)
+                  }
                 </AccordionHeader>
                 <AccordionBody className="card-body" accordionId={i + 1}>
-                  <p>{faq?.description}</p>
+                  <p>{getDescription(faq)}</p>
                 </AccordionBody>
               </AccordionItem>
             ))}

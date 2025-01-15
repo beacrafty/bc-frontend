@@ -653,5 +653,17 @@
   "GoToStore": "Zum Shop gehen",
   "ClearCart": "Warenkorb leeren",
   "WelcomeTo": "Willkommen in unserem Shop",
-  "CallUs": "Rufen Sie uns an"
+  "CallUs": "Rufen Sie uns an",
+  "CustomizeTitle1": "Personalisieren Sie Ihre Artikel mit einzigartigen Gravuren",
+  "CustomizeDescription1": "Machen Sie Ihren Kauf zu etwas ganz Besonderem mit unserem exklusiven Gravurservice. Ob Sie einen besonderen Moment feiern oder ein Geschenk machen, wir bieten personalisierte Gravuren an, um Ihren Artikeln eine persönliche Note zu verleihen.",
+  "CustomizeHowItWorks": "So funktioniert es",
+  "CustomizeChooseYourItem": "Wählen Sie Ihren Artikel aus",
+  "CustomizeChooseYourItemDescription": "Entscheiden Sie sich aus unserem Sortiment an Premium-Produkten.",
+  "CustomizeRequestPersonalization": "Personalisierung anfordern",
+  "CustomizeRequestPersonalizationDescription": "Teilen Sie uns Ihre gewünschte Gravur mit, z.B. einen Namen, ein Datum oder eine bedeutungsvolle Botschaft.",
+  "CustomizePrecisionCraftmanship": "Präzisionshandwerk",
+  "CustomizePrecisionCraftmanshipDescription": "Unsere erfahrenen Handwerker gravieren den gewünschten Text sorgfältig und präzise in den Artikel ein.",
+  "CustomizeReadyToPersonalize": "Bereit für Ihre Personalisierung?",
+  "CustomizeReadyToPersonalizeDescription": "Wählen Sie einfach die Personalisierungsoption bei Ihrer Bestellung aus oder kontaktieren Sie uns direkt für Sonderwünsche. Lassen Sie uns Ihnen helfen, ein wertvolles Andenken zu schaffen, das ein Leben lang hält.",
+  "CustomizeReadyToPersonalizeCTA": "Hinterlassen Sie heute Ihre persönliche Note – personalisieren Sie Ihren Artikel mit uns!"
 }

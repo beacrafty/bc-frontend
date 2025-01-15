@@ -653,5 +653,20 @@
   "GoToStore": "Go to Store",
   "ClearCart": "Clear Cart",
   "WelcomeTo": "Welcome To Our Store",
-  "CallUs": "Call Us"
+  "CallUs": "Call Us",
+  "AboutUsBanner1": "Sustainable Raw Materials",
+  "AboutUsBanner2": "Local and Handcrafted Production",
+  "AboutUsBanner3": "Environmentally Responsible Production",
+  "CustomizeTitle1": "Personalize Your Items with Unique Engravings",
+  "CustomizeDescription1": "Make your purchase truly one-of-a-kind with our exclusive engraving service. Whether you're celebrating a special moment or gifting a loved one, we offer personalized engravings to add a personal touch to your items.",
+  "CustomizeHowItWorks": "How it works",
+  "CustomizeChooseYourItem": "Choose Your Item",
+  "CustomizeChooseYourItemDescription": "Select from our range of premium products.",
+  "CustomizeRequestPersonalization": "Request Personalization",
+  "CustomizeRequestPersonalizationDescription": "Let us know your desired engraving, such as a name, date, or meaningful message.",
+  "CustomizePrecisionCraftmanship": "Precision Craftsmanship",
+  "CustomizePrecisionCraftmanshipDescription": "Our expert artisans will carefully carve your chosen text into the item with precision and care.",
+  "CustomizeReadyToPersonalize": "Ready to Personalize?",
+  "CustomizeReadyToPersonalizeDescription": "Simply select the personalization option when placing your order or contact us directly for custom requests. Let us help you create a cherished keepsake that lasts a lifetime.",
+  "CustomizeReadyToPersonalizeCTA": "ADD TO CART"
 }
