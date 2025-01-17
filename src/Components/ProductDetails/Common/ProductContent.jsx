@@ -38,6 +38,14 @@ const ProductContent = ({ productState, setProductState, productAccordion, noDet
   const { i18n } = useTranslation("common");
   const currentLanguage = i18n.resolvedLanguage;  
 
+  const getShortDescriptionTranslated = (short_description) => {
+    try {
+        return JSON.parse(short_description)[currentLanguage];
+    } catch(err) {
+        return short_description;
+    }
+  }
+
   useEffect(() => {
     if (productState.product.name) {
       if (typeof productState?.product?.name === "string") {
@@ -80,7 +88,7 @@ const ProductContent = ({ productState, setProductState, productAccordion, noDet
             </h3>
             <span>{t("InclusiveAllTheTax")}</span>
           </div>
-          {productState?.product.short_description && <p className="description-text">{productState?.product.short_description}</p>}
+          {productState?.product.short_description && <p className="description-text">{getShortDescriptionTranslated(productState?.product.short_description)}</p>}
         </>
       )}
       {!noModals ? (

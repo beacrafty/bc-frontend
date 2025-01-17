@@ -21,6 +21,8 @@ import HomeSocialMedia from "../Widgets/HomeSocialMedia";
 import BrowserFaq from "@/Components/Pages/Faq";
 import VideoBanner from "../Widgets/VideoBanner";
 import { useTranslation } from "react-i18next";
+import HomeTitle from "../Widgets/HomeTitle";
+import HomeBlog from "../Widgets/HomeBlog";
 
 const Furniture2 = ({ slug }) => {
   const [banners, setBanners] = useState([]);
@@ -120,55 +122,23 @@ const Furniture2 = ({ slug }) => {
         </>
       )}
 
-      {/* Products List 2 */}
-      {data?.product_list_2?.status && (
-        <WrapperComponent classes={{ fluidClass: "container", row: "g-4" }} customCol={true}>
-          <div className={data?.product_list_2?.right_panel?.status ? "col-xl-9 col-lg-8" : "col-xl-12 col-lg-8"}>
-            <div className="theme-tab">
-              <div className="tab-content-cls">
-                <HomeProduct productIds={data?.product_list_2?.products?.product_item?.product_ids || []} slider={true} sliderOptions={horizontalProductSlider} style="vertical" />
-              </div>
-              {(data?.product_list_2?.products?.product_banner?.banner_1?.status || data?.product_list_2?.products?.product_banner?.banner_2?.status) && (
-                <div className="banner-tools border-0 product_banner banner-section">
-                  <div className="ratio2_1">
-                    <Container className=" p-0">
-                      <Row className="g-4">
-                        {data?.product_list_2?.products?.product_banner?.banner_1?.status && (
-                          <div className={data?.product_list_2?.products?.product_banner?.banner_2?.status ? "col-md-6" : "col-12"}>
-                            <ImageLink imgUrl={data?.product_list_2?.products?.product_banner?.banner_1?.[currentLanguage]} bgImg={true} />
-                          </div>
-                        )}
-                        {data?.product_list_2?.products?.product_banner?.banner_2?.status && (
-                          <div className={data?.product_list_2?.products?.product_banner?.banner_1?.status ? "col-md-6" : "col-12"}>
-                            <ImageLink imgUrl={data?.product_list_2?.products?.product_banner?.banner_2?.[currentLanguage]} bgImg={true} />
-                          </div>
-                        )}
-                      </Row>
-                    </Container>
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-          {data?.product_list_2?.right_panel?.status && (
-            <Col xl="3" lg="4" md="12" className="mb-0 images">
-              <div className="theme-card">
-                <h5 className="title-border">{data?.product_list_2?.right_panel?.title}</h5>
-                <div className="offer-slider ">
-                  <HomeProduct productIds={data?.product_list_2?.right_panel?.product_ids || []} style="horizontal" />
-                </div>
-              </div>
-            </Col>
-          )}
-        </WrapperComponent>
-      )}
-
       {/* Brands */}
       {/* {data?.brand?.status && (
         <WrapperComponent classes={{ sectionClass: "tools-brand" }}>
           <HomeBrand sliderOptions={brandSlider4} brandIds={data?.brand?.brand_ids || []} bgLight={true} />
         </WrapperComponent>
       )} */}
+
+      {(data?.featured_blogs?.status || true) && (
+        <WrapperComponent classes={{ sectionClass: "blog blog-2 section-b-space ratio3_2", fluidClass: "container" }} colProps={{ md: "12" }}>
+          <HomeTitle title={data?.featured_blogs || {title: "From the blog", tag: "From the blog"}} type="basic" space={false} />
+          <HomeBlog blogIds={data?.featured_blogs?.blog_ids || []} />
+        </WrapperComponent>
+      )}
+
+      <WrapperComponent classes={{ sectionClass: "section-b-space pt-0" }} noRowCol={true}>
+        <HomeBrand brandIds={data?.brand?.brand_ids || []} />
+      </WrapperComponent>
 
       {data?.faq?.[currentLanguage]?.status && (
         <>
@@ -185,6 +155,7 @@ const Furniture2 = ({ slug }) => {
           <HomeSocialMedia media={data?.social_media || []} type="borderless" />
         </section>
       )}
+
     </>
   );
 };

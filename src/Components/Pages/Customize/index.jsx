@@ -1,12 +1,23 @@
 "use client";
 
+import SellerSteps from "@/Components/Seller/BecomeSeller/SellerSteps";
 import SingleProduct from "@/Components/Themes/SingleProduct";
+import HomeBrand from "@/Components/Themes/Widgets/HomeBrand";
 import HomeProduct from "@/Components/Themes/Widgets/HomeProduct";
+import HomeSlider from "@/Components/Themes/Widgets/HomeSlider";
+import HomeSocialMedia from "@/Components/Themes/Widgets/HomeSocialMedia";
 import ImageLink from "@/Components/Widgets/ImageLink";
+import TitleBox from "@/Components/Widgets/Title";
 import WrapperComponent from "@/Components/Widgets/WrapperComponent";
+import ProductIdsContext from "@/Context/ProductIdsContext";
+import ThemeOptionContext from "@/Context/ThemeOptionsContext";
+import {horizontalProductSlider5} from "@/Data/SliderSetting";
 import Btn from "@/Elements/Buttons/Btn";
-import {baseURL, storageURL} from "@/Utils/Constants";
+import Loader from "@/Layout/Loader";
+import {baseURL, ImagePath, storageURL} from "@/Utils/Constants";
+import useCustomDataQuery from "@/Utils/Hooks/useCustomDataQuery";
 import Image from "next/image";
+import {useContext, useEffect} from "react";
 import {useTranslation} from "react-i18next";
 import {Col, Container, Row} from "reactstrap";
 
@@ -14,79 +25,102 @@ const CustomizeContent = () => {
     const { t, i18n } = useTranslation("common");
     const currentLanguage = i18n.resolvedLanguage;
 
+    const { data, isLoading, refetch } = useCustomDataQuery({ params: "furniture_two" });
+    const { setGetProductIds, isRefetching: productLoad } = useContext(ProductIdsContext);
+    const { themeOption } = useContext(ThemeOptionContext);
+
+    console.log('themeOption', themeOption)
+
+    useEffect(() => {
+      isLoading && refetch();
+    }, [isLoading]);
+
+    useEffect(() => {
+      if (data?.products_ids?.length > 0) {
+        setGetProductIds({ ids: Array.from(new Set(data?.products_ids))?.join(",") });
+      }
+    }, [data]);
+
+    if (isLoading && document.body) return <Loader />;
+
     return (
         <>
-            <section className="p-0 height-85 single-home bg-size">
-              <Container>
-                <div className="home-content">
-                  <h2 style={{lineHeight: 1.4}}>{t('CustomizeTitle1')}</h2>
-                  <p style={{color: "#888"}}>{t('CustomizeDescription1')}</p>
-                </div>
-                <div className="home-img d-md-flex d-none">
-                  <img src={storageURL + `assets/customize_banner_${currentLanguage}.png`} className="img-fluid" alt="" />
-                </div>
-              </Container>
-            </section>
 
-          <WrapperComponent classes={{ sectionClass: "single-about-us", fluidClass: "container", row: "g-3" }} customCol={true}>
-            <Col lg="6">
-              <div className="about-left-box" style={{height: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                <h2 style={{color: "black"}}>{t('CustomizeHowItWorks')}</h2>
+            <WrapperComponent classes={{ sectionClass: "p-0 overflow-hidden" }}>
+              <div className="slide-1 home-slider">
+                <HomeSlider bannerData={{banners: [themeOption?.customize_page?.[currentLanguage]?.banner]}} height={650} width={1920} />
               </div>
-            </Col>
+            </WrapperComponent>
 
-            <Col lg="6">
-              <ul className="about-right-box">
-                <li className="right-box">
-                  {/*<div className="about-img">
-                    <img src={storageURL + ""} className="img-fluid" alt="" />
-                  </div>*/}
-                  <div className="about-content">
-                    <h4 style={{color: "black"}}>{t('CustomizeChooseYourItem')}</h4>
-                    <p style={{color: "#888"}}>{t('CustomizeChooseYourItemDescription')}</p>
+            {/* Offer Banner 1 */}
+            <WrapperComponent classes={{ sectionClass: "pb-0 ratio2_1 banner-section", fluidClass: "container", row: "g-sm-4 g-3" }} customCol={true}>
+              <div className={"col-6"}>
+                <div className="position-relative">
+                  <ImageLink imgUrl={themeOption?.customize_page?.[currentLanguage]?.banner_2} placeholder={`${ImagePath}/two_column_banner.png`} height={350} width={776} />
+                  <div className="banner-skeleton">
+                    <div className="skeleton-content">
+                      <p className="card-text placeholder-glow row g-lg-3 g-0">
+                        <span className="col-lg-7 col-9">
+                          <span className="placeholder"></span>
+                        </span>
+                        <span className="col-lg-9 col-12">
+                          <span className="placeholder"></span>
+                        </span>
+                      </p>
+                    </div>
                   </div>
-                </li>
-                <li className="right-box">
-                  <div className="about-content">
-                    <h4 style={{color: "black"}}>{t('CustomizeRequestPersonalization')}</h4>
-                    <p style={{color: "#888"}}>{t('CustomizeRequestPersonalizationDescription')}</p>
+                </div>
+              </div>
+              <div className={"col-6"}>
+                <div className="position-relative">
+                  <ImageLink imgUrl={themeOption?.customize_page?.[currentLanguage]?.banner_3} placeholder={`${ImagePath}/two_column_banner.png`} height={350} width={776} />
+                  <div className="banner-skeleton">
+                    <div className="skeleton-content">
+                      <p className="card-text placeholder-glow row g-lg-3 g-0">
+                        <span className="col-lg-7 col-9">
+                          <span className="placeholder"></span>
+                        </span>
+                        <span className="col-lg-9 col-12">
+                          <span className="placeholder"></span>
+                        </span>
+                      </p>
+                    </div>
                   </div>
-                </li>
-                <li className="right-box">
-                  <div className="about-content">
-                    <h4 style={{color: "black"}}>{t('CustomizePrecisionCraftmanship')}</h4>
-                    <p style={{color: "#888"}}>{t('CustomizePrecisionCraftmanshipDescription')}</p>
-                  </div>
-                </li>
-              </ul>
-            </Col>
-          </WrapperComponent>
+                </div>
+              </div>
+            </WrapperComponent>
 
-          <WrapperComponent classes={{ sectionClass: "single-banner-section", fluidClass: "container", row: "row g-sm-4 g-3" }} customCol={true}>
-            <Col md="6">
-              <Image src={storageURL + `/assets/customize_banner_2_${currentLanguage}.png`} className="bg-img w-100 img-fluid" alt="banner" height={640} width={676} />
-            </Col>
-            <Col md="6">
-              <Row className=" g-sm-4 g-3">
-                <Col xs="12">
-                  <Image src={storageURL + `/assets/customize_banner_3_${currentLanguage}.png`} className="bg-img w-100 img-fluid" alt="banner" height={366} width={676} />
-                </Col>
+            {/* Products List 1 */}
+            {data?.products_list_1?.status && data?.products_list_1?.product_ids && (
+              <>
+                <TitleBox title={data?.products_list_1} type="basic" />
+                <WrapperComponent classes={{ sectionClass: "section-b-space pt-0", fluidClass: "container" }}>
+                  <HomeProduct productIds={data?.products_list_1?.product_ids || []} style="vertical" slider={true} sliderOptions={horizontalProductSlider5} />
+                </WrapperComponent>
+              </>
+            )}
+
+          <WrapperComponent classes={{ sectionClass: "section-b-space become-vendor", fluidClass: "container" }} noRowCol={true}>
+            <h4>{t('CustomizeHowItWorks')}</h4>
+            <div className="step-bg">
+              <Row>
+                <SellerSteps data={{title: t('CustomizeChooseYourItem'), description: t('CustomizeChooseYourItemDescription')}} number={1} />
+                <SellerSteps data={{title: t('CustomizeRequestPersonalization'), description: t('CustomizeRequestPersonalizationDescription')}} number={2} />
+                <SellerSteps data={{title: t('CustomizePrecisionCraftmanship'), description: t('CustomizePrecisionCraftmanshipDescription')}} number={3} />
               </Row>
-            </Col>
+            </div>
           </WrapperComponent>
 
-          <WrapperComponent classes={{ sectionClass: "deal-section", fluidClass: "container" }} className="mb-4">
-            <Row>
-                <Col md="4" style={{height: "100%", display: "flex", justifyContent: "center", alignItems: "center"}}>
-                  <Image src={baseURL + "/storage/4030/Kitchen.png"} className="bg-img" alt="banner" height={250} width={300} />
-                </Col>
-                <Col md="8">
-                    <h2>{t('CustomizeReadyToPersonalize')}</h2>
-                    <p style={{fontSize: 16, lineHeight: 1.4}}>{t('CustomizeReadyToPersonalizeDescription')}</p>
-                    <Btn className="gradient-btn mt-2">{t('CustomizeReadyToPersonalizeCTA')}</Btn>
-                </Col>
-            </Row>
+          <WrapperComponent classes={{ sectionClass: "section-b-space pt-6" }} noRowCol={true}>
+            <HomeBrand brandIds={data?.brand?.brand_ids || []} />
           </WrapperComponent>
+
+          {/* Social Media */}
+          {data?.social_media?.banners?.length && data?.social_media?.status && (
+            <section className="instagram ratio_square">
+              <HomeSocialMedia media={data?.social_media || []} type="borderless" />
+            </section>
+          )}
         </>
     );
 }
