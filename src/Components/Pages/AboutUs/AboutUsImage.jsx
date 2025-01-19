@@ -10,7 +10,7 @@ const AboutUsImage = () => {
   const { i18n } = useTranslation("common");
   const currentLanguage = i18n.resolvedLanguage;  
 
-  return <div className="banner-section mt-2">{themeOption?.about_us?.about?.[currentLanguage]?.content_bg_image_url && <Image src={themeOption?.about_us?.about?.[currentLanguage]?.content_bg_image_url	} className="img-fluid" height={385} width={1370} alt="about-us-1" />}</div>;
+  return <div className="banner-section mt-2">{themeOption?.about_us?.about?.[currentLanguage]?.content_bg_image_url && <Image src={themeOption?.about_us?.about?.[currentLanguage]?.content_bg_image_url	} className="img-fluid w-100" height={385} width={1370} alt="about-us-1" />}</div>;
 };
 
 export default AboutUsImage;
