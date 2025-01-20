@@ -85,8 +85,12 @@ const TermsAndConditionsContent = () => {
           <p>These T&Cs are governed by German law. In case of a dispute, we encourage you to contact us directly to find an amicable solution.</p>
           <br/>
   `, 
-      fr: "French",
-      de: "Deutsh",
+      fr: `
+      French
+      `,
+      de: `
+      Deutsh
+      `,
   };
   if (isLoading) return <Loader />;
 

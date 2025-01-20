@@ -5,17 +5,21 @@ import ThemeOptionContext from "@/Context/ThemeOptionsContext";
 import Loader from "@/Layout/Loader";
 import useCustomDataQuery from "@/Utils/Hooks/useCustomDataQuery";
 import {useContext, useEffect, useState} from "react";
+import {useTranslation} from "react-i18next";
 
 const InstructionsContent = () => {
+  const { i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
+
   const { data, isLoading, refetch } = useCustomDataQuery({ params: "parallax" });
   const [banners, setBanners] = useState([]);
 
   useEffect(() => {
     if (data?.parallax_banner?.banners.length > 0) {
-      let banners = data?.parallax_banner?.banners?.filter((item) => item?.status);
+      let banners = data?.parallax_banner?.[currentLanguage]?.banners?.filter((item) => item?.status);
       setBanners(banners);
     }
-  }, [data]);
+  }, [data, currentLanguage]);
 
   useEffect(() => {
     refetch();

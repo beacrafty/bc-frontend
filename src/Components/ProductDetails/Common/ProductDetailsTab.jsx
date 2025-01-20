@@ -39,7 +39,7 @@ const ProductDetailsTab = ({ productState }) => {
       <TabContent className="nav-material" activeTab={activeTab}>
         <TabPane className={activeTab == 1 ? "show active" : ""}>
           <div className={`product-description more-less-box ${showMore ? "more" : ""}`}>
-            {productState?.product?.description?.length > 1500 ? showMore ? <TextLimit classes={'more-text'} value={productState?.product?.description} /> : <TextLimit classes={'more-text'} value={productState?.product?.description?.substring(0, productState?.product?.description?.length / 2)} /> : <TextLimit classes={'more-text'} value={getDescriptionTranslated(productState?.product?.description)} />}
+            {productState?.product?.description?.length > 1500 ? showMore ? <TextLimit classes={'more-text'} value={getDescriptionTranslated(productState?.product?.description)} /> : <TextLimit classes={'more-text'} value={productState?.product?.description?.substring(0, productState?.product?.description?.length / 2)} /> : <TextLimit classes={'more-text'} value={getDescriptionTranslated(productState?.product?.description)} />}
             {productState?.product?.description?.length > 1500 && <Btn className="btn-solid hover-solid bg-theme btn-md scroll-button btn-sm mt-3 more-lest-btn" onClick={seeMore}>
               {showMore ? "Show Less" : "Show more"}
               <RiArrowDownSLine />
