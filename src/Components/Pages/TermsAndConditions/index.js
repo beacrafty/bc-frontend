@@ -86,10 +86,89 @@ const TermsAndConditionsContent = () => {
           <br/>
   `, 
       fr: `
-      French
+Conditions Générales de Vente (CGV)<br/>
+1- Préambule<br/>
+Les présentes Conditions Générales de Vente (CGV) régissent la vente des produits proposés par Bea Crafty, société spécialisée dans la vente de produits artisanaux en bois d'olive et autres produits artisanaux. En passant commande sur notre site internet, ou sur les plateformes de vente en ligne partenaires de Bea Crafty (telles qu’Etsy, Amazon, etc.), le client reconnaît avoir pris connaissance et accepte sans réserve les présentes CGV.<br/>
+2- Produits<br/>
+Les produits proposés par Bea Crafty sont des articles artisanaux fabriqués à la main, principalement en bois d'olive, mais aussi d'autres matériaux naturels. Chaque produit est unique et peut présenter des variations de forme, de couleur et de texture en raison des caractéristiques naturelles du bois. Ces variations ne sont pas considérées comme des défauts, mais comme une garantie de l'authenticité et de la qualité artisanale des produits.<br/>
+3- Commandes<br/>
+Les commandes peuvent être passées via notre site internet, ou sur nos boutiques en ligne sur des plateformes de vente telles qu'Etsy, Amazon, ou toute autre plateforme de vente en ligne sur laquelle Bea Crafty est présente. En passant commande, le client confirme avoir pris connaissance et accepté les présentes CGV.<br/>
+Disponibilité des produits : En cas de rupture de stock sur le site ou sur une plateforme de vente en ligne, Bea Crafty informera le client dans les plus brefs délais. Le client pourra alors choisir entre un remboursement ou un échange contre un produit similaire.<br/>
+Modification de commande : Toute modification de commande doit être effectuée avant l'expédition. Une fois la commande expédiée, elle ne peut être modifiée.<br/>
+4- Prix<br/>
+Les prix des produits sont indiqués en euros (€) et incluent la TVA applicable en Allemagne. Les frais de livraison sont calculés en fonction du mode de livraison et de l'adresse de livraison, et seront indiqués avant la validation de la commande, que ce soit sur le site internet ou sur la plateforme de vente en ligne.<br/>
+Bea Crafty se réserve le droit de modifier les prix des produits à tout moment, mais les produits seront facturés au prix en vigueur au moment de la commande.<br/>
+<br/>
+5- Modalités de paiement<br/>
+Le paiement des produits doit être effectué au moment de la commande. Les moyens de paiement acceptés sont :<br/>
+Carte bancaire (Visa, MasterCard, etc.)<br/>
+PayPal<br/>
+Virement bancaire<br/>
+Autres moyens de paiement disponibles sur notre site et nos plateformes de vente en ligne<br/>
+Le paiement doit être effectué en totalité avant l'expédition des produits. La commande sera considérée comme valide uniquement après la confirmation du paiement.<br/>
+6- Livraison<br/>
+Les produits sont livrés à l'adresse fournie par le client lors de la commande. Le délai de livraison est indiqué au moment de la commande et varie selon le mode de livraison choisi, que la commande soit passée via notre site internet ou sur une plateforme de vente en ligne.<br/>
+Modes de livraison : Les modes de livraison incluent la livraison standard et express, selon la disponibilité et la destination. Les frais de livraison seront ajoutés à la commande et sont calculés avant la validation de la commande, en fonction de la plateforme utilisée (site ou plateforme externe).<br/>
+Responsabilité : Il est de la responsabilité du client de s'assurer que l'adresse de livraison est correcte et complète. En cas d'erreur dans l'adresse de livraison, Bea Crafty ne pourra être tenue responsable des retards ou des pertes de colis.<br/>
+7- Droit de rétractation et retours<br/>
+Conformément à la législation allemande, le client bénéficie d'un droit de rétractation de 14 jours à compter de la réception des produits pour retourner les articles sans avoir à justifier de motifs. Le client peut demander un remboursement ou un échange des produits sous réserve que ceux-ci soient retournés dans leur état d'origine et dans leur emballage d'origine.<br/>
+Conditions de retour : Le client doit notifier Bea Crafty de son intention de retourner les produits dans les 14 jours suivant la réception des articles, par email à contactbeacrafty@gmail.com. Les frais de retour sont à la charge du client, sauf si le produit est défectueux ou non conforme à la commande.<br/>
+<br/>
+<br/>
+<br/>
+8- Garanties<br/>
+Les produits proposés par Bea Crafty sont garantis contre tout défaut de fabrication conformément à la législation en vigueur.<br/>
+Garantie légale de conformité : Le client bénéficie de la garantie légale de conformité, et peut demander un échange ou un remboursement si le produit présente un défaut de conformité.<br/>
+Garantie contre les vices cachés : Les produits sont également couverts par la garantie contre les vices cachés dans les conditions prévues par la loi allemande.<br/>
+9- Responsabilité<br/>
+Bea Crafty met tout en œuvre pour offrir des produits de qualité. Toutefois, la responsabilité de Bea Crafty ne pourra être engagée en cas de force majeure (grèves, catastrophes naturelles, etc.) ou d'utilisation inappropriée des produits.<br/>
+En aucun cas, Bea Crafty ne pourra être tenue responsable des dommages indirects, notamment en cas de perte de profits ou de données.<br/>
+10- Protection des données personnelles<br/>
+Bea Crafty s'engage à respecter la confidentialité des données personnelles du client. Les données personnelles collectées sont utilisées uniquement pour le traitement des commandes, la livraison et la gestion de la relation client. Bea Crafty ne vend pas et ne partage pas ces données avec des tiers, sauf dans les cas prévus par la loi.<br/>
+Le client dispose d'un droit d'accès, de rectification, de suppression et d'opposition concernant ses données personnelles en contactant Bea Crafty à l'adresse suivante : contactbeacrafty@gmail.com.<br/>
+11- Modifications des CGV<br/>
+Bea Crafty se réserve le droit de modifier ces Conditions Générales de Vente à tout moment. Les modifications seront publiées sur le site internet et prendront effet immédiatement après leur publication. Si la commande a été passée avant la publication de la modification, la version précédente des CGV s'appliquera.<br/>
+12- Loi applicable et règlement des litiges<br/>
+Les présentes CGV sont régies par le droit allemand. En cas de litige, nous vous encourageons à nous contacter directement pour trouver une solution amiable. <br/>
       `,
       de: `
-      Deutsh
+Allgemeine Verkaufsbedingungen (German)<br/>
+Präambel<br/>
+Diese Allgemeinen Verkaufsbedingungen (AGB) regeln den Verkauf von Produkten, die von Bea Crafty angeboten werden, einem Unternehmen, das sich auf den Verkauf von handgefertigten Olivenholzprodukten und anderen Kunsthandwerkswaren spezialisiert hat. Durch die Aufgabe einer Bestellung auf unserer Website oder über Online-Plattformen wie Etsy, Amazon usw. erkennt der Kunde diese AGB ohne Vorbehalt an und akzeptiert sie.<br/>
+Produkte<br/>
+Die von Bea Crafty angebotenen Produkte sind handgefertigte Artikel, die hauptsächlich aus Olivenholz, aber auch aus anderen natürlichen Materialien bestehen. Jedes Produkt ist einzigartig und kann aufgrund der natürlichen Eigenschaften des Holzes in Form, Farbe und Textur variieren. Diese Variationen gelten nicht als Mängel, sondern sind ein Garant für die Authentizität und Handwerkskunst der Produkte.<br/>
+Bestellungen<br/>
+Bestellungen können auf unserer Website oder auf Online-Plattformen wie Etsy, Amazon oder jeder anderen Plattform, auf der Bea Crafty präsent ist, aufgegeben werden. Durch die Aufgabe einer Bestellung bestätigt der Kunde, dass er diese AGB gelesen und akzeptiert hat.<br/>
+Produktverfügbarkeit: Im Falle eines Bestandsengpasses wird Bea Crafty den Kunden so schnell wie möglich informieren. Der Kunde kann dann zwischen einer Rückerstattung oder einem Umtausch gegen ein ähnliches Produkt wählen.<br/>
+Bestelländerungen: Bestelländerungen müssen vor dem Versand vorgenommen werden. Nach dem Versand kann die Bestellung nicht mehr geändert werden.<br/>
+Preise<br/>
+Die Preise der Produkte sind in Euro (€) angegeben und enthalten die geltende Mehrwertsteuer in Deutschland. Versandkosten werden je nach gewählter Versandmethode und Lieferadresse berechnet und vor der Bestätigung der Bestellung angezeigt.<br/>
+Zahlungsmethoden<br/>
+Die Zahlung muss zum Zeitpunkt der Bestellung erfolgen. Akzeptierte Zahlungsmethoden sind:<br/>
+Kreditkarte (Visa, MasterCard usw.)<br/>
+PayPal<br/>
+Banküberweisung<br/>
+Andere Zahlungsmethoden, die auf unserer Website und den Online-Plattformen verfügbar sind.<br/>
+Die Zahlung muss vollständig abgeschlossen sein, bevor die Produkte versendet werden. Die Bestellung gilt erst als gültig, wenn die Zahlung bestätigt wurde.<br/>
+Lieferung<br/>
+Produkte werden an die vom Kunden angegebene Adresse geliefert. Die Lieferzeiten variieren je nach gewählter Versandmethode.<br/>
+Liefermöglichkeiten: Standard- und Expresslieferoptionen sind je nach Verfügbarkeit und Zielort verfügbar. Lieferkosten werden der Bestellung hinzugefügt und vor der Bestellbestätigung berechnet.<br/>
+Verantwortung: Der Kunde ist dafür verantwortlich, dass die Lieferadresse korrekt und vollständig ist.<br/>
+Widerrufsrecht und Rückgaben<br/>
+Nach deutschem Recht hat der Kunde ein 14-tägiges Widerrufsrecht ab Erhalt der Produkte, um Artikel ohne Angabe von Gründen zurückzugeben. Der Kunde kann eine Rückerstattung oder einen Umtausch der Produkte verlangen, sofern sie in ihrem ursprünglichen Zustand und in der Originalverpackung zurückgegeben werden.<br/>
+Rückgabebedingungen: Der Kunde muss Bea Crafty innerhalb von 14 Tagen nach Erhalt der Artikel per E-Mail unter contactbeacrafty@gmail.com über seine Absicht informieren, die Produkte zurückzugeben. Die Rücksendekosten trägt der Kunde, es sei denn, das Produkt ist fehlerhaft oder entspricht nicht der Bestellung.<br/>
+Garantien<br/>
+Die von Bea Crafty angebotenen Produkte sind gegen Herstellungsfehler gemäß den geltenden Gesetzen garantiert.<br/>
+Gesetzliche Gewährleistung: Der Kunde profitiert von der gesetzlichen Gewährleistung und kann einen Umtausch oder eine Rückerstattung verlangen, wenn das Produkt als fehlerhaft angesehen wird.<br/>
+Garantie gegen versteckte Mängel: Produkte sind auch durch eine Garantie gegen versteckte Mängel gemäß deutschem Recht abgedeckt.<br/>
+Haftung<br/>
+Bea Crafty bemüht sich, qualitativ hochwertige Produkte anzubieten. Die Haftung von Bea Crafty wird jedoch nicht im Falle höherer Gewalt (Streiks, Naturkatastrophen usw.) oder unsachgemäßer Verwendung der Produkte übernommen. Bea Crafty haftet nicht für indirekte Schäden, wie etwa entgangenen Gewinn oder Datenverlust.<br/>
+Datenschutz<br/>
+Bea Crafty verpflichtet sich, die Vertraulichkeit der persönlichen Daten der Kunden zu schützen. Erhobene persönliche Daten werden nur zur Bearbeitung von Bestellungen, Lieferungen und Kundenbeziehungsmanagement verwendet. Bea Crafty verkauft oder teilt keine persönlichen Daten mit Dritten, es sei denn, dies ist gesetzlich erforderlich.<br/>
+Änderungen der AGB<br/>
+Bea Crafty behält sich das Recht vor, diese AGB jederzeit zu ändern. Änderungen werden auf der Website veröffentlicht und treten sofort mit der Veröffentlichung in Kraft. Falls eine Bestellung vor der Änderung aufgegeben wurde, gelten die vorherigen AGB.<br/>
+Anwendbares Recht und Streitbeilegung<br/>
+Diese AGB unterliegen deutschem Recht. Im Falle eines Streits empfehlen wir, sich direkt mit uns in Verbindung zu setzen, um eine einvernehmliche Lösung zu finden.<br/>
       `,
   };
   if (isLoading) return <Loader />;
