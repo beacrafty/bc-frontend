@@ -123,10 +123,11 @@
 
     .offer-slider {
         img {
-            height: calc(100px + 20*(100vw - 320px) / 1600);
+            height: calc(100px + 11 *(100vw - 320px) / 1600);
             margin-right: 10px;
             width: calc(100px + 20*(100vw - 320px) / 1600);
             object-fit: cover;
+            border-radius: 9px;
         }
 
         >div {
@@ -138,6 +139,9 @@
         }
 
         .media {
+            padding: 7px;
+            border: #ececec 1px solid;
+            border-radius: 18px;
             .media-body {
                 a {
                     h6 {
@@ -145,14 +149,13 @@
                         line-height: 1.4;
                         margin-top: 3px;
                         margin-bottom: 0;
-                        font-size: calc(14px + 2 * (100vw - 320px) / 1600);
+                        font-size: calc(12px + 2 * (100vw - 320px) / 1600);
                         font-weight: 500;
                     }
                 }
 
                 h4 {
                     margin-top: 10px;
-                    font-weight: 600;
                     color: $dark-font;
                     margin-bottom: 0;
 

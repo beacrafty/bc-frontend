@@ -1,16 +1,14 @@
 import NoDataFound from "@/Components/Widgets/NoDataFound";
 import BlogContext from "@/Context/BlogContext";
-import { blog3Slider } from "@/Data/SliderSetting";
+import Btn from "@/Elements/Buttons/Btn";
 import request from "@/Utils/AxiosUtils";
 import { BlogAPI } from "@/Utils/AxiosUtils/API";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useContext, useEffect } from "react";
-import Slider from "react-slick";
 
-const HomeBlog = ({ blogIds, blogEffect, type, sliderClass, slideOptions }) => {
-  const blogSliderSetting = slideOptions ? slideOptions : blog3Slider(blogIds?.length);
+const HomeBlog = ({ blogIds, type }) => {
   const { blogState } = useContext(BlogContext);
   const router = useRouter();
 
@@ -28,52 +26,53 @@ const HomeBlog = ({ blogIds, blogEffect, type, sliderClass, slideOptions }) => {
     isLoading && refetch();
   }, [isLoading]);
 
-  // let blogs = blogState?.filter((blog) => blogIds?.includes(blog?.id));
+  // Slice the blogs array to show only the latest 3 blogs
+  const latestBlogs = blogs?.slice(0, 3);
+
+  console.log("latest blog", latestBlogs)
+
   return (
-    <div className="slide-3 no-arrow">
-      {blogs?.length ? (
-        <Slider {...blogSliderSetting} className={sliderClass ? sliderClass : ""}>
-          {blogs?.map((blog, index) => (
-            <div key={index}>
-              {type === "simple" ? (
-                <div className="blog-wrap">
-                  <Link href={`/blogs/${blog?.slug}`}>
-                    <div className="blog-image">
-                      <img src={blog.blog_thumbnail.original_url} className="img-fluid" alt="" />
-                    </div>
-                    <div className="blog-details text-start p-0">
-                      <h4>{new Date(blog?.created_at).toLocaleString("en-US", { day: "2-digit", month: "short", year: "numeric", hour: "numeric", minute: "numeric", hour12: true })}</h4>
-                      <p>{blog.title}</p>
-                      <h6>By: {blog.created_by.name}</h6>
-                    </div>
-                  </Link>
-                </div>
-              ) : (
-                <div className="col-12">
-                  <Link href={`/blogs/${blog?.slug}`}>
-                    <div className={blogEffect ? blogEffect : "classic-effect"}>
-                      <div className="bg-size" style={{ backgroundImage: `url(${blog.blog_thumbnail.original_url})` }}>
-                        <img src={blog.blog_thumbnail.original_url} className="img-fluid bg-img d-none" alt="blog-image" />
-                      </div>
-                      <span></span>
-                    </div>
-                  </Link>
-                  <div className="blog-details">
-                    <h4>{new Date(blog?.created_at).toLocaleString("en-US", { day: "2-digit", month: "short", year: "numeric", hour: "numeric", minute: "numeric", hour12: true })}</h4>
-                    <Link href={`/blogs/${blog?.slug}`}>
-                      <p>{blog.title}</p>
-                    </Link>
-                    <hr className="style1" />
-                    <h6>By: {blog.created_by?.name}</h6>
-                  </div>
-                </div>
-              )}
+    <div className="blog-section">
+      <div className="container">
+        <div className="row align-items-center">
+          <div className="col-xl-6 col-lg-6">
+            <div className="section-title">
+              <h6>Blog & News</h6>
+              <div className="heading-animation">
+                <h2>Our Latest Articles</h2>
+              </div>
             </div>
-          ))}
-        </Slider>
-      ) : (
-        <NoDataFound customClass="no-data-added" title="NoBlogsFound" />
-      )}
+          </div>
+          <div className="col-xl-6 col-lg-6 text-lg-end">
+            <Btn className="btn-solid">Read More</Btn>
+          </div>
+        </div>
+        <div className="row gx-4 mt-30">
+          {latestBlogs?.length ? (
+            latestBlogs.map((blog, index) => (
+              <div className="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay={`${0.2 * (index + 1)}s`} key={index}>
+                <Link href={`/blogs/${blog?.slug}`} className="single-blog-item rounded-blog-card">
+                  <div className="blog-img rounded-blog-img">
+                    <img src={blog.blog_thumbnail.original_url} alt={blog.title} />
+                  </div>
+                  <div className="blog-content rounded-blog-content">
+                    <div className="blog-meta">
+                      <span>{new Date(blog?.created_at).toLocaleString("en-US", { day: "2-digit", month: "short", year: "numeric" })}</span>
+                    </div>
+                    <div className="blog-title">
+                      <h4>{blog.title}</h4>
+                    </div>
+                    {/* <p>{blog.excerpt || "Adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore."}</p> */}
+                    <span className="link_icon"><i className="las la-arrow-right"></i></span>
+                  </div>
+                </Link>
+              </div>
+            ))
+          ) : (
+            <NoDataFound customClass="no-data-added" title="NoBlogsFound" />
+          )}
+        </div>
+      </div>
     </div>
   );
 };

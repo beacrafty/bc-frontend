@@ -107,7 +107,7 @@ const FooterLogo = () => {
   }, [theme, themeOption?.logo?.footer_logo]);
   return (
     <div className="footer-logo">
-      <Link href="/">{logoAbc?.original_url ? <Image src={logoAbc?.original_url} height={34} width={180} alt={settingData?.general?.site_name ? settingData?.general?.site_name : "multikart-logo"} /> : settingData?.general?.site_name && <h2 className="f-w-600">{settingData?.general?.site_name ? settingData?.general?.site_name.split(" ")[0] : "Logo Here"}</h2>}</Link>
+      <Link href="/">{logoAbc?.original_url ? <Image src={logoAbc?.original_url} height={34} width={180} alt={settingData?.general?.site_name ? settingData?.general?.site_name : "Bea-Crafty-logo"} /> : settingData?.general?.site_name && <h2 className="f-w-600">{settingData?.general?.site_name ? settingData?.general?.site_name.split(" ")[0] : "Logo Here"}</h2>}</Link>
     </div>
   );
 };
