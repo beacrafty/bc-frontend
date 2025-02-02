@@ -1,46 +1,46 @@
 export const FilterPrice = [
+  // {
+  //   id: 1,
+  //   price: 100,
+  //   text: "Below",
+  //   value: "100",
+  // },
   {
     id: 1,
-    price: 100,
-    text: "Below",
-    value: "100",
-  },
-  {
-    id: 2,
-    minPrice: 100,
+    minPrice: 0,
     maxPrice: 200,
     value: "0-200",
   },
   {
-    id: 3,
+    id: 2,
     minPrice: 200,
     maxPrice: 400,
     value: "200-400",
   },
   {
-    id: 4,
+    id: 3,
     minPrice: 400,
     maxPrice: 600,
     value: "400-600",
   },
   {
-    id: 5,
+    id: 4,
     minPrice: 600,
     maxPrice: 800,
     value: "600-800",
   },
   {
-    id: 6,
+    id: 5,
     minPrice: 800,
     maxPrice: 1000,
     value: "800-1000",
   },
-  {
-    id: 7,
-    price: 1000,
-    text: "Above",
-    value: "1000",
-  },
+  // {
+  //   id: 6,
+  //   price: 1000,
+  //   text: "Above",
+  //   value: "1000",
+  // },
 ];
 
 export const FilterSortData = [
