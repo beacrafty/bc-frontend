@@ -79,15 +79,15 @@ const CollectionSidebar = ({ filter, setFilter, isOffcanvas, basicStoreCard, rig
                       <CollectionCategory filter={filter} setFilter={setFilter} />
                     </AccordionItem>
                   )}
-                  <AccordionItem className={`collection-collapse-block open ${isOffcanvas ? "col-lg-3" : ""}`}>
+                  {/* <AccordionItem className={`collection-collapse-block open ${isOffcanvas ? "col-lg-3" : ""}`}>
                     <AccordionHeader targetId="2" className="collapse-block-title">
                       <span>{t("Brand")}</span>
                     </AccordionHeader>
                     <CollectionBrand filter={filter} setFilter={setFilter} />
-                  </AccordionItem>
+                  </AccordionItem> */}
                   {isAttributes ? <CollectionAttributes isOffCanvas={isOffcanvas} attributeAPIData={attributeAPIData} filter={filter} setFilter={setFilter} /> : null}
                   <CollectionPrice isOffCanvas={isOffcanvas} filter={filter} setFilter={setFilter} attributeAPIData={attributeAPIData} />
-                  <CollectionRating isOffCanvas={isOffcanvas} filter={filter} setFilter={setFilter} attributeAPIData={attributeAPIData} />
+                  {/* <CollectionRating isOffCanvas={isOffcanvas} filter={filter} setFilter={setFilter} attributeAPIData={attributeAPIData} /> */}
                 </Accordion>
               )
             )}
