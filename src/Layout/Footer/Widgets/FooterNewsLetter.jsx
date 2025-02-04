@@ -10,7 +10,8 @@ import { Col, Container, FormGroup, Row } from "reactstrap";
 
 const FooterNewsLetter = ({ style }) => {
   const { themeOption } = useContext(ThemeOptionContext);
-  const { t } = useTranslation("common");
+  const { t , i18n } = useTranslation("common");
+  const currentLanguage = i18n.resolvedLanguage;
   const { mutate, isLoading } = useCreate(SubscribeAPI, false, false, "Subscribed Successfully", (resDta) => {
     if (resDta?.status == 200 || resDta?.status == 201) {
       refetch && refetch();

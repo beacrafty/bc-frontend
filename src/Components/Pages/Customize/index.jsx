@@ -93,7 +93,7 @@ const CustomizeContent = () => {
             {/* Products List 1 */}
             {data?.products_list_1?.status && data?.products_list_1?.product_ids && (
               <>
-                <TitleBox title={data?.products_list_1} type="basic" />
+                          <TitleBox title={data?.products_list_1?.[currentLanguage]} type="basic" />
                 <WrapperComponent classes={{ sectionClass: "section-b-space pt-0", fluidClass: "container" }}>
                   <HomeProduct productIds={data?.products_list_1?.product_ids || []} style="vertical" slider={true} sliderOptions={horizontalProductSlider5} />
                 </WrapperComponent>
@@ -111,9 +111,9 @@ const CustomizeContent = () => {
             </div>
           </WrapperComponent>
 
-          <WrapperComponent classes={{ sectionClass: "section-b-space pt-6" }} noRowCol={true}>
+          {/* <WrapperComponent classes={{ sectionClass: "section-b-space pt-6" }} noRowCol={true}>
             <HomeBrand brandIds={data?.brand?.brand_ids || []} />
-          </WrapperComponent>
+          </WrapperComponent> */}
 
           {/* Social Media */}
           {data?.social_media?.banners?.length && data?.social_media?.status && (

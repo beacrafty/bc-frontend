@@ -1,0 +1,53 @@
+{
+    "hero" : {
+        "title" : "Instructions",
+        "subtitle" : "Instructions for Using Wooden Products",
+        "description" : "Proper care and maintenance are essential topreserve the beauty and longevity of your wooden products."
+    } , 
+    "features" : {
+        "feature1" : {
+            "title" : "Gentle Cleaning",
+            "description" : "Use mild soap and lukewarm water to clean wooden items. Avoid soaking or abrasive scrubbers."
+        },
+        "feature2" : {
+            "title" : "Dry Quickly",
+            "description" : "After washing, dry wooden products with a soft cloth to prevent moisture absorption."
+        },
+        "feature3" : {
+            "title" : "Regular Oiling",
+            "description" : "Apply food-safe oil (e.g., maize or cottonseed oil) with a soft cloth to maintain shine and prevent drying."
+        },
+        "feature4" : {
+            "title" : "Avoid Water",
+            "description" : "Never leave wooden items (e.g., bowls, cups) with water inside to prevent warping or cracking."
+        },
+        "feature5" : {
+            "title" : "Protect Wood",
+            "description" : "Keep away from direct sunlight, high humidity, or extreme heat to avoid damage."
+        },
+        "feature6" : {
+            "title" : "Proper Storage",
+            "description" : "Store in a cool, dry place with proper airflow to prevent mold or mildew."
+        }
+    },
+    "blog" : {
+        "title" : "BLOG & NEWS",
+        "subtitle" : "Our Latest Articles",
+        "btn" : "READ MORE"
+    },
+    "category" : {
+        "title" : "Our Categories",
+        "subtitle" : "Explore our wide range of expertly crafted wooden products, tailored for every need",
+        "btn" : "shop now"
+    },
+    "faq" : {
+        "title" : "Frequently Asked Questions"
+    },
+
+    "about" : {
+        "title1" : "Sustainable Raw Materials",
+        "title2" : "Handcrafted Production",
+        "title3" : "Eco-Friendly Production",
+        "title4" : "Affordable Prices"
+    }
+}

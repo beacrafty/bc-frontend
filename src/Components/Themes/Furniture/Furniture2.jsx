@@ -34,6 +34,7 @@ import Features from "./components/features";
 import About from "./components/about";
 import WhyChooseUs from "./components/why-choose-us";
 import LinkingSlider from "./components/linking_slider";
+import VideoCarousel from "../Widgets/VideoCarousel";
 
 
 const Furniture2 = ({ slug }) => {
@@ -42,13 +43,45 @@ const Furniture2 = ({ slug }) => {
   const { setGetBlogIds, isLoading: blogLoading } = useContext(BlogIdsContext);
   const { setGetBrandIds, isLoading: brandLoading } = useContext(BrandIdsContext);
   const videoType = ["mp4", "webm", "ogg"];
-  const { data, isLoading, refetch } = useCustomDataQuery({ params: "furniture_two" });
-  console.log(data)
+  const { data, isLoading: dataLoading, refetch } = useCustomDataQuery({ params: "furniture_two" });
 
   
   const { i18n } = useTranslation("common");
   const currentLanguage = i18n.resolvedLanguage;  
 
+  const [category, setCategory] = useState({}); // Initialize hero state
+  const [isComponentLoading, setIsComponentLoading] = useState(true);
+  useEffect(() => {
+    // Fetch data from the corresponding JSON file based on the current language
+    const fetchData = async () => {
+      try {
+        const response = await fetch(`/locales/${currentLanguage}/common.json`);
+        if (!response.ok) {
+          throw new Error("Failed to fetch data");
+        }
+        const data = await response.json();
+
+        // Set banners and features from the fetched data
+        if (data.parallax_banner?.banners) {
+          const filteredBanners = data.parallax_banner[currentLanguage]?.banners.filter((item) => item?.status);
+          setBanners(filteredBanners || []); // Fallback to an empty array if undefined
+        }
+
+       
+
+        // Set hero data
+        setCategory(data.category || {}); // Fallback to an empty object if undefined
+
+        setIsComponentLoading(false);
+      } catch (error) {
+        console.error("Error fetching data:", error);
+        setCategory({}); // Fallback to an empty object on error
+        setIsLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [currentLanguage]);
 
   useEffect(() => {
     if (data?.products_ids?.length > 0) {
@@ -86,8 +119,8 @@ const Furniture2 = ({ slug }) => {
   }, [data]);
 
   useEffect(() => {
-    isLoading && refetch();
-  }, [isLoading]);
+    dataLoading && refetch();
+  }, [dataLoading]);
 
   useEffect(() => {
     document.body.classList.add("home", "header-style-light");
@@ -97,7 +130,7 @@ const Furniture2 = ({ slug }) => {
   }, []);
 
   useSkeletonLoader2([productLoad, blogLoading, brandLoading]);
-  if (isLoading && document.body) return <Loader />;
+  if (dataLoading && document.body) return <Loader />;
 
   return (
     <>
@@ -135,14 +168,32 @@ const Furniture2 = ({ slug }) => {
 
       <WhyChooseUs contentData={data?.home_why_choose_us?.[currentLanguage]} imageData={data?.home_why_choose_us?.image} />
 
-      {/* Video Banner */}
+      {/* Video Banner
       {data?.video_banner?.status && (
         <>
           <WrapperComponent classes={{ sectionClass: "p-0 height-85 mt-5", fluidClass: "container" }}>
             <VideoBanner videoBannerSrc={data?.video_banner?.original_url} height={535} width={'auto'} />
+            
           </WrapperComponent>
         </>
-      )}
+      )} */}
+
+{data?.video_banner?.status && (
+  <>
+    <WrapperComponent classes={{ sectionClass: "p-0 height-85 mt-5", fluidClass: "container" }}>
+      {/* Replace VideoBanner with VideoCarousel */}
+      <VideoCarousel
+        videoSources={[
+          data?.video_banner?.original_url, // Example: video1 URL
+          data?.video_banner?.original_url, // Example: video2 URL
+          data?.video_banner?.original_url, // Example: video3 URL
+        ]}
+        height={535}
+        width={'auto'}
+      />
+    </WrapperComponent>
+  </>
+)}
 
       {/* Products List 2 */}
       {data?.product_list_2?.status && (
@@ -188,72 +239,79 @@ const Furniture2 = ({ slug }) => {
       )}
 
 
-      <Container className="no-arrow">
+      {/* <Container className="no-arrow">
         <section className="category-style-1">
           <HomeCategorySidebar style="simple" sliderOptions={categorySlider5} slider={true} categoryIds={data?.categories_icon_list?.category_ids || []} />
         </section>
-      </Container>
+      </Container> */}
+
+
+
 
       <div className="project-section project-three section-padding">
         <div className="container">
           <div className="row align-items-center">
             <div className="col-xl-6 col-lg-6 col-md-8 wow fadeInUp animated" data-wow-delay="200ms">
               <div className="section-title mb-0">
-                <h6>Our Categories</h6>
+                <h6>{category.title || 'Default Title'}</h6>
                 <div className="heading-animation">
-                  <h2>Explore our crafted wooden products for every need</h2>
+                  <h2>{category.subtitle || 'Default Subtitle'}</h2>
                 </div>
               </div>
             </div>
             <div className="col-xl-6 col-lg-6 col-md-4 text-lg-end d-none d-lg-inline-block">
-              <Btn className="btn-solid">Shop Now</Btn>
+              <Btn className="btn-solid">{category.btn || 'Default Button'}</Btn>
             </div>
           </div>
           <div className="row gy-4 mt-40">
 
             <div className="col-xl-3 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-              <a href="project-details.html" className="single-project-wrapper">
+              <a href="category/kitchen" className="single-project-wrapper">
                 <div className="project-bg">
-                  <img src="assets/assets/img/project/1-1.jpg" alt="" />
+                  <img src="assets/assets/img/project/KITCHEN.jpg" alt="" />
                   <div className="project-details">
-                    <h4>House Furniture</h4>
-                    <p>Wood Project</p>
+                    <h4>KITCHEN</h4>
+                    <p></p>
+                    <p></p>
                   </div>
                 </div>
               </a>
             </div>
 
             <div className="col-xl-3 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".4s">
-              <a href="project-details.html" className="single-project-wrapper">
+              <a href="category/beauty" className="single-project-wrapper">
                 <div className="project-bg">
-                  <img src="assets/assets/img/project/1-2.jpg" alt="" />
+                  <img src="assets/assets/img/project/BEAUTY.jpg" alt="" />
                   <div className="project-details">
-                    <h4>Kitchen Cabinet</h4>
-                    <p>Wood Project</p>
+                    <h4>BEAUTY</h4>
+                    <p></p>
+                    <p></p>
                   </div>
                 </div>
               </a>
             </div>
 
             <div className="col-xl-3 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".6s">
-              <a href="project-details.html" className="single-project-wrapper">
+              <a href="category/deco" className="single-project-wrapper">
                 <div className="project-bg">
-                  <img src="assets/assets/img/project/1-3.jpg" alt="" />
+                  <img src="assets/assets/img/project/deco.jpg" alt="" />
                   <div className="project-details">
-                    <h4>Wooden Furniture</h4>
-                    <p>Wood Project</p>
+                    <h4>DECO</h4>
+                    <p></p>
+                    <p></p>
                   </div>
                 </div>
               </a>
             </div>
 
             <div className="col-xl-3 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-              <a href="project-details.html" className="single-project-wrapper">
+              <a href="category/game" className="single-project-wrapper">
                 <div className="project-bg">
-                  <img src="assets/assets/img/project/1-4.jpg" alt="" />
+                  <img src="assets/assets/img/project/GAMES.jpg" alt="" />
                   <div className="project-details">
-                    <h4>Wood Utilities</h4>
-                    <p>Wood Project</p>
+                    <h4>GAME</h4>
+                    <p></p>
+                    <p></p>
                   </div>
                 </div>
               </a>
@@ -287,16 +345,16 @@ const Furniture2 = ({ slug }) => {
           <div className="row justify-content-center">
             <div className="client-wrap d-flex flex-wrap justify-content-center align-items-center">
               <div className="col-3 clients-img-inner text-center">
-                <img src="assets/assets/img/client/1.jpg" alt="" className="img-fluid" />
+                <img src="assets/assets/img/client/AMAZON.png" alt="" className="img-fluid" />
               </div>
               <div className="col-3 clients-img-inner text-center">
-                <img src="assets/assets/img/client/2.jpg" alt="" className="img-fluid" />
+                <img src="assets/assets/img/client/EBAY.png" alt="" className="img-fluid" />
               </div>
               <div className="col-3 clients-img-inner text-center">
-                <img src="assets/assets/img/client/3.jpg" alt="" className="img-fluid" />
+                <img src="assets/assets/img/client/ETSY.png" alt="" className="img-fluid" />
               </div>
               <div className="col-3 clients-img-inner text-center">
-                <img src="assets/assets/img/client/4.jpg" alt="" className="img-fluid" />
+                <img src="assets/assets/img/client/PWL.png" alt="" className="img-fluid" />
               </div>
             </div>
           </div>

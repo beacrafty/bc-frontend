@@ -50,8 +50,8 @@ const NewsLetterModal = ({ setMakeExitActive }) => {
             <div className="right-content w-lg-50 w-100">
               <div>
                 <div className="auth-title">
-                  <h2>{themeOption?.popup?.news_letter.title}</h2>
-                  <p>{themeOption?.popup?.news_letter?.description}</p>
+                  <h2>{t(themeOption?.popup?.news_letter?.title)}</h2>
+                  <p>{t(themeOption?.popup?.news_letter?.description)}</p>
                 </div>
                 <Formik
                   initialValues={{

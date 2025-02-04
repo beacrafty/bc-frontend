@@ -6,7 +6,7 @@ import request from "@/Utils/AxiosUtils";
 import { FaqAPI } from "@/Utils/AxiosUtils/API";
 import Breadcrumbs from "@/Utils/CommonComponents/Breadcrumb";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect,useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Container } from "reactstrap";
 
@@ -14,6 +14,39 @@ const BrowserFaq = ({ heading = false }) => {
   const { t, i18n } = useTranslation("common");
   const currentLanguage = i18n.resolvedLanguage;
   const [open, setOpen] = useState(null); // State to manage open accordion item
+  const [banners, setBanners] = useState([]);
+  const [faq, setFaq] = useState({}); 
+  const [isDataLoading, setIsDataLoading] = useState(true);
+  useEffect(() => {
+      // Fetch data from the corresponding JSON file based on the current language
+      const fetchData = async () => {
+        try {
+          const response = await fetch(`/locales/${currentLanguage}/common.json`);
+          if (!response.ok) {
+            throw new Error("Failed to fetch data");
+          }
+          const data = await response.json();
+  
+          // Set banners and features from the fetched data
+          if (data.parallax_banner?.banners) {
+            const filteredBanners = data.parallax_banner[currentLanguage]?.banners.filter((item) => item?.status);
+            setBanners(filteredBanners || []); // Fallback to an empty array if undefined
+          }
+  
+          // Set hero data
+          setFaq(data.faq || {}); // Fallback to an empty object if undefined
+  
+          setIsDataLoading(false);
+        } catch (error) {
+          console.error("Error fetching data:", error);
+          setFaq({}); // Fallback to an empty object on error
+          setIsLoading(false);
+        }
+      };
+  
+      fetchData();
+    }, [currentLanguage]);
+  
   const toggle = (id) => {
     if (open === id) {
       setOpen(null); // Close the accordion if it's already open
@@ -44,7 +77,7 @@ const BrowserFaq = ({ heading = false }) => {
     }
   };
 
-  if (isLoading) return <Loader />;
+  if (isDataLoading) return <Loader />;
 
   return (
     <>
@@ -65,7 +98,7 @@ const BrowserFaq = ({ heading = false }) => {
                   <div className="section-title">
                     <h6>FAQ's</h6>
                     <div className="heading-animation">
-                      <h2>Frequently Asked Questions</h2>
+                      <h2>{faq.title || "Default Title"}</h2>
                     </div>
                   </div>
                   <div className="cp-custom-accordion">

@@ -1,0 +1,55 @@
+{
+    "hero" : {
+        "title" : "Instructions",
+        "subtitle" : "Instructions pour l'entretien et l'utilisation appropriée",
+        "description" : "Un entretien et une maintenance appropriés sont essentiels pour préserver la beauté et la longévité de vos produits en bois."
+    } , 
+    "features" : {
+        "feature1" : {
+            "title" : "Nettoyage Doux",
+            "description" : " Utilisez du savon doux et de l’eau tiède pour nettoyer les articles en bois."
+        },
+        "feature2" : {
+            "title" : "Séchage Rapide",
+            "description" : "Après lavage, séchez les produits en bois avec un chiffon doux pour éviter l’absorption d’humidité."
+        },
+        "feature3" : {
+            "title" : "Huilage Régulier",
+            "description" : "Appliquez une huile alimentaire (ex. huile de maïs ou de coton) avec un chiffon doux pour protéger et faire briller le bois."
+        },
+        "feature4" : {
+            "title" : "Éviter l’Eau ",
+            "description" : "Ne laissez pas d’eau dans les bols ou tasses en bois pour éviter les fissures ou déformations."
+        },
+        "feature5" : {
+            "title" : "Protéger Bois",
+            "description" : "Protégez du soleil direct, de l’humidité élevée ou de la chaleur excessive pour prévenir les dommages."
+        },
+        "feature6" : {
+            "title" : "Rangez Correct",
+            "description" : "Conservez dans un endroit frais et sec avec une bonne circulation d’air pour éviter la moisissure."
+        }
+    },
+    "blog" : {
+        "title" : "Blog & Actualités",
+        "subtitle" : "Nos Derniers Articles",
+        "btn" : "LIRE LA SUITE"
+    },
+    "category" : {
+        "title" : "Nos Catégories",
+        "subtitle" : "Découvrez notre large gamme de produits en bois conçus avec expertise ",
+        "btn" : "Acheter maintenant"
+    },
+
+    "faq" : {
+        "title" : "Questions fréquemment posées"
+    },
+
+    "about" : {
+        "title1" : "Matériaux Bruts Durables",
+        "title2" : "Production Locale ",
+        "title3" : "Production Écoresponsable",
+        "title4" : "Prix Abordables"
+    }
+
+}
