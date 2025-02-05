@@ -30,7 +30,7 @@ const AddAddressForm = ({ mutate, isLoading, type, editAddress, setEditAddress, 
         pincode: editAddress ? editAddress?.pincode : "",
         phone: editAddress ? editAddress?.phone : "",
         type: type ? type : null,
-        country_code: editAddress ? editAddress?.country_code : "91",
+        country_code: editAddress ? editAddress?.country_code : "49",
       }}
       validationSchema={YupObject({
         title: nameSchema,

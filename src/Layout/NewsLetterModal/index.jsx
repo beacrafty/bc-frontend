@@ -78,7 +78,7 @@ const NewsLetterModal = ({ setMakeExitActive }) => {
               </div>
             </div>
             <div className="left-img w-lg-50 d-lg-block d-none">
-              <Image src={themeOption?.popup?.news_letter?.image_url ? storageURL + themeOption?.popup?.news_letter?.image_url : `${ImagePath}/Offer-banner.png`} alt="" className="img-fluid" height={120} width={676} />
+              <Image src='/assets/images/auth.png' alt="" className="img-fluid" height={120} width={676} />
             </div>
           </div>
         </ModalBody>

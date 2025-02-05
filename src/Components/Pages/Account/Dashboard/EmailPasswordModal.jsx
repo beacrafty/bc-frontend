@@ -38,7 +38,7 @@ const EmailPasswordModal = ({ modal, setModal }) => {
           initialValues={{
             name: accountData?.name || "",
             email: accountData?.email,
-            country_code: accountData?.country_code || "91",
+            country_code: accountData?.country_code || "49",
             phone: accountData?.phone || "",
             current_password: "",
             password: "",

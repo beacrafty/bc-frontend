@@ -52,7 +52,7 @@ const AboutUsContent = () => {
       
       
 
-      <div className="client-section pb-50 mt-2 d-flex align-items-center justify-content-center">
+      <div className="client-section mt-4 d-flex align-items-center justify-content-center">
         <div className="container">
           <div className="row justify-content-center">
             <div className="client-wrap d-flex flex-wrap justify-content-center align-items-center">

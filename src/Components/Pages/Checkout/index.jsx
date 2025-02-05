@@ -85,14 +85,14 @@ const CheckoutContent = () => {
               create_account: false,
               name: "",
               email: "",
-              country_code: "91",
+              country_code: "49",
               phone: "",
               password: "",
               shipping_address: {
                 title: "",
                 street: "",
                 city: "",
-                country_code: "91",
+                country_code: "49",
                 phone: "",
                 pincode: "",
                 country_id: "",
@@ -103,7 +103,7 @@ const CheckoutContent = () => {
                 title: "",
                 street: "",
                 city: "",
-                country_code: "91",
+                country_code: "49",
                 phone: "",
                 pincode: "",
                 country_id: "",
@@ -144,7 +144,7 @@ const CheckoutContent = () => {
                       </div>
                     </div>
                   </Col>
-                  <CheckoutSidebar addToCartData={addToCartData} values={values} setFieldValue={setFieldValue} errors={errors} />
+                  <CheckoutSidebar address={address} addToCartData={addToCartData} values={values} setFieldValue={setFieldValue} errors={errors} />
                 </Row>
               </Form>
             )}

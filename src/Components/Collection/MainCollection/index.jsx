@@ -18,7 +18,8 @@ import PopUpSidebar from "./PopUpSidebar";
 const MainCollection = ({ filter, setFilter, isBanner, isOffcanvas, classicStoreCard, initialGrid = 3, noSidebar, sellerClass, sidebarPopUp, infiniteScroll, categorySlug }) => {
   const [grid, setGrid] = useState(initialGrid);
   const { themeOption, setCollectionMobile, collectionMobile, paginationDetails } = useContext(ThemeOptionContext);
-  const { t } = useTranslation("common");
+  const { t, i18n } = useTranslation("common");
+  // const currentLanguage = i18n.resolvedLanguage;
   const [layout] = useCustomSearchParams(["layout"]);
 
   useEffect(() => {
@@ -41,7 +42,7 @@ const MainCollection = ({ filter, setFilter, isBanner, isOffcanvas, classicStore
           <Col xs="12">
             {isBanner && themeOption?.collection?.collection_banner_image_url && (
               <div className="top-banner-wrapper">
-                <OfferBanner classes={{ customHoverClass: "banner-contain hover-effect mb-4" }} imgUrl={baseURL + themeOption?.collection?.collection_banner_image_url} />{" "}
+                <OfferBanner classes={{ customHoverClass: "banner-contain hover-effect mb-4" }} imgUrl={themeOption?.collection?.collection_banner_image_en_url} />{" "}
               </div>
             )}
             <div className="collection-product-wrapper">

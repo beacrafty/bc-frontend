@@ -10,12 +10,56 @@ import PlaceOrder from "./PlaceOrder";
 import PointWallet from "./PointWallet";
 import { ImagePath } from "@/Utils/Constants";
 
-const BillingSummary = ({ data, values, setFieldValue, isLoading, mutate, storeCoupon, setStoreCoupon, errorCoupon, appliedCoupon, setAppliedCoupon, errors }) => {
+function getVATPercentage(countryName) {
+  // Mapping of European countries to their standard VAT rates
+  const vatRates = {
+    "Austria": 20,
+    "Belgium": 21,
+    "Bulgaria": 20,
+    "Croatia": 25,
+    "Cyprus": 19,
+    "Czech Republic": 21,
+    "Denmark": 25,
+    "Estonia": 20,
+    "Finland": 24,
+    "France": 20,
+    "Germany": 19,
+    "Greece": 24,
+    "Hungary": 27,
+    "Ireland": 23,
+    "Italy": 22,
+    "Latvia": 21,
+    "Lithuania": 21,
+    "Luxembourg": 17,
+    "Malta": 18,
+    "Netherlands": 21,
+    "Poland": 23,
+    "Portugal": 23,
+    "Romania": 19,
+    "Slovakia": 20,
+    "Slovenia": 22,
+    "Spain": 21,
+    "Sweden": 25
+  };
+
+  // Convert the input to title case for consistency
+  const formattedCountryName = countryName
+    .trim() // Remove leading/trailing spaces
+    .toLowerCase() // Convert to lowercase
+    .replace(/\b\w/g, (char) => char.toUpperCase()); // Convert to title case
+
+  // Return the VAT rate or null if the country is not found
+  const vatRate = vatRates[formattedCountryName] ?? null;
+
+  return vatRate;
+}
+
+const BillingSummary = ({ country, data, values, setFieldValue, isLoading, mutate, storeCoupon, setStoreCoupon, errorCoupon, appliedCoupon, setAppliedCoupon, errors }) => {
   const { convertCurrency } = useContext(SettingContext);
   const { cartProducts } = useContext(CartContext);
   const { t } = useTranslation("common");
   const access_token = Cookies.get("uat");
-
+  
   return (
     <div className="checkout-details ">
       {cartProducts?.length > 0 ? (
@@ -59,6 +103,7 @@ const BillingSummary = ({ data, values, setFieldValue, isLoading, mutate, storeC
                   <span className="count">{data?.data?.total?.total ? convertCurrency(data?.data?.total?.total) : t(`Notcalculatedyet`)}</span>
                 </li>
               </ul>
+              <span className="">{getVATPercentage(country) ? '%' + getVATPercentage(country) +' '+  t(`TVAIncluded`) : ''}</span>
               <PlaceOrder values={values} errors={errors} />
             </div>
           </div>

@@ -1976,9 +1976,7 @@ img {
   position: absolute;
   left: 0;
   top: 0;
-  width: 50%;
   height: 500px;
-  background-size: cover;
   background-position: center;
   border-radius: 18px;
 }
@@ -1992,9 +1990,9 @@ img {
   position: absolute;
   right: 0;
   top: 0;
-  width: 50%;
+  /* width: 50%; */
   height: 500px;
-  background-size: cover;
+  /* background-size: cover; */
   background-position: center;
   margin: 50px;
   border-radius: 18px;

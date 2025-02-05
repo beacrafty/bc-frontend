@@ -11,7 +11,7 @@ import BillingSummary from "./BillingSummary";
 import SidebarProduct from "./SidebarProduct";
 import { ImagePath } from "@/Utils/Constants";
 
-const CheckoutSidebar = ({ values, setFieldValue, errors, addToCartData }) => {
+const CheckoutSidebar = ({ address, values, setFieldValue, errors, addToCartData }) => {
   const [storeCoupon, setStoreCoupon] = useState("");
   const { cartProducts, isLoading: CartLoading, getCartLoading, cartTotal } = useContext(CartContext);
   const { t } = useTranslation("common");
@@ -20,7 +20,7 @@ const CheckoutSidebar = ({ values, setFieldValue, errors, addToCartData }) => {
   const { settingData } = useContext(SettingContext);
   const access_token = Cookies.get("uat");
   const [resData, setResData] = useState({});
-
+  // console.log(address)
   const { data, mutate, isLoading } = useCreate(
     CheckoutAPI,
     false,
@@ -91,13 +91,15 @@ const CheckoutSidebar = ({ values, setFieldValue, errors, addToCartData }) => {
     }
   }, [CartLoading, cartTotal, errors, values["points_amount"], values["wallet_balance"], values["billing_address_id"], values["delivery_description"], values["payment_method"], values["shipping_address_id"], values["delivery_interval"]]);
 
+  // Find the address that matches the billing_address_id
+  const matchedAddress = address.find(addr => addr.id === values.billing_address_id);
   return (
     <>
       <Col lg="5">
         {cartProducts?.length > 0 ? (
           <div className="checkout-right-box">
             <SidebarProduct values={values} setFieldValue={setFieldValue} />
-            <BillingSummary values={values} errors={errors} setFieldValue={setFieldValue} data={resData} errorCoupon={errorCoupon} appliedCoupon={appliedCoupon} setAppliedCoupon={setAppliedCoupon} storeCoupon={storeCoupon} setStoreCoupon={setStoreCoupon} isLoading={isLoading} mutate={mutate} addToCartData={addToCartData} />
+            <BillingSummary country={matchedAddress?.country?.name} values={values} errors={errors} setFieldValue={setFieldValue} data={resData} errorCoupon={errorCoupon} appliedCoupon={appliedCoupon} setAppliedCoupon={setAppliedCoupon} storeCoupon={storeCoupon} setStoreCoupon={setStoreCoupon} isLoading={isLoading} mutate={mutate} addToCartData={addToCartData} />
           </div>
         ) : (
           <NoDataFound customClass="no-data-added" height={156} width={180} imageUrl={`/assets/svg/empty-items.svg`} title="EmptyCart" />

@@ -24,7 +24,6 @@ const VideoCarousel = ({ videoSources = [], height = "400px", width = "100%" }) 
         style={{
           width: "14px",
           height: "14px",
-          backgroundColor: "rgba(200, 200, 200, 0.7)",
           borderRadius: "50%",
           border: "2px solid transparent",
           cursor: "pointer",
@@ -44,10 +43,9 @@ const VideoCarousel = ({ videoSources = [], height = "400px", width = "100%" }) 
             height: height,
             position: "relative",
             overflow: "hidden",
-            borderRadius: "20px",
+            borderRadius: "18px",
             boxShadow: "0 4px 10px rgba(0, 0, 0, 0.1)",
             backgroundColor: "#f8f8f8",
-            padding: "10px",
           }}
         >
           {videoSources.length > 0 ? (

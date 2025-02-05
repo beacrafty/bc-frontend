@@ -32,7 +32,7 @@ const MenuList = ({ menu, isOpen, setIsOpen, level }) => {
     <>
       <li className={`${menu.link_type == "sub" && menu.child ? "nav-item dropdown" : "nav-item"} ${menu?.badge_text ? "new-nav-item" : ""} ${menu.mega_menu ? "dropdown-mega" : ""}`}>
         {menu.link_type === "sub" && (
-          <a onClick={() => { const temp = isOpen.slice(); temp[level] = menu.title !== temp[level] && menu.title; setIsOpen(temp); }} className="nav-link dropdown-toggle">
+          <a href={menu.title === "Collections" ? "/collections" : undefined} onClick={() => { const temp = isOpen.slice(); temp[level] = menu.title !== temp[level] && menu.title; setIsOpen(temp); }} className="nav-link dropdown-toggle">
             <span>{t(menu.title)}</span>
             {menu.badge_text && <label className="new-dropdown">{menu.badge_text}</label>}
           </a>

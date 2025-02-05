@@ -22,7 +22,7 @@ const RegisterForm = () => {
         email: "",
         password: "",
         password_confirmation: "",
-        country_code: "91",
+        country_code: "49",
         phone: "",
       }}
       validationSchema={YupObject({
