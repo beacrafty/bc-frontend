@@ -36,13 +36,13 @@ const ProductContent = ({ productState, setProductState, productAccordion, noDet
   };
 
   const { i18n } = useTranslation("common");
-  const currentLanguage = i18n.resolvedLanguage;  
+  const currentLanguage = i18n.resolvedLanguage;
 
   const getShortDescriptionTranslated = (short_description) => {
     try {
-        return JSON.parse(short_description)[currentLanguage];
-    } catch(err) {
-        return short_description;
+      return JSON.parse(short_description)[currentLanguage];
+    } catch (err) {
+      return short_description;
     }
   }
 
@@ -101,7 +101,8 @@ const ProductContent = ({ productState, setProductState, productAccordion, noDet
                 </a>
               )}
               {themeOption?.product?.shipping_and_return && productState?.product?.is_return ? (
-                <a href={Href} onClick={() => setModal("delivery")}>
+                // <a href={Href} onClick={() => setModal("delivery")}>
+                <a href='/return-policy' target="_blank">
                   <RiTruckLine /> {t("DeliveryReturn")}
                 </a>
               ) : null}

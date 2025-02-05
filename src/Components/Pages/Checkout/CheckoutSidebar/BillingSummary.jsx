@@ -3,7 +3,7 @@ import CartContext from "@/Context/CartContext";
 import SettingContext from "@/Context/SettingContext";
 import Loader from "@/Layout/Loader";
 import Cookies from "js-cookie";
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import ApplyCoupon from "./ApplyCoupon";
 import PlaceOrder from "./PlaceOrder";
@@ -42,6 +42,8 @@ function getVATPercentage(countryName) {
     "Sweden": 25
   };
 
+  if (!countryName) return null;
+
   // Convert the input to title case for consistency
   const formattedCountryName = countryName
     .trim() // Remove leading/trailing spaces
@@ -49,9 +51,7 @@ function getVATPercentage(countryName) {
     .replace(/\b\w/g, (char) => char.toUpperCase()); // Convert to title case
 
   // Return the VAT rate or null if the country is not found
-  const vatRate = vatRates[formattedCountryName] ?? null;
-
-  return vatRate;
+  return vatRates[formattedCountryName] ?? null;
 }
 
 const BillingSummary = ({ country, data, values, setFieldValue, isLoading, mutate, storeCoupon, setStoreCoupon, errorCoupon, appliedCoupon, setAppliedCoupon, errors }) => {
@@ -59,14 +59,34 @@ const BillingSummary = ({ country, data, values, setFieldValue, isLoading, mutat
   const { cartProducts } = useContext(CartContext);
   const { t } = useTranslation("common");
   const access_token = Cookies.get("uat");
+
+  const [vatPercentage, setVatPercentage ] = useState('');
+
+  useEffect(() => {
+    setVatPercentage(getVATPercentage(country))
+  }, [country])
   
+
   return (
-    <div className="checkout-details ">
+    <div className="checkout-details">
       {cartProducts?.length > 0 ? (
         <div className="order-box">
           <div className="title-box">
             <h4>{t("BillingSummary")}</h4>
-            {access_token && <ApplyCoupon values={values} setFieldValue={setFieldValue} data={data} storeCoupon={storeCoupon} setStoreCoupon={setStoreCoupon} errorCoupon={errorCoupon} appliedCoupon={appliedCoupon} setAppliedCoupon={setAppliedCoupon} mutate={mutate} isLoading={isLoading} />}
+            {access_token && (
+              <ApplyCoupon
+                values={values}
+                setFieldValue={setFieldValue}
+                data={data}
+                storeCoupon={storeCoupon}
+                setStoreCoupon={setStoreCoupon}
+                errorCoupon={errorCoupon}
+                appliedCoupon={appliedCoupon}
+                setAppliedCoupon={setAppliedCoupon}
+                mutate={mutate}
+                isLoading={isLoading}
+              />
+            )}
           </div>
           <div>
             <div className="custom-box-loader">
@@ -78,38 +98,56 @@ const BillingSummary = ({ country, data, values, setFieldValue, isLoading, mutat
               <ul className="sub-total">
                 <li>
                   {t("Subtotal")}
-                  <span className="count">{data?.data?.total?.sub_total ? convertCurrency(data?.data?.total?.sub_total) : t(`Notcalculatedyet`)}</span>
+                  <span className="count">
+                    {data?.data?.total?.sub_total ? convertCurrency(data?.data?.total?.sub_total) : t("Notcalculatedyet")}
+                  </span>
                 </li>
                 <li>
                   {t("Shipping")}
-                  <span className="count">{data?.data?.total?.shipping_total >= 0 ? convertCurrency(data?.data?.total?.shipping_total) : t(`Notcalculatedyet`)}</span>
+                  <span className="count">
+                    {data?.data?.total?.shipping_total >= 0 ? convertCurrency(data?.data?.total?.shipping_total) : t("Notcalculatedyet")}
+                  </span>
                 </li>
                 <li>
                   {t("Tax")}
-                  <span className="count">{data?.data?.total?.tax_total ? convertCurrency(data?.data?.total?.tax_total) : t(`Notcalculatedyet`)}</span>
+                  <span className="count">
+                    {data?.data?.total?.tax_total ? convertCurrency(data?.data?.total?.tax_total) : t("Notcalculatedyet")}
+                  </span>
                 </li>
 
                 <PointWallet values={values} setFieldValue={setFieldValue} data={data} />
               </ul>
               <ul className="total">
-                { appliedCoupon == "applied" && data?.data?.total?.coupon_total_discount ? (
+                {appliedCoupon === "applied" && data?.data?.total?.coupon_total_discount && (
                   <li className="list-total">
                     {t("YouSave")}
-                    <span className="count">{data?.data?.total?.coupon_total_discount ? convertCurrency(data?.data?.total?.coupon_total_discount - data?.data?.total?.tax_total) : ""}</span>
+                    <span className="count">
+                      {data?.data?.total?.coupon_total_discount ? convertCurrency(data?.data?.total?.coupon_total_discount - data?.data?.total?.tax_total) : ""}
+                    </span>
                   </li>
-                ) : null}
+                )}
                 <li className="list-total">
                   {t("Total")}
-                  <span className="count">{data?.data?.total?.total ? convertCurrency(data?.data?.total?.total) : t(`Notcalculatedyet`)}</span>
+                  <span className="count">
+                    {data?.data?.total?.total ? convertCurrency(data?.data?.total?.total) : t("Notcalculatedyet")}
+                  </span>
                 </li>
               </ul>
-              <span className="">{getVATPercentage(country) ? '%' + getVATPercentage(country) +' '+  t(`TVAIncluded`) : ''}</span>
+              {vatPercentage && (
+                <span>{`%${vatPercentage} ${t("TVAIncluded")}`}</span>
+              )}
               <PlaceOrder values={values} errors={errors} />
             </div>
           </div>
         </div>
       ) : (
-        <NoDataFound customClass="no-data-added" height={156} width={180} imageUrl={`/assets/svg/empty-items.svg`} title="EmptyCart" />
+        <NoDataFound
+          customClass="no-data-added"
+          height={156}
+          width={180}
+          imageUrl={`${ImagePath}/empty-items.svg`}
+          title="EmptyCart"
+        />
       )}
     </div>
   );
