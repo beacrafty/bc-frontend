@@ -1,10 +1,12 @@
-import React from 'react'
 import Btn from "@/Elements/Buttons/Btn";
 import { useTranslation } from 'react-i18next';
+import { useRouter } from 'next/navigation';
+
 
 const About = ({ contentData, imageData }) => {
 
     const { t } = useTranslation('common')
+    const router = useRouter();
 
     return (
         <div id="about-1" className="about-section gray-bg section-padding">
@@ -40,7 +42,11 @@ const About = ({ contentData, imageData }) => {
                                 </div>
                             </div>
                         </div>
-                        <Btn className="btn-solid">{t("ShopNow")}</Btn>
+                        <Btn
+                            onClick={() => {
+                                router.push('/collections');
+                            }}
+                            className="btn-solid">{t("ShopNow")}</Btn>
                     </div>
                 </div>
             </div>
@@ -49,3 +55,8 @@ const About = ({ contentData, imageData }) => {
 }
 
 export default About
+
+
+
+
+

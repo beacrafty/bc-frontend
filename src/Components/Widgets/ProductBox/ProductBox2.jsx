@@ -88,7 +88,7 @@ const ProductBox2 = ({ productState, setProductState }) => {
               </div>
             </div>
             <a href={`/product/${productState?.product?.slug}`}>
-              <h6>{productState?.selectedVariation ? productState?.selectedVariation?.name : productName?.[currentLanguage]}</h6>
+              <h6>{productName?.[currentLanguage]}</h6>
             </a>
             <h4 className="price">
               {productState?.selectedVariation ? convertCurrency(productState?.selectedVariation.sale_price) : convertCurrency(productState?.product?.sale_price)} {/* Adjust currencySymbol based on your implementation */}

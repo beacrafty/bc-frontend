@@ -1,7 +1,7 @@
 import SettingContext from "@/Context/SettingContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import CartButton from "./Widgets/CartButton";
 import WishlistButton from "./Widgets/HoverButton/WishlistButton";
@@ -50,7 +50,7 @@ const ProductBox9 = ({ productState, setProductState }) => {
         </div>
         <div className="product-detail">
           <Link href={`/product/${productState?.product?.slug}`} className="product-title">
-            {productState?.product?.name?.[currentLanguage]}
+            {productName?.[currentLanguage]}
           </Link>
           <h4 className="price">
             {convertCurrency(productState?.product?.sale_price)}{" "}

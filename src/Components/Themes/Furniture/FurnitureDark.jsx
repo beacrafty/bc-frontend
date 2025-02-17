@@ -13,7 +13,7 @@ import useCustomDataQuery from "@/Utils/Hooks/useCustomDataQuery";
 import { useSkeletonLoader2 } from "@/Utils/Hooks/useSkeleton2";
 import Image from "next/image";
 import Link from "next/link";
-import React, { useContext, useEffect } from "react";
+import { useContext, useEffect } from "react";
 import Slider from "react-slick";
 import { Col, Container, Row } from "reactstrap";
 import HomeBlog from "../Widgets/HomeBlog";

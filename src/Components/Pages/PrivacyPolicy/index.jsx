@@ -2,16 +2,16 @@
 import WrapperComponent from "@/Components/Widgets/WrapperComponent";
 import ThemeOptionContext from "@/Context/ThemeOptionsContext";
 import Loader from "@/Layout/Loader";
-import {useContext} from "react";
-import {useTranslation} from "react-i18next";
+import { useContext } from "react";
+import { useTranslation } from "react-i18next";
 
 const PrivacyPolicyContent = () => {
   const { i18n } = useTranslation("common");
   const currentLanguage = i18n.resolvedLanguage;
 
-  const { themeOption, isLoading } = useContext(ThemeOptionContext);
 
-  const data = {en: `
+  const data = {
+    en: `
           <h2>Privacy Policy.</h2>
           <br/>
           <br/>
@@ -67,106 +67,135 @@ const PrivacyPolicyContent = () => {
           <h3>Modifications to Privacy Policy</h3>
           <p>We may update this Privacy Policy from time to time. Any changes will be posted on our website with an updated date of revision.</p>
           <br/>
-  `, 
-      fr: `
-              Politique de Confidentialité de Bea Crafty<br/>
-Chez Bea Crafty, nous nous engageons à protéger la confidentialité et la sécurité de vos données personnelles. La présente politique de confidentialité explique comment nous collectons, utilisons et protégeons vos informations personnelles lorsque vous utilisez notre site internet, ainsi que nos plateformes de vente en ligne (Etsy, Amazon, etc.).<br/>
-En accédant à notre site web ou en passant une commande, vous acceptez cette politique de confidentialité et nous autorisez à traiter vos données personnelles conformément à cette politique.<br/>
-1- Types de données collectées<br/>
-Nous collectons différentes catégories de données personnelles lorsque vous interagissez avec notre site web et nos plateformes de vente en ligne :<br/>
-Données de contact :<br/>
-Nom<br/>
-Adresse email<br/>
-Numéro de téléphone<br/>
-Adresse de livraison<br/>
-Données de commande :<br/>
-Produits achetés<br/>
-Quantité et prix des produits<br/>
-Informations sur le paiement (notez que nous ne stockons pas les informations sensibles de paiement,  elles sont traitées par des prestataires de paiement externes, comme PayPal, Stripe, etc.)<br/>
-Données de navigation :<br/>
-Adresse IP<br/>
-Type et version du navigateur<br/>
-Données de connexion (heure de visite, pages visitées)<br/>
-Informations concernant l’utilisation de notre site via des cookies ou des technologies similaires<br/>
-Données relatives aux retours et échanges :<br/>
-Informations sur les retours de produits (raison du retour, date du retour, etc.)<br/>
-<br/>
-2- Finalités de la collecte des données<br/>
-Nous collectons et traitons vos données personnelles pour les finalités suivantes :<br/>
-Traitement des commandes : Pour gérer et exécuter vos commandes, y compris la gestion des paiements, l’expédition et la gestion des retours.<br/>
-Amélioration de l'expérience client : Pour améliorer notre service à la clientèle, répondre à vos demandes, et personnaliser votre expérience sur notre site et sur nos plateformes de vente en ligne.<br/>
-Marketing : Nous pouvons utiliser vos informations pour vous envoyer des offres spéciales, des promotions, des newsletters, et des informations concernant nos produits et services, si vous y avez consenti.<br/>
-Sécurité et conformité légale : Pour assurer la sécurité de notre site web, prévenir la fraude, et se conformer aux exigences légales en matière de protection des consommateurs et des données.<br/>
-3- Partage des données<br/>
-Nous ne partageons pas vos données personnelles avec des tiers, sauf dans les cas suivants :<br/>
-Fournisseurs de services : Nous pouvons partager vos informations avec des prestataires de services tiers qui nous aident à exécuter nos activités commerciales, tels que les prestataires de services de paiement (PayPal, Stripe), de livraison (transporteurs, services postaux), ou de gestion de site web.<br/>
-Conformité légale : Nous pouvons divulguer vos informations si cela est nécessaire pour se conformer à des obligations légales, des procédures judiciaires, ou des demandes gouvernementales.<br/>
-4- Conservation des données<br/>
-Nous conservons vos données personnelles pendant la durée nécessaire pour atteindre les objectifs pour lesquelles elles ont été collectées, y compris pour satisfaire aux exigences légales, comptables et fiscales.<br/>
-Les données relatives au marketing et aux communications promotionnelles sont conservées tant que vous n'avez pas demandé à vous désabonner ou à retirer votre consentement.<br/>
-5- Sécurité des données<br/>
-Nous mettons en place des mesures de sécurité techniques et organisationnelles pour protéger vos données personnelles contre la perte, l'accès non autorisé, la divulgation, l'altération ou la destruction.<br/>
-Cela inclut l'utilisation de protocoles de cryptage sécurisés pour protéger les informations sensibles pendant la transmission (notamment les informations de paiement).<br/>
-6- Vos droits<br/>
-En vertu du RGPD, vous disposez des droits suivants concernant vos données personnelles :<br/>
-Droit d'accès : Vous pouvez demander une copie des données personnelles que nous détenons à votre sujet.<br/>
-Droit de rectification : Vous pouvez demander la correction ou la mise à jour de vos données personnelles.<br/>
-Droit à l'effacement : Vous pouvez demander l'effacement de vos données personnelles, sous certaines conditions.<br/>
-Droit d'opposition et de limitation : Vous pouvez vous opposer au traitement de vos données personnelles ou demander une limitation du traitement.<br/>
-Droit de retirer votre consentement : Si vous avez consenti à l'utilisation de vos données pour des finalités spécifiques (par exemple, pour le marketing), vous pouvez retirer ce consentement à tout moment.<br/>
-7- Cookies<br/>
-Notre site utilise des cookies pour améliorer votre expérience de navigation, personnaliser le contenu, analyser le trafic et permettre l'utilisation de certaines fonctionnalités (comme les paniers d'achats). <br/>
-8- Modifications de la politique de confidentialité<br/>
-Nous pouvons mettre à jour cette politique de confidentialité de temps à autre. Toute modification sera publiée..<br/>
-      `,
-      de: `
-Datenschutzerklärung (German)<br/>
-Bei Bea Crafty setzen wir uns dafür ein, die Privatsphäre und Sicherheit Ihrer persönlichen Daten zu schützen. Diese Datenschutzerklärung erklärt, wie wir Ihre persönlichen Daten erheben, verwenden und schützen, wenn Sie unsere Website und unsere Online-Verkaufsplattformen (Etsy, Amazon usw.) nutzen.<br/>
-Indem Sie auf unsere Website zugreifen oder eine Bestellung aufgeben, stimmen Sie dieser Datenschutzerklärung zu und ermächtigen uns, Ihre persönlichen Daten in Übereinstimmung mit dieser Erklärung zu verarbeiten.<br/>
-Erhobene Daten<br/>
-Wir erheben verschiedene Kategorien von persönlichen Daten, wenn Sie mit unserer Website und Online-Plattformen interagieren:<br/>
-Kontaktdaten: Name, E-Mail-Adresse, Telefonnummer, Lieferadresse.<br/>
-Zahlungsinformationen: Kreditkarten- oder Bankdaten, je nach verwendeter Zahlungsmethode.<br/>
-Bestellinformationen: Bestellhistorie, Präferenzen und Anfragen.<br/>
-Verwendung Ihrer Daten<br/>
-Wir verwenden Ihre Daten, um:<br/>
-Bestellungen zu bearbeiten und zu versenden.<br/>
-Mit Ihnen in Bezug auf Bestellungen, Anfragen oder Support zu kommunizieren.<br/>
-Marketing und Werbung durchzuführen, wenn Sie dies zugelassen haben.<br/>
-Unsere Website und Dienste zu verbessern.<br/>
-Datenweitergabe an Dritte<br/>
-Bea Crafty gibt Ihre Daten nur an Dritte weiter, wenn dies notwendig ist, um Ihre Bestellung zu erfüllen oder gesetzlich erforderlich ist (z.B. an Versanddienstleister oder Steuerbehörden).<br/>
-Sicherheit Ihrer Daten<br/>
-Wir treffen technische und organisatorische Maßnahmen, um Ihre Daten vor Verlust oder unbefugtem Zugriff zu schützen. Allerdings kann keine Methode der Datenübertragung über das Internet oder der elektronischen Speicherung zu 100% sicher garantiert werden.<br/>
-Ihre Rechte<br/>
-Als Nutzer unserer Dienste haben Sie folgende Rechte:<br/>
-Zugang: Sie haben das Recht, auf die persönlichen Daten zuzugreifen, die wir über Sie speichern.<br/>
-Berichtigung: Sie haben das Recht, unrichtige oder unvollständige Daten zu berichtigen.<br/>
-Löschung: Sie können die Löschung Ihrer persönlichen Daten anfordern, vorbehaltlich bestimmter Bedingungen.<br/>
-Abmeldung: Sie können sich jederzeit von Marketing-Kommunikationen abmelden.<br/>
-Um diese Rechte auszuüben, kontaktieren Sie uns bitte unter contactbeacrafty@gmail.com.<br/>
-Cookies<br/>
-Wir verwenden Cookies und ähnliche Technologien, um die Funktionalität und Leistung unserer Website zu verbessern. Cookies helfen uns, Inhalte und Werbung zu personalisieren, den Web-Traffic zu analysieren und die Benutzererfahrung zu optimieren. Sie können Ihre Cookie-Einstellungen über Ihren Browser verwalten.<br/>
-Änderungen der Datenschutzerklärung<br/>
-Wir behalten uns das Recht vor, diese Datenschutzerklärung jederzeit zu ändern. Änderungen werden auf unserer Website veröffentlicht und sind ab dem Datum der Veröffentlichung gültig.<br/>
+  `,
+    fr: `
+          <h2>Politique de Confidentialité</h2>
+          <br/>
+          <br/>
+
+          <p>Chez Bea Crafty, nous nous engageons à protéger la confidentialité et la sécurité de vos données personnelles. Cette politique de confidentialité explique comment nous collectons, utilisons et protégeons vos informations personnelles lorsque vous utilisez notre site web et nos plateformes de vente en ligne (Etsy, Amazon, etc.).
+            En accédant à notre site ou en passant une commande, vous acceptez cette politique de confidentialité et nous autorisez à traiter vos données personnelles conformément à celle-ci.
+          </p>
+
+          <br/>
+          <h3>Types de données collectées</h3>
+          <p>Nous collectons différentes catégories de données personnelles lorsque vous interagissez avec notre site et nos plateformes :</p>
+          <br/>
+          <p>- <b>Données de contact :</b> Nom, adresse e-mail, numéro de téléphone, adresse de livraison.</p>
+          <p>- <b>Données de commande :</b> Nom, adresse e-mail, numéro de téléphone, adresse de livraison.</p>
+          <p>- <b>Données de navigation :</b> Informations sur votre utilisation du site (adresse IP, pages consultées, durée de visite).</p>
+          <p>- <b>Données de retour et échange :</b> Motifs de retour, informations sur les produits échangés.</p>
+          <br/>
+
+          <h3>Finalité de la collecte des données</h3>
+          <p>Nous collectons et traitons vos données personnelles pour les finalités suivantes :</p>
+          <p>- <b>Traitement des commandes :</b> Gérer et exécuter vos commandes, y compris les paiements, la livraison et les retours.</p>
+          <p>- <b>Amélioration de l'expérience client :</b> Améliorer notre service client, répondre à vos demandes et personnaliser votre expérience sur notre site.</p>
+          <p>- <b>Marketing :</b> Nous pouvons utiliser vos informations pour vous envoyer des offres spéciales, des promotions, des newsletters et des informations sur nos produits (avec votre consentement).</p>
+          <p>- <b>Sécurité et conformité légale :</b> Assurer la sécurité de notre site, prévenir la fraude et respecter les lois sur la protection des consommateurs et des données.</p>
+          <br/>
+
+          <h3>Partage des données</h3>
+          <p>Nous ne partageons pas vos données personnelles avec des tiers, sauf dans les cas suivants :</p>
+          <p>- <b>Prestataires de services :</b> Nous pouvons partager vos informations avec des prestataires tiers (ex : processeurs de paiement comme PayPal, services de livraison) pour le fonctionnement de notre activité.</p>
+          <p>- <b>Conformité légale :</b> Divulgation obligatoire pour respecter des obligations légales, des procédures judiciaires ou des demandes gouvernementales.</p>
+          <br/>
+
+          <h3>Conservation des données</h3>
+          <p>Nous conservons vos données personnelles pendant la durée nécessaire aux finalités pour lesquelles elles ont été collectées, y compris pour répondre aux exigences légales, comptables ou fiscales.</p>
+          <br/>
+
+          <h3>Sécurité des données</h3>
+          <p>Nous mettons en œuvre des mesures de sécurité techniques et organisationnelles pour protéger vos données contre la perte, l'accès non autorisé ou la divulgation. Cependant, aucune transmission de données sur Internet n'est totalement sécurisée.</p>
+          <br/>
+
+          <h3>Vos droits</h3>
+          <p>En tant qu'utilisateur de nos services, vous disposez des droits suivants :</p>
+          <p>- <b>Accès :</b> Obtenir une copie des données que nous détenons sur vous.</p>
+          <p>- <b>Rectification :</b> Corriger les données inexactes ou incomplètes.</p>
+          <p>- <b>Suppression :</b> Demander l'effacement de vos données sous certaines conditions.</p>
+          <p>- <b>Désinscription :</b> Résilier les communications marketing à tout moment. Pour exercer ces droits, contactez-nous à contactbeacrafty@gmail.com.</p>
+          <br/>
+
+          <h3>Cookies</h3>
+          <p>Nous utilisons des cookies et technologies similaires pour améliorer les fonctionnalités du site, personnaliser le contenu et analyser le trafic. Vous pouvez gérer les cookies via les paramètres de votre navigateur.</p>
+          <br/>
+
+          <h3>Modifications de la politique de confidentialité</h3>
+          <p>Nous pouvons mettre à jour cette politique périodiquement. Les modifications seront publiées sur notre site avec une date de révision actualisée.</p>
+          <br/>
+  `,
+    de: `
+          <h2>Datenschutzerklärung</h2>
+          <br/>
+          <br/>
+
+          <p>Bei Bea Crafty sind wir bestrebt, den Schutz und die Sicherheit Ihrer personenbezogenen Daten zu gewährleisten. Diese Datenschutzerklärung erläutert, wie wir Ihre personenbezogenen Daten erfassen, verwenden und schützen, wenn Sie unsere Website und unsere Online-Verkaufsplattformen (Etsy, Amazon usw.) nutzen.
+            Durch den Zugriff auf unsere Website oder das Aufgeben einer Bestellung erklären Sie sich mit dieser Datenschutzerklärung einverstanden und autorisieren uns, Ihre personenbezogenen Daten gemäß dieser Richtlinie zu verarbeiten.
+          </p>
+
+          <br/>
+          <h3>Art der erfassten Daten</h3>
+          <p>Wir erfassen verschiedene Kategorien personenbezogener Daten, wenn Sie mit unserer Website und Plattformen interagieren:</p>
+          <br/>
+          <p>- <b>Kontaktdaten:</b> Name, E-Mail-Adresse, Telefonnummer, Lieferadresse.</p>
+          <p>- <b>Bestelldaten:</b> Informationen zu gekauften Produkten, Zahlungsmethode, Bestellverlauf.</p>
+          <p>- <b>Nutzungsdaten:</b> Informationen zur Website-Nutzung (IP-Adresse, besuchte Seiten, Verweildauer).</p>
+          <p>- <b>Rücksende- und Umtauschdaten:</b> Gründe für Rücksendungen, Details zu umgetauschten Artikeln.</p>
+          <br/>
+
+          <h3>Zweck der Datenerfassung</h3>
+          <p>Wir erfassen und verarbeiten Ihre Daten zu folgenden Zwecken:</p>
+          <p>- <b>Bestellabwicklung:</b> Bearbeitung Ihrer Bestellungen, einschließlich Zahlung, Versand und Rücksendungen.</p>
+          <p>- <b>Verbesserung des Kundenerlebnisses:</b> Personalisierung Ihrer Website-Erfahrung, Beantwortung von Anfragen und Optimierung unserer Dienstleistungen.</p>
+          <p>- <b>Marketing:</b> Übersendung von Sonderangeboten, Newsletter und Produktinformationen (mit Ihrer Einwilligung).</p>
+          <p>- <b>Sicherheit und gesetzliche Compliance:</b> Betrugsprävention, Einhaltung von Verbraucher- und Datenschutzgesetzen (z.B. DSGVO).</p>
+          <br/>
+
+          <h3>Weitergabe von Daten</h3>
+          <p>Wir geben Ihre Daten nur in folgenden Fällen an Dritte weiter:</p>
+          <p>- <b>Dienstleister:</b> Zahlungsabwickler (PayPal, Stripe), Logistikpartner (Paketdienste) oder IT-Dienstleister für den Betrieb unserer Plattformen.</p>
+          <p>- <b>Gesetzliche Pflichten:</b> Weitergabe bei behördlichen Anfragen oder zur Erfüllung gerichtlicher Anordnungen.</p>
+          <br/>
+
+          <h3>Speicherdauer</h3>
+          <p>Wir speichern Ihre Daten nur so lange, wie es für die ursprünglichen Zwecke oder gesetzliche Aufbewahrungspflichten (steuerrechtlich, handelsrechtlich) erforderlich ist.</p>
+          <br/>
+
+          <h3>Datensicherheit</h3>
+          <p>Wir setzen technische und organisatorische Maßnahmen (z.B. Verschlüsselung, Zugriffskontrollen) ein, um Ihre Daten vor Verlust, Missbrauch oder unbefugtem Zugriff zu schützen. Ein vollständiger Schutz im Internet kann jedoch nicht garantiert werden.</p>
+          <br/>
+
+          <h3>Ihre Rechte</h3>
+          <p>Gemäß der DSGVO haben Sie folgende Rechte:</p>
+          <p>- <b>Auskunft:</b> Recht auf Einsicht in die gespeicherten Daten.</p>
+          <p>- <b>Berichtigung:</b> Korrektur unrichtiger oder unvollständiger Daten.</p>
+          <p>- <b>Löschung:</b> Löschung Ihrer Daten unter bestimmten Voraussetzungen („Recht auf Vergessenwerden“).</p>
+          <p>- <b>Widerspruch:</b> Widerruf von Marketing-E-Mails jederzeit möglich. Kontaktieren Sie uns unter contactbeacrafty@gmail.com.</p>
+          <br/>
+
+          <h3>Cookies</h3>
+          <p>Wir verwenden Cookies und Tracking-Technologien, um die Website-Funktionalität zu optimieren, Inhalte zu personalisieren und die Nutzung zu analysieren. Sie können Cookies in Ihren Browser-Einstellungen verwalten.</p>
+          <br/>
+
+          <h3>Änderungen der Datenschutzerklärung</h3>
+          <p>Aktualisierungen dieser Richtlinie werden auf unserer Website veröffentlicht. Die überarbeitete Fassung tritt mit dem Datum der Veröffentlichung in Kraft.</p>
+          <br/>
       `,
   };
 
-  if (isLoading) return <Loader />;
-
   return (
-      <>
-        <WrapperComponent
-          classes={{
-            sectionClass: "about-page section-b-space ",
-            fluidClass: "container",
-          }}
-          noRowCol={true}
-        >
-          
-          <div dangerouslySetInnerHTML={{"__html": data?.[currentLanguage] || data?.en}}></div>
-        </WrapperComponent>
-      </>
+    <>
+      <WrapperComponent
+        classes={{
+          sectionClass: "about-page section-b-space ",
+          fluidClass: "container",
+        }}
+        noRowCol={true}
+      >
+        <div dangerouslySetInnerHTML={{ "__html": data?.[currentLanguage] }}></div>
+      </WrapperComponent>
+    </>
   );
 }
 

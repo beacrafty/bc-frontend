@@ -34,6 +34,7 @@ const ProductDetailContent = ({ params }) => {
     return queryProductLayout ? queryProductLayout : themeOption?.product?.product_layout ?? "product_thumbnail";
   }, [queryProductLayout, themeOption]);
 
+  const [productName, setProductName] = useState({});
   const [productState, setProductState] = useState({ product: [], attributeValues: [], productQty: 1, selectedVariation: "", variantIds: [], statusIds: [] });
 
   // Calling Product API on slug
@@ -74,6 +75,19 @@ const ProductDetailContent = ({ params }) => {
     };
   }, []);
 
+  useEffect(() => {
+    if (productState.product.name) {
+      if (typeof productState?.product?.name === "string") {
+        try {
+          setProductName(JSON.parse(productState.product.name));
+        } catch (error) {
+          console.error("Failed to parse values.name:", error);
+        }
+      }
+
+    }
+  }, [productState?.product?.name]);
+
   if (isLoading) return <Loader />;
 
   const showProductLayout = {
@@ -93,9 +107,10 @@ const ProductDetailContent = ({ params }) => {
     product_column_thumbnail: <ProductColumn productState={productState} setProductState={setProductState} direction="bottom" />,
   }; 
 
+
   return (
     <>
-      {<Breadcrumbs title={`${productState?.product?.name?.[currentLanguage]}`} subNavigation={[{ name: "Product" }, { name: productState?.product?.name?.[currentLanguage] }]} />}
+      {<Breadcrumbs title={`${productName?.[currentLanguage]}`} subNavigation={[{ name: "Product" }, { name: productName?.[currentLanguage] }]} />}
       {showProductLayout[isProductLayout]}
       {ProductData && <StickyCheckout ProductData={ProductData} isLoading={isLoading} />}
     </>

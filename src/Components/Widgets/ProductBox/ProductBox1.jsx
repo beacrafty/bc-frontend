@@ -60,7 +60,7 @@ const ProductBox1 = ({ productState, setProductState }) => {
         )}
 
         <Link href={`/product/${productState?.product?.slug}`}>
-          <h6>{productState?.selectedVariation ? productState?.selectedVariation?.name : productName?.[currentLanguage]}</h6>
+          <h6>{productName?.[currentLanguage]}</h6>
         </Link>
 
         <h4 className="price">

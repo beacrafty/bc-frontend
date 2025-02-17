@@ -2091,7 +2091,7 @@
         padding: 15px;
         background-color: $top-header;
         border: 1px solid $white-dark;
-        border-radius: 0;
+        border-radius: 8px;
         display: flex;
         gap: 11px;
 
@@ -2135,7 +2135,7 @@
   .contact-form {
     background-color: $top-header;
     padding: calc(20px + (44 - 20) * ((100vw - 320px) / (1920 - 320))) calc(16px + (44 - 16) * ((100vw - 320px) / (1920 - 320)));
-    border-radius: 0;
+    border-radius: 8px;
     border: 1px solid $white-dark;
 
     .form-box {
@@ -10161,7 +10161,7 @@
       position: absolute;
       z-index: -1;
       inset: 0;
-      background: radial-gradient(35% 35%, rgba(0, 0, 0, 0) 96%, rgba(0, 0, 0, 0) 97% 99%, rgba(0, 0, 0, 0)) var(--theme-color);
+      background: radial-gradient(35% 35% at center, rgba(0, 0, 0, 0) 96%, rgba(0, 0, 0, 0) 97% 99%, rgba(0, 0, 0, 0)) var(--theme-color);
       clip-path: polygon(100% 50%, 88.04% 62.36%, 90.45% 79.39%, 73.51% 82.36%, 65.45% 97.55%, 50% 90%, 34.55% 97.55%, 26.49% 82.36%, 9.55% 79.39%, 11.96% 62.36%, 0% 50%, 11.96% 37.64%, 9.55% 20.61%, 26.49% 17.64%, 34.55% 2.45%, 50% 10%, 65.45% 2.45%, 73.51% 17.64%, 90.45% 20.61%, 88.04% 37.64%);
       animation: animName 20s linear infinite;
     }

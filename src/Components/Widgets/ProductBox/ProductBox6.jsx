@@ -1,7 +1,7 @@
 import SettingContext from "@/Context/SettingContext";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import CartButton from "./Widgets/CartButton";
 import ProductHoverButton from "./Widgets/ProductHoverButton";

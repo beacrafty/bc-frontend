@@ -9,33 +9,20 @@ const VideoCarousel = ({ videoSources = [], height = "400px", width = "100%" }) 
   const sliderRef = useRef(null);
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
-    speed: 500,
+    speed: 800,
     slidesToShow: 1,
     slidesToScroll: 1,
     autoplay: true,
-    autoplaySpeed: 3000,
+    autoplaySpeed: 4000,
     pauseOnHover: true,
-    arrows: false,
+    arrows: true,
     swipe: true,
-    customPaging: () => (
-      <button
-        style={{
-          width: "14px",
-          height: "14px",
-          borderRadius: "50%",
-          border: "2px solid transparent",
-          cursor: "pointer",
-          transition: "0.3s",
-        }}
-      ></button>
-    ),
     dotsClass: "slick-dots slick-thumb",
   };
 
   return (
-    <WrapperComponent classes={{ sectionClass: "p-0 overflow-hidden" }}>
       <div className="slide-1 home-slider">
         <div
           style={{
@@ -83,7 +70,6 @@ const VideoCarousel = ({ videoSources = [], height = "400px", width = "100%" }) 
           )}
         </div>
       </div>
-    </WrapperComponent>
   );
 };
 

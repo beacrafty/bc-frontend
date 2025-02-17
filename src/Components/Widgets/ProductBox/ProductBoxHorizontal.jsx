@@ -42,7 +42,7 @@ const ProductBoxHorizontal = ({ productState, style }) => {
               </Link>
             )}
             <Link href={`/product/ ${productState?.product?.slug}`}>
-              <h2>{productState?.selectedVariation ? productState?.selectedVariation?.name : productName?.[currentLanguage]}</h2>
+              <h2>{productName?.[currentLanguage]}</h2>
             </Link>
             {productState?.product?.short_description && <p>{productState?.product?.short_description}</p>}
             <ProductBoxVariantAttribute productState={productState} showVariableType={["color", "rectangle", "circle", "radio", "dropdown", "image"]} />

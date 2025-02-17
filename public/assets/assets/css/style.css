@@ -2956,7 +2956,7 @@ input[type=search]::-webkit-search-results-decoration {
   height: 200px;
   display: inline-flex;
   align-items: center;
-  justify-content: start;
+  justify-content: flex-start;
   background: #C5853A;
 }
 @media (max-width: 767px) {
@@ -4952,7 +4952,7 @@ input[type=search]::-webkit-search-results-decoration {
   background: #eee;
   padding: 40px 50px;
   display: flex;
-  align-items: start;
+  align-items: flex-start;
   justify-content: space-around;
   height: 250px;
   margin-bottom: 30px;

@@ -1,27 +1,19 @@
-"use client";
-import ImageLink from "@/Components/Widgets/ImageLink";
+"use client";;
 import TitleBox from "@/Components/Widgets/Title";
 import WrapperComponent from "@/Components/Widgets/WrapperComponent";
 import BlogIdsContext from "@/Context/BlogIdsContext";
 import BrandIdsContext from "@/Context/BrandIdsContext";
 import ProductIdsContext from "@/Context/ProductIdsContext";
-import { brandSlider4, categorySlider5, horizontalProductSlider, horizontalProductSlider5 } from "@/Data/SliderSetting";
-import Btn from "@/Elements/Buttons/Btn";
-import Loader from "@/Layout/Loader";
-import { Href, storageURL } from "@/Utils/Constants";
+import { horizontalProductSlider, horizontalProductSlider5 } from "@/Data/SliderSetting";
 import useCustomDataQuery from "@/Utils/Hooks/useCustomDataQuery";
 import { useSkeletonLoader2 } from "@/Utils/Hooks/useSkeleton2";
-import React, { useContext, useEffect, useState } from "react";
-import { Col, Container, Row } from "reactstrap";
-import HomeBrand from "../Widgets/HomeBrand";
-import HomeCategorySidebar from "../Widgets/HomeCategorySidebar";
+import { useContext, useEffect, useState } from "react";
+import { Col } from "reactstrap";
 import HomeProduct from "../Widgets/HomeProduct";
 import HomeSlider from "../Widgets/HomeSlider";
 import HomeSocialMedia from "../Widgets/HomeSocialMedia";
 import BrowserFaq from "@/Components/Pages/Faq";
-import VideoBanner from "../Widgets/VideoBanner";
 import { useTranslation } from "react-i18next";
-import HomeTitle from "../Widgets/HomeTitle";
 import HomeBlog from "../Widgets/HomeBlog";
 
 import './assets/css/style.css';
@@ -33,8 +25,10 @@ import './assets/css/slick.css';
 import Features from "./components/features";
 import About from "./components/about";
 import WhyChooseUs from "./components/why-choose-us";
-import LinkingSlider from "./components/linking_slider";
+import LinkingSlider from "./components/linking-slider";
 import VideoCarousel from "../Widgets/VideoCarousel";
+import Categories from "./components/categories";
+import Partners from "./components/partners";
 
 
 const Furniture2 = ({ slug }) => {
@@ -45,43 +39,10 @@ const Furniture2 = ({ slug }) => {
   const videoType = ["mp4", "webm", "ogg"];
   const { data, isLoading: dataLoading, refetch } = useCustomDataQuery({ params: "furniture_two" });
 
-  
+
   const { i18n } = useTranslation("common");
-  const currentLanguage = i18n.resolvedLanguage;  
-
-  const [category, setCategory] = useState({}); // Initialize hero state
-  const [isComponentLoading, setIsComponentLoading] = useState(true);
-  useEffect(() => {
-    // Fetch data from the corresponding JSON file based on the current language
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`/locales/${currentLanguage}/common.json`);
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        const data = await response.json();
-
-        // Set banners and features from the fetched data
-        if (data.parallax_banner?.banners) {
-          const filteredBanners = data.parallax_banner[currentLanguage]?.banners.filter((item) => item?.status);
-          setBanners(filteredBanners || []); // Fallback to an empty array if undefined
-        }
-
-       
-
-        // Set hero data
-        setCategory(data.category || {}); // Fallback to an empty object if undefined
-
-        setIsComponentLoading(false);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setCategory({}); // Fallback to an empty object on error
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [currentLanguage]);
+  const currentLanguage = i18n.resolvedLanguage;
+  
 
   useEffect(() => {
     if (data?.products_ids?.length > 0) {
@@ -90,9 +51,6 @@ const Furniture2 = ({ slug }) => {
     if (data?.brands?.brand_ids?.length > 0) {
       setGetBrandIds({ ids: Array.from(new Set(data?.brands?.brand_ids))?.join(",") });
     }
-    // if (data?.featured_blogs?.blog_ids?.length > 0) {
-    //   setGetBlogIds({ ids: Array.from(new Set(data?.featured_blogs?.blog_ids))?.join(",") });
-    // }
   }, [data]);
   useEffect(() => {
     const bannersArray = [];
@@ -113,9 +71,6 @@ const Furniture2 = ({ slug }) => {
     if (data?.brands?.brand_ids?.length > 0) {
       setGetBrandIds({ ids: Array.from(new Set(data?.brands?.brand_ids))?.join(",") });
     }
-    // if (data?.featured_blogs?.blog_ids?.length > 0) {
-    //   setGetBlogIds({ ids: Array.from(new Set(data?.featured_blogs?.blog_ids))?.join(",") });
-    // }
   }, [data]);
 
   useEffect(() => {
@@ -130,7 +85,6 @@ const Furniture2 = ({ slug }) => {
   }, []);
 
   useSkeletonLoader2([productLoad, blogLoading, brandLoading]);
-  if (dataLoading && document.body) return <Loader />;
 
   return (
     <>
@@ -144,9 +98,9 @@ const Furniture2 = ({ slug }) => {
       <Features />
       <About contentData={data?.home_about?.[currentLanguage]} imageData={data?.home_about} />
 
-      
+
       <LinkingSlider />
-      
+
 
       {/* Categories */}
       {/* <Container className="no-arrow">
@@ -161,7 +115,7 @@ const Furniture2 = ({ slug }) => {
           <TitleBox title={data?.products_list_1?.[currentLanguage]} type="basic" />
           <WrapperComponent classes={{ sectionClass: "section-b-space pt-0", fluidClass: "container" }}>
             {/* <HomeProduct productIds={data?.products_list_1?.product_ids || []} style="vertical" slider={true} sliderOptions={horizontalProductSlider5} /> */}
-            <HomeProduct productIds={data?.product_list_2?.products?.product_item?.product_ids || []} style="vertical" slider={true} sliderOptions={horizontalProductSlider5}/>
+            <HomeProduct productIds={data?.product_list_2?.products?.product_item?.product_ids || []} style="vertical" slider={true} sliderOptions={horizontalProductSlider5} />
           </WrapperComponent>
         </>
       )}
@@ -178,22 +132,22 @@ const Furniture2 = ({ slug }) => {
         </>
       )} */}
 
-{data?.video_banner?.status && (
-  <>
-    <WrapperComponent classes={{ sectionClass: "p-0 height-85 mt-5", fluidClass: "container" }}>
-      {/* Replace VideoBanner with VideoCarousel */}
-      <VideoCarousel
-        videoSources={[
-          data?.video_banner?.original_url, // Example: video1 URL
-          data?.video_banner?.original_url, // Example: video2 URL
-          data?.video_banner?.original_url, // Example: video3 URL
-        ]}
-        height={535}
-        width={'auto'}
-      />
-    </WrapperComponent>
-  </>
-)}
+      {data?.video_banner?.status && (
+        <>
+          <WrapperComponent classes={{ sectionClass: "p-0 height-85 mt-5", fluidClass: "container" }}>
+            {/* Replace VideoBanner with VideoCarousel */}
+            <VideoCarousel
+              videoSources={[
+                data?.video_banner?.video_1?.original_url, 
+                data?.video_banner?.video_2?.original_url,
+                data?.video_banner?.video_3?.original_url,
+              ]}
+              height={'auto'}
+              width={'auto'}
+            />
+          </WrapperComponent>
+        </>
+      )}
 
       {/* Products List 2 */}
       {data?.product_list_2?.status && (
@@ -248,78 +202,8 @@ const Furniture2 = ({ slug }) => {
 
 
 
-      <div className="project-section project-three section-padding">
-        <div className="container">
-          <div className="row align-items-center">
-            <div className="col-xl-6 col-lg-6 col-md-8 wow fadeInUp animated" data-wow-delay="200ms">
-              <div className="section-title mb-0">
-                <h6>{category.title || 'Default Title'}</h6>
-                <div className="heading-animation">
-                  <h2>{category.subtitle || 'Default Subtitle'}</h2>
-                </div>
-              </div>
-            </div>
-            <div className="col-xl-6 col-lg-6 col-md-4 text-lg-end d-none d-lg-inline-block">
-              <Btn className="btn-solid">{category.btn || 'Default Button'}</Btn>
-            </div>
-          </div>
-          <div className="row gy-4 mt-40">
+      <Categories />
 
-            <div className="col-xl-3 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-              <a href="category/kitchen" className="single-project-wrapper">
-                <div className="project-bg">
-                  <img src="assets/assets/img/project/KITCHEN.jpg" alt="" />
-                  <div className="project-details">
-                    <h4>KITCHEN</h4>
-                    <p></p>
-                    <p></p>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div className="col-xl-3 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".4s">
-              <a href="category/beauty" className="single-project-wrapper">
-                <div className="project-bg">
-                  <img src="assets/assets/img/project/BEAUTY.jpg" alt="" />
-                  <div className="project-details">
-                    <h4>BEAUTY</h4>
-                    <p></p>
-                    <p></p>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div className="col-xl-3 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".6s">
-              <a href="category/deco" className="single-project-wrapper">
-                <div className="project-bg">
-                  <img src="assets/assets/img/project/deco.jpg" alt="" />
-                  <div className="project-details">
-                    <h4>DECO</h4>
-                    <p></p>
-                    <p></p>
-                  </div>
-                </div>
-              </a>
-            </div>
-
-            <div className="col-xl-3 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".2s">
-              <a href="category/game" className="single-project-wrapper">
-                <div className="project-bg">
-                  <img src="assets/assets/img/project/GAMES.jpg" alt="" />
-                  <div className="project-details">
-                    <h4>GAME</h4>
-                    <p></p>
-                    <p></p>
-                  </div>
-                </div>
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-      
 
 
       {/* Brands */}
@@ -335,37 +219,19 @@ const Furniture2 = ({ slug }) => {
           <HomeBlog blogIds={data?.featured_blogs?.blog_ids || []} />
         </WrapperComponent>
       )}
-      
+
       {/* <WrapperComponent classes={{ sectionClass: "section-b-space pt-0" }} noRowCol={true}>
         <HomeBrand brandIds={data?.brand?.brand_ids || []} />
       </WrapperComponent> */}
 
-      <div className="client-section pb-50 mt-2 d-flex align-items-center justify-content-center">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="client-wrap d-flex flex-wrap justify-content-center align-items-center">
-              <div className="col-3 clients-img-inner text-center">
-                <img src="assets/assets/img/client/AMAZON.png" alt="" className="img-fluid" />
-              </div>
-              <div className="col-3 clients-img-inner text-center">
-                <img src="assets/assets/img/client/EBAY.png" alt="" className="img-fluid" />
-              </div>
-              <div className="col-3 clients-img-inner text-center">
-                <img src="assets/assets/img/client/ETSY.png" alt="" className="img-fluid" />
-              </div>
-              <div className="col-3 clients-img-inner text-center">
-                <img src="assets/assets/img/client/PWL.png" alt="" className="img-fluid" />
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
+      <Partners />
+
+      
 
       {data?.faq?.[currentLanguage]?.status && (
         <>
-          {/* <TitleBox title={data?.faq?.[currentLanguage]} type="basic" /> */}
           <WrapperComponent classes={{ sectionClass: "section-b-space pt-0", fluidClass: "container" }}>
-            <BrowserFaq />
+            <BrowserFaq contentData={data?.faq?.[currentLanguage]} />
           </WrapperComponent>
         </>
       )}

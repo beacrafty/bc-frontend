@@ -4,7 +4,7 @@ import WrapperComponent from "@/Components/Widgets/WrapperComponent";
 import BlogIdsContext from "@/Context/BlogIdsContext";
 import ProductIdsContext from "@/Context/ProductIdsContext";
 import useCustomDataQuery from "@/Utils/Hooks/useCustomDataQuery";
-import React, { useContext, useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import HomeBlog from "../Widgets/HomeBlog";
 import HomeBrand from "../Widgets/HomeBrand";
 import HomeProductTab from "../Widgets/HomeProductTab";

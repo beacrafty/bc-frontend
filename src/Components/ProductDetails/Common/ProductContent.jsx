@@ -19,6 +19,8 @@ const ProductContent = ({ productState, setProductState, productAccordion, noDet
   const { handleIncDec, isLoading } = useContext(CartContext);
   const { convertCurrency } = useContext(SettingContext);
   const { setCartCanvas, themeOption } = useContext(ThemeOptionContext);
+  const [productName, setProductName] = useState({});
+
   const router = useRouter();
   const addToCart = () => {
     setCartCanvas(true);
@@ -46,24 +48,25 @@ const ProductContent = ({ productState, setProductState, productAccordion, noDet
     }
   }
 
+
   useEffect(() => {
     if (productState.product.name) {
       if (typeof productState?.product?.name === "string") {
         try {
-          setProductState((prev) => ({ ...prev, product: { ...prev.product, name: JSON.parse(productState.product.name) } }));
+          setProductName(JSON.parse(productState.product.name));
         } catch (error) {
           console.error("Failed to parse values.name:", error);
         }
       }
 
     }
-  }, [productState?.product?.name])
+  }, [productState.product.name]);
 
   return (
     <>
       {!noDetails && (
         <>
-          <h2 className="main-title">{productState?.selectedVariation?.name ?? productState?.product?.name?.[currentLanguage]}</h2>
+          <h2 className="main-title">{productName?.[currentLanguage]}</h2>
           {!productState?.product?.is_external && (
             <div className="product-rating">
               <RatingBox totalRating={productState?.selectedVariation?.rating_count ?? productState?.product?.rating_count} />
@@ -75,7 +78,7 @@ const ProductContent = ({ productState, setProductState, productAccordion, noDet
           )}
           <div className="price-text">
             <h3>
-              <span className="text-dark fw-normal">MRP:</span>
+              {/* <span className="text-dark fw-normal">MRP:</span> */}
               {productState?.selectedVariation?.sale_price ? convertCurrency(productState?.selectedVariation?.sale_price) : convertCurrency(productState?.product?.sale_price)}
 
               {productState?.selectedVariation?.discount || productState?.product?.discount ? <del>{productState?.selectedVariation ? convertCurrency(productState?.selectedVariation?.price) : convertCurrency(productState?.product?.price)}</del> : null}

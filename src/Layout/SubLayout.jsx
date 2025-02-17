@@ -201,7 +201,7 @@ const SubLayout = ({ children }) => {
       if (!isTabActive && themeOption?.general?.exit_tagline_enable) {
         updateTitle(0);
       } else {
-        let value = themeOption?.general?.site_title && themeOption?.general?.site_tagline ? `${themeOption?.general?.site_title} | ${themeOption?.general?.site_tagline}` : "Bea Crafty: The Bea-uty of handmade!";
+        let value = "Bea Crafty - The Bea-uty of handmade!";
         document.title = value;
         clearTimeout(timer);
       }

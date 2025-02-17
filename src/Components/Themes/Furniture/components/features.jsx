@@ -1,4 +1,3 @@
-import React from 'react'
 import ThemeOptionContext from "@/Context/ThemeOptionsContext";
 import { useContext } from "react";
 import { useTranslation } from "react-i18next";
@@ -49,7 +48,6 @@ const Features = () => {
                                 <img src="assets/assets/img/feature/3.png" alt="" />
                             </div>
                             <div className="feature-content">
-                                <h5></h5>
                                 <h5>
                                     {themeOption?.about_us?.about?.[currentLanguage]?.futures[2]?.title || 'Modern Equipment'}
                                 </h5>

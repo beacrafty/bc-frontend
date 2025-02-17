@@ -1,14 +1,8 @@
-"use client";
+"use client";;
 import ThemeOptionContext from "@/Context/ThemeOptionsContext";
 import { useContext, useEffect } from "react";
-import WrapperComponent from "@/Components/Widgets/WrapperComponent";
 import Breadcrumbs from "@/Utils/CommonComponents/Breadcrumb";
-import AboutUsImage from "./AboutUsImage";
 import AboutUsText from "./AboutUsText";
-import AboutUsBanner from "./AboutUsBanner";
-import ClientSection from "./ClientSection";
-import CreativeTeam from "./CreativeTeam";
-import ServiceSection from "./ServicesSection";
 import Loader from "@/Layout/Loader";
 import BrowserFaq from "../Faq";
 
@@ -16,7 +10,6 @@ import '@/Components/Themes/Furniture/assets/css/style.css';
 import '@/Components/Themes/Furniture/assets/css/flaticon.css';
 import '@/Components/Themes/Furniture/assets/css/line-awesome.min.css';
 import '@/Components/Themes/Furniture/assets/css/fontAwesomePro.css';
-import Btn from "@/Elements/Buttons/Btn";
 import AboutStats from "./components/about-stats";
 import WhyChooseUs from "@/Components/Themes/Furniture/components/why-choose-us";
 import useCustomDataQuery from "@/Utils/Hooks/useCustomDataQuery";
@@ -30,27 +23,27 @@ const AboutUsContent = () => {
   const currentLanguage = i18n.resolvedLanguage;
 
   useEffect(() => {
-      isLoading && refetch();
-    }, [isLoading]);
+    isLoading && refetch();
+  }, [isLoading]);
   console.log(data);
 
- 
+
 
   if (isLoading) return <Loader />;
   return (
     <>
       <Breadcrumbs title={"AboutUs"} subNavigation={[{ name: "AboutUs" }]} />
-   
-        {/* <AboutUsImage /> */}
+
+      {/* <AboutUsImage /> */}
 
       <AboutUsText contentData={themeOption?.about_us?.about?.[currentLanguage]} />
-      
-      
+
+
       <AboutStats contentData={themeOption?.about_us?.about_stats?.[currentLanguage]} />
 
       <WhyChooseUs contentData={data?.home_why_choose_us?.[currentLanguage]} imageData={data?.home_why_choose_us?.image} />
-      
-      
+
+
 
       <div className="client-section mt-4 d-flex align-items-center justify-content-center">
         <div className="container">
@@ -77,7 +70,7 @@ const AboutUsContent = () => {
 
       {/* <AboutUsBanner /> */}
 
-      <BrowserFaq heading={true} />
+      <BrowserFaq contentData={data?.faq?.[currentLanguage]} />
 
       {/* {themeOption?.about_us?.testimonial?.status && themeOption?.about_us?.testimonial?.reviews?.length && <ClientSection />}
       {themeOption?.about_us?.team?.status && themeOption?.about_us?.team?.members?.length && <CreativeTeam />}

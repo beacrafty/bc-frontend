@@ -1,101 +1,125 @@
 "use client";
-import Loader from "@/Layout/Loader";
-import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import '@/Components/Themes/Furniture/assets/css/style.css';
 import '@/Components/Themes/Furniture/assets/css/flaticon.css';
 import '@/Components/Themes/Furniture/assets/css/line-awesome.min.css';
 import '@/Components/Themes/Furniture/assets/css/fontAwesomePro.css';
+import VideoBanner from "@/Components/Themes/Widgets/VideoBanner";
 
 const InstructionsContent = () => {
-  const { t, i18n } = useTranslation("common");
+  const { i18n } = useTranslation("common");
   const currentLanguage = i18n.resolvedLanguage;
 
-  const [banners, setBanners] = useState([]);
-  const [features, setFeatures] = useState({}); // Initialize as an object
-  const [hero, setHero] = useState({}); // Initialize hero state
-  const [isLoading, setIsLoading] = useState(true);
+  const videoData = {
+    video_url: "/assets/video/instructions-video.mp4", // Replace with your actual video path
+  };
 
-  useEffect(() => {
-    // Fetch data from the corresponding JSON file based on the current language
-    const fetchData = async () => {
-      try {
-        const response = await fetch(`/locales/${currentLanguage}/common.json`);
-        if (!response.ok) {
-          throw new Error("Failed to fetch data");
-        }
-        const data = await response.json();
+  const features = {
+    en: [
+      {
+        title: "Gentle Cleaning",
+        description: "Use mild soap and lukewarm water to clean wooden items. Avoid soaking or abrasive scrubbers.",
+      },
+      {
+        title: "Dry Quickly",
+        description: "After washing, dry wooden products with a soft cloth to prevent moisture absorption.",
+      },
+      {
+        title: "Regular Oiling",
+        description: "Apply food-safe oil (e.g., maize or cottonseed oil) with a soft cloth to maintain shine and prevent drying.",
+      },
+      {
+        title: "Avoid Water",
+        description: "Never leave wooden items (e.g., bowls, cups) with water inside to prevent warping or cracking.",
+      },
+      {
+        title: "Protect Wood",
+        description: "Keep away from direct sunlight, high humidity, or extreme heat to avoid damage.",
+      },
+      {
+        title: "Proper Storage",
+        description: "Store in a cool, dry place with proper airflow to prevent mold or mildew.",
+      },
+    ],
+    fr: [
+      {
+        title: "Nettoyage Doux",
+        description: "Utilisez du savon doux et de l'eau tiède pour nettoyer les articles en bois.",
+      },
+      {
+        title: "Séchage Rapide",
+        description: "Après lavage, séchez les produits en bois avec un chiffon doux pour éviter l'absorption d'humidité.",
+      },
+      {
+        title: "Huilage Régulier",
+        description: "Appliquez une huile alimentaire (ex. huile de maïs ou de coton) avec un chiffon doux pour protéger et faire briller le bois.",
+      },
+      {
+        title: "Éviter l'Eau",
+        description: "Ne laissez pas d'eau dans les bols ou tasses en bois pour éviter les fissures ou déformations.",
+      },
+      {
+        title: "Protéger Bois",
+        description: "Protégez du soleil direct, de l'humidité élevée ou de la chaleur excessive pour prévenir les dommages.",
+      },
+      {
+        title: "Rangez Correct",
+        description: "Conservez dans un endroit frais et sec avec une bonne circulation d'air pour éviter la moisissure.",
+      },
+    ],
+    de: [
+      {
+        title: "Sanft Reinigen",
+        description: "Verwenden Sie milde Seife und lauwarmes Wasser zur Reinigung von Holzprodukten.",
+      },
+      {
+        title: "Sofort Trocknen",
+        description: "Trocknen Sie Holzprodukte nach dem Waschen mit einem weichen Tuch, um Feuchtigkeit zu vermeiden.",
+      },
+      {
+        title: "Regelmäßig Ölen",
+        description: "Tragen Sie lebensmittelechtes Öl (z.B. Mais- oder Baumwollsaatöl) mit einem weichen Tuch auf, um den Glanz zu erhalten.",
+      },
+      {
+        title: "Wasser Vermeiden",
+        description: "Lassen Sie keine Flüssigkeit in Holzschüsseln oder -bechern stehen, um Verformungen zu vermeiden.",
+      },
+      {
+        title: "Holz Schützen",
+        description: "Schützen Sie vor direkter Sonne, hoher Luftfeuchtigkeit oder extremer Hitze, um Schäden zu verhindern.",
+      },
+      {
+        title: "Richtig Lagern",
+        description: "Lagern Sie an einem kühlen, trockenen Ort mit guter Belüftung, um Schimmelbildung zu vermeiden.",
+      },
+    ],
+  };
 
-        // Set banners and features from the fetched data
-        if (data.parallax_banner?.banners) {
-          const filteredBanners = data.parallax_banner[currentLanguage]?.banners.filter((item) => item?.status);
-          setBanners(filteredBanners || []); // Fallback to an empty array if undefined
-        }
-
-        // Ensure features is an object
-        setFeatures(data.features || {}); // Fallback to an empty object if undefined
-
-        // Set hero data
-        setHero(data.hero || {}); // Fallback to an empty object if undefined
-
-        setIsLoading(false);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-        setFeatures({}); // Fallback to an empty object on error
-        setHero({}); // Fallback to an empty object on error
-        setIsLoading(false);
-      }
-    };
-
-    fetchData();
-  }, [currentLanguage]);
-
-  useEffect(() => {
-    document.body.classList.add("home");
-    return () => {
-      document.body.classList.remove("home");
-    };
-  }, []);
-
-  if (isLoading) {
-    return <Loader />;
-  }
-
-  // Convert features object to an array for easier mapping
-  const featureList = Object.keys(features).map((key) => ({
-    id: key,
-    ...features[key],
-  }));
+  const currentFeatures = features[currentLanguage] || features.en;
 
   return (
     <section className="p-0">
-      {/* Hero Area */}
-      <div id="home-3" className="homepage-slides owl-carousel">
-        <div className="single-slide-item d-flex align-items-center" style={{ backgroundImage: "url('assets/assets/img/instructions/INST.png')" }}>
-          <div className="overlay-5"></div>
-          <div className="hero-area-content">
-            <div className="container">
-              <div className="row align-items-center">
-                <div className="col-xl-7 col-lg-8 col-md-8 wow fadeInUp animated" data-wow-delay=".2s">
-                  <div className="section-title">
-                    <h6 style={{color : "white"}}>{hero.title || "Default Title"}</h6> {/* Fallback to a default title if hero.title is missing */}
-                    <h1 className="text-white">{hero.subtitle || "Default Subtitle"}</h1> {/* Fallback to a default subtitle */}
-                  </div>
-                  <p className="text-white">{hero.description || "Default Description"}</p> {/* Fallback to a default description */}
-                </div>
-              </div>
+      {/* Video Section */}
+      <div className="feature-section section-padding">
+        <div className="container">
+          <div className="row justify-content-center">
+            <div className="col-12">
+              <VideoBanner 
+                videoBannerSrc={videoData.video_url}
+                height="650px"
+                width="100%"
+              />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Feature Section */}
+      {/* Features Section */}
       <div className="feature-section section-padding">
         <div className="container">
-          {/* First Row of Features */}
           <div className="row">
-            {featureList.slice(0, 3).map((feature, index) => (
-              <div className="col-xl-4 col-lg-4 col-md-4 wow fadeInUp" data-wow-delay={`${0.2 * index}s`} key={feature.id}>
+            {currentFeatures.slice(0, 3).map((feature, index) => (
+              <div className="col-xl-4 col-lg-4 col-md-4 wow fadeInUp" data-wow-delay={`${0.2 * index}s`} key={index}>
                 <div className="single-feature-wrap">
                   <div className="feat-num">
                     <span>{`0${index + 1}`}</span>
@@ -107,10 +131,9 @@ const InstructionsContent = () => {
             ))}
           </div>
 
-          {/* Second Row of Features with Adjusted Spacing */}
-          <div className="row" style={{ marginTop: "20px" }}> {/* Adjust margin-top as needed */}
-            {featureList.slice(3, 6).map((feature, index) => (
-              <div className="col-xl-4 col-lg-4 col-md-4 wow fadeInUp" data-wow-delay={`${0.2 * index}s`} key={feature.id}>
+          <div className="row mt-4">
+            {currentFeatures.slice(3, 6).map((feature, index) => (
+              <div className="col-xl-4 col-lg-4 col-md-4 wow fadeInUp" data-wow-delay={`${0.2 * index}s`} key={index + 3}>
                 <div className="single-feature-wrap">
                   <div className="feat-num">
                     <span>{`0${index + 4}`}</span>

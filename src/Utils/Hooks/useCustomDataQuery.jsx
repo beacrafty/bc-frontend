@@ -12,7 +12,9 @@ const useCustomDataQuery = ({ params }) => {
     {
       select: (data) => data,
       refetchOnWindowFocus: false,
-      enabled:false
+      enabled: false,
+      staleTime: 5 * 60 * 1000, // 5 minutes
+      cacheTime: 30 * 60 * 1000, // 30 minutes
     }
   );
 };

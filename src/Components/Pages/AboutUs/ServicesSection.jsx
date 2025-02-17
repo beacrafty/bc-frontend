@@ -1,12 +1,10 @@
 import ThemeOptionContext from "@/Context/ThemeOptionsContext";
-import { storageURL } from "@/Utils/Constants";
 import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import { Container, Media, Row } from "reactstrap";
 
 const ServicesSection = () => {
   const { themeOption } = useContext(ThemeOptionContext);
-  const { t } = useTranslation('common')
 
   const { i18n } = useTranslation("common");
   const currentLanguage = i18n.resolvedLanguage;  

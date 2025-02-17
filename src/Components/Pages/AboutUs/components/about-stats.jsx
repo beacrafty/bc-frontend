@@ -1,9 +1,11 @@
 import Btn from '@/Elements/Buttons/Btn'
 import React from 'react'
 import { useTranslation } from 'react-i18next'
+import { useRouter } from 'next/navigation';
 
 const AboutStats = ({contentData }) => {
-const { t } = useTranslation('common')
+  const { t } = useTranslation('common')
+  const router = useRouter();
   return (
     <div className="counter-section counter-two dark-bg section-padding">
         <div className="container">
@@ -17,7 +19,11 @@ const { t } = useTranslation('common')
                   </div>
                 </div>
                 <p className="text-white">{contentData?.description || 'We believe in quality, craftsmanship, and sustainability, ensuring that each piece is a masterpiece that reflects our commitment to excellence.'}</p>
-                <Btn className="btn-solid mt-20">{t("ShopNow")}</Btn>
+              <Btn
+                onClick={() => {
+                  router.push("/collections");
+                }}
+                className="btn-solid mt-20">{t("ShopNow")}</Btn>
               </div>
             </div>
             <div className="col-xl-6 col-lg-6 align-content-end">

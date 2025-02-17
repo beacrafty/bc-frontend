@@ -6,11 +6,20 @@ import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { RiFilterFill } from "react-icons/ri";
 import { Col, Row } from "reactstrap";
-import CollectionSidebar from "../CollectionSidebar";
+import dynamic from 'next/dynamic';
+
+const CollectionSidebar = dynamic(() => import('../CollectionSidebar'), {
+  loading: () => <div>Loading...</div>,
+  ssr: false
+});
+
+const FilterSort = dynamic(() => import('./FilterSort'), {
+  loading: () => <div>Loading...</div>
+});
+
 import CollectionProducts from "./CollectionProducts";
 import FilterBtn from "./FilterBtn";
 import FilterPaginate from "./FilterPaginate";
-import FilterSort from "./FilterSort";
 import GridBox from "./GridBox";
 import OfferBanner from "./OfferBanner";
 import PopUpSidebar from "./PopUpSidebar";
