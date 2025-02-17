@@ -11,7 +11,7 @@ const InstructionsContent = () => {
   const currentLanguage = i18n.resolvedLanguage;
 
   const videoData = {
-    video_url: "/assets/video/instructions-video.mp4", // Replace with your actual video path
+    video_url: "/assets/video/instructions.mp4", // Replace with your actual video path
   };
 
   const features = {
