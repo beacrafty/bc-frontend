@@ -1,8 +1,5 @@
-"use client";
-
+"use client";;
 import SellerSteps from "@/Components/Seller/BecomeSeller/SellerSteps";
-import SingleProduct from "@/Components/Themes/SingleProduct";
-import HomeBrand from "@/Components/Themes/Widgets/HomeBrand";
 import HomeProduct from "@/Components/Themes/Widgets/HomeProduct";
 import HomeSlider from "@/Components/Themes/Widgets/HomeSlider";
 import HomeSocialMedia from "@/Components/Themes/Widgets/HomeSocialMedia";
@@ -12,14 +9,12 @@ import WrapperComponent from "@/Components/Widgets/WrapperComponent";
 import ProductIdsContext from "@/Context/ProductIdsContext";
 import ThemeOptionContext from "@/Context/ThemeOptionsContext";
 import { horizontalProductSlider5 } from "@/Data/SliderSetting";
-import Btn from "@/Elements/Buttons/Btn";
 import Loader from "@/Layout/Loader";
-import { baseURL, ImagePath, storageURL } from "@/Utils/Constants";
+import { ImagePath } from "@/Utils/Constants";
 import useCustomDataQuery from "@/Utils/Hooks/useCustomDataQuery";
-import Image from "next/image";
 import { useContext, useEffect } from "react";
 import { useTranslation } from "react-i18next";
-import { Col, Container, Row } from "reactstrap";
+import { Row } from "reactstrap";
 
 const CustomizeContent = () => {
   const { t, i18n } = useTranslation("common");

@@ -41,7 +41,7 @@ const CartData = ({ elem }) => {
     <tr>
       <CartProductDetail elem={elem} />
       <td>
-        <Link href={`/product/${elem?.product?.slug}`}>{elem?.variation?.name ?? productName?.[currentLanguage]}</Link>
+        <Link href={`/product/${elem?.product?.slug}`}>{productName?.[currentLanguage]}</Link>
         <Row className="mobile-cart-content">
           <Col>
             <div className="qty-box">

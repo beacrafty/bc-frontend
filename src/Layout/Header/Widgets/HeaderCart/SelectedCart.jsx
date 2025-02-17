@@ -67,7 +67,7 @@ const SelectedCart = ({ modal, setSelectedVariation, setModal }) => {
 
                 <div className="media-body">
                   <Link href={`/product/${elem?.product?.slug}`}>
-                    <h4>{elem?.variation?.name ?? getProductName(elem?.product?.name)}</h4>
+                    <h4>{getProductName(elem?.product?.name)}</h4>
                   </Link>
                   <h4 className="quantity">
                     <span>{convertCurrency(elem?.variation?.sale_price ?? elem?.product?.sale_price)}</span>
