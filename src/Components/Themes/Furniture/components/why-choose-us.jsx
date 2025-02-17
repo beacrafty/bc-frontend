@@ -43,7 +43,7 @@ const WhyChooseUs = ({ contentData, imageData }) => {
                     </div>
                     <div className="col-xl-6 col-lg-6">
                         <div className="choose-us-img-wrap wow fadeInRight" data-wow-delay=".2s">
-                            <img src={imageData?.image_url || "assets/assets/img/choose-us.jpg"} className="rounded-image" alt="" />
+                            <img src={imageData?.image_url} className="rounded-image" alt="" />
                             <div className="info-founder">
                                 <i className="flaticon-carpenter-5"></i>
                                 <p>{contentData?.year_founded || 'Since 2024' }</p>

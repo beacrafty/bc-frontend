@@ -14,8 +14,8 @@ const About = ({ contentData, imageData }) => {
                 <div className="row gx-lg-5">
                     <div className="col-xl-6 col-lg-6 col-md-6 wow fadeInUp" data-wow-delay=".2s">
                         <div className="about-img-wrap">
-                            <img className="image-one" src={imageData?.image_1?.image_url || 'assets/assets/img/about/2-1.jpg'} />
-                            <img className="image-two" src={imageData?.image_2?.image_url || 'assets/assets/img/about/3.jpg'} />
+                            <img className="image-one" src={imageData?.image_1?.image_url} />
+                            <img className="image-two" src={imageData?.image_2?.image_url} />
                         </div>
                     </div>
                     <div className="col-xl-6 col-lg-6 col-md-6">
