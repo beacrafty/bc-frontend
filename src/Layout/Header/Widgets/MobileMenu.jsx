@@ -3,14 +3,19 @@ import { t } from "i18next";
 import Cookies from "js-cookie";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { RiHeartLine, RiHome2Line, RiSearch2Line, RiShoppingBagLine, RiUserLine } from "react-icons/ri";
 
 const MobileMenu = () => {
-  const { setOpenAuthModal, setCartCanvas } = useContext(ThemeOptionContext);
-  const isAuthenticated = Cookies.get("uat");
-  const router = useRouter();
+  const [isMounted, setIsMounted] = useState(false);
   const [active, setActive] = useState(1);
+  const { setOpenAuthModal, setCartCanvas } = useContext(ThemeOptionContext);
+  const router = useRouter();
+  const isAuthenticated = Cookies.get("uat");
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
 
   const handleProfileClick = (e) => {
     e.preventDefault();
@@ -33,6 +38,10 @@ const MobileMenu = () => {
     setCartCanvas(true);
     handleActive(3);
   };
+
+  if (!isMounted) {
+    return null;
+  }
 
   return (
     <div className="mobile-menu d-md-none d-block mobile-cart">

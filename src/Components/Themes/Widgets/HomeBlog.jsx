@@ -47,7 +47,24 @@ const HomeBlog = ({ blogIds }) => {
     isLoading && refetch();
   }, [isLoading]);
 
-  const latestBlogs = blogs?.slice(0, 3);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const checkIsMobile = () => {
+      setIsMobile(window.innerWidth <= 991);
+    };
+    
+    // Initial check
+    checkIsMobile();
+    
+    // Add event listener for window resize
+    window.addEventListener('resize', checkIsMobile);
+    
+    // Cleanup
+    return () => window.removeEventListener('resize', checkIsMobile);
+  }, []);
+
+  const latestBlogs = blogs?.slice(0, isMobile ? 4 : 3);
 
 
   return (
@@ -62,7 +79,7 @@ const HomeBlog = ({ blogIds }) => {
               </div>
             </div>
           </div>
-          <div className="col-xl-6 col-lg-6 text-lg-end">
+          <div className="col-xl-6 col-lg-6 text-lg-end button-wrapper">
             <Btn
               onClick={() => {
                 router.push("/blogs");
@@ -70,22 +87,29 @@ const HomeBlog = ({ blogIds }) => {
               className="btn-solid">{contentData?.[currentLanguage]?.btn}</Btn>
           </div>
         </div>
-        <div className="row gx-4 mt-30">
+        <div className="row g-sm-4 g-3 mt-3 mt-sm-4">
           {latestBlogs?.length ? (
             latestBlogs.map((blog, index) => (
-              <div className="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay={`${0.2 * (index + 1)}s`} key={index}>
-                <Link href={`/blogs/${blog?.slug}`} className="single-blog-item rounded-blog-card">
-                  <div className="blog-img rounded-blog-img">
-                    <img src={blog.blog_thumbnail.original_url} alt={blog.title} />
+              <div className="col-6 col-md-6 col-xl-4 col-lg-4 wow fadeInUp" data-wow-delay={`${0.2 * (index + 1)}s`} key={index}>
+                <Link href={`/blogs/${blog?.slug}`} className="single-blog-item rounded-blog-card" style={{ height: "90%", display: "flex", flexDirection: "column" }}>
+                  <div className="blog-img rounded-blog-img" style={{ aspectRatio: "4/3", overflow: "hidden" }}>
+                    <img 
+                      src={blog.blog_thumbnail.original_url} 
+                      alt={blog.title}
+                      style={{ 
+                        width: "100%",
+                        height: "100%",
+                        objectFit: "cover"
+                      }} 
+                    />
                   </div>
-                  <div className="blog-content rounded-blog-content">
+                  <div className="blog-content rounded-blog-content" style={{ flex: 1, display: "flex", flexDirection: "column" }}>
                     <div className="blog-meta">
                       <span>{new Date(blog?.created_at).toLocaleString("en-US", { day: "2-digit", month: "short", year: "numeric" })}</span>
                     </div>
                     <div className="blog-title">
                       <h4>{blog.title}</h4>
                     </div>
-                    {/* <p>{blog.excerpt || "Adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore."}</p> */}
                     <span className="link_icon"><i className="las la-arrow-right"></i></span>
                   </div>
                 </Link>

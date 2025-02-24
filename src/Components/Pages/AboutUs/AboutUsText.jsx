@@ -6,7 +6,6 @@ const AboutUsText = ({ contentData }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
 
-  console.log(contentData)
   return (
     <div id="about-3" className="about-section section-padding pt-180">
       <div className="container">
@@ -17,7 +16,7 @@ const AboutUsText = ({ contentData }) => {
             </div>
           </div>
           <div className="col-xl-6 col-lg-6">
-            <div className="about-content-wrap">
+            <div className="about-content-wrap mobile-text-center">
               <div className="section-title">
                 <h6>{contentData?.sub_title}</h6>
                 <div className="heading-animation">
@@ -32,7 +31,7 @@ const AboutUsText = ({ contentData }) => {
                 )
               )}
 
-              <div class="about-list-item">
+              <div className="about-list-item">
                 <ul>
                   {contentData?.futures.map((item, index) => (
                     <li key={index}>
@@ -43,11 +42,13 @@ const AboutUsText = ({ contentData }) => {
                 </ul>
               </div>
 
-              <Btn
-                onClick={() => {
-                  router.push("/collections");
-                }}
-                className="btn-solid mt-20">{t("ShopNow")}</Btn>
+              <div className="button-wrapper">
+                <Btn
+                  onClick={() => {
+                    router.push("/collections");
+                  }}
+                  className="btn-solid mt-20">{t("ShopNow")}</Btn>
+              </div>
             </div>
           </div>
         </div>

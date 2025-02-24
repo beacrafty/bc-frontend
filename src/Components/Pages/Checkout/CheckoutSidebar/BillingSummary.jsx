@@ -10,9 +10,10 @@ import PlaceOrder from "./PlaceOrder";
 import PointWallet from "./PointWallet";
 import { ImagePath } from "@/Utils/Constants";
 
-function getVATPercentage(countryName) {
+function getVATPercentage(country, countryCode) {
   // Mapping of European countries to their standard VAT rates
   const vatRates = {
+    // Country names
     "Austria": 20,
     "Belgium": 21,
     "Bulgaria": 20,
@@ -39,18 +40,51 @@ function getVATPercentage(countryName) {
     "Slovakia": 20,
     "Slovenia": 22,
     "Spain": 21,
-    "Sweden": 25
+    "Sweden": 25,
+    // Country codes
+    "43": 20,  // Austria
+    "32": 21,  // Belgium
+    "359": 20, // Bulgaria
+    "385": 25, // Croatia
+    "357": 19, // Cyprus
+    "420": 21, // Czech Republic
+    "45": 25,  // Denmark
+    "372": 20, // Estonia
+    "358": 24, // Finland
+    "33": 20,  // France
+    "49": 19,  // Germany
+    "30": 24,  // Greece
+    "36": 27,  // Hungary
+    "353": 23, // Ireland
+    "39": 22,  // Italy
+    "371": 21, // Latvia
+    "370": 21, // Lithuania
+    "352": 17, // Luxembourg
+    "356": 18, // Malta
+    "31": 21,  // Netherlands
+    "48": 23,  // Poland
+    "351": 23, // Portugal
+    "40": 19,  // Romania
+    "421": 20, // Slovakia
+    "386": 22, // Slovenia
+    "34": 21,  // Spain
+    "46": 25   // Sweden
   };
 
-  if (!countryName) return null;
+  // First try with country code if available
+  if (countryCode && vatRates[countryCode]) {
+    return vatRates[countryCode];
+  }
+
+  // If no country code or not found, try with country name
+  if (!country) return null;
 
   // Convert the input to title case for consistency
-  const formattedCountryName = countryName
-    .trim() // Remove leading/trailing spaces
-    .toLowerCase() // Convert to lowercase
-    .replace(/\b\w/g, (char) => char.toUpperCase()); // Convert to title case
+  const formattedCountryName = country
+    .trim()
+    .toLowerCase()
+    .replace(/\b\w/g, (char) => char.toUpperCase());
 
-  // Return the VAT rate or null if the country is not found
   return vatRates[formattedCountryName] ?? null;
 }
 
@@ -60,12 +94,14 @@ const BillingSummary = ({ country, data, values, setFieldValue, isLoading, mutat
   const { t } = useTranslation("common");
   const access_token = Cookies.get("uat");
 
-  const [vatPercentage, setVatPercentage ] = useState('');
+  const [vatPercentage, setVatPercentage] = useState('');
 
   useEffect(() => {
-    setVatPercentage(getVATPercentage(country))
-  }, [country])
+    const countryCode = values?.billing_address?.country_code || null;
+    setVatPercentage(getVATPercentage(country, countryCode));
+  }, [country, values?.billing_address?.country_code]);
   
+  console.log(values)
 
   return (
     <div className="checkout-details">

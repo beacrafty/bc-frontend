@@ -19,11 +19,13 @@ const AboutStats = ({contentData }) => {
                   </div>
                 </div>
                 <p className="text-white">{contentData?.description || 'We believe in quality, craftsmanship, and sustainability, ensuring that each piece is a masterpiece that reflects our commitment to excellence.'}</p>
-              <Btn
-                onClick={() => {
-                  router.push("/collections");
-                }}
-                className="btn-solid mt-20">{t("ShopNow")}</Btn>
+              <div className="button-wrapper">
+                <Btn
+                  onClick={() => {
+                    router.push("/collections");
+                  }}
+                  className="btn-solid mt-20">{t("ShopNow")}</Btn>
+              </div>
               </div>
             </div>
             <div className="col-xl-6 col-lg-6 align-content-end">

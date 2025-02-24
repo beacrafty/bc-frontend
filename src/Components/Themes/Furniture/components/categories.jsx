@@ -43,13 +43,12 @@ const Categories = () => {
                     </div>
                 </div>
                 <div className="row gy-4 mt-40">
-
-                    <div className="col-xl-3 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                    <div className="col-6 col-xl-3 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".2s">
                         <a href="category/kitchen" className="single-project-wrapper">
                             <div className="project-bg">
                                 <img src="assets/assets/img/project/KITCHEN.jpg" alt="" />
                                 <div className="project-details">
-                                    <h4>{t("Kitchen") }</h4>
+                                    <h4>{t("Kitchen")}</h4>
                                     <p></p>
                                     <p></p>
                                 </div>
@@ -57,7 +56,7 @@ const Categories = () => {
                         </a>
                     </div>
 
-                    <div className="col-xl-3 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".4s">
+                    <div className="col-6 col-xl-3 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".4s">
                         <a href="category/beauty" className="single-project-wrapper">
                             <div className="project-bg">
                                 <img src="assets/assets/img/project/BEAUTY.jpg" alt="" />
@@ -70,7 +69,7 @@ const Categories = () => {
                         </a>
                     </div>
 
-                    <div className="col-xl-3 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".6s">
+                    <div className="col-6 col-xl-3 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".6s">
                         <a href="category/deco" className="single-project-wrapper">
                             <div className="project-bg">
                                 <img src="assets/assets/img/project/deco.jpg" alt="" />
@@ -83,7 +82,7 @@ const Categories = () => {
                         </a>
                     </div>
 
-                    <div className="col-xl-3 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".2s">
+                    <div className="col-6 col-xl-3 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".2s">
                         <a href="category/game" className="single-project-wrapper">
                             <div className="project-bg">
                                 <img src="assets/assets/img/project/GAMES.jpg" alt="" />

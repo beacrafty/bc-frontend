@@ -35,18 +35,20 @@ const About = ({ contentData, imageData }) => {
                                     <h6>{contentData?.label_1 || 'Materials Available' }</h6>
                                 </div>
                             </div>
-                            <div className="col-xl-6 col-lg-6 col-md-6">
+                            {/* <div className="col-xl-6 col-lg-6 col-md-6">
                                 <div className="single-counter-box">
                                     <p className="counter-number">{contentData?.number_2 || '156' }</p>
                                     <h6>{contentData?.label_2 || 'Products Available' }</h6>
                                 </div>
-                            </div>
+                            </div> */}
                         </div>
-                        <Btn
-                            onClick={() => {
-                                router.push('/collections');
-                            }}
-                            className="btn-solid">{t("ShopNow")}</Btn>
+                        <div className="button-wrapper">
+                            <Btn
+                                onClick={() => {
+                                    router.push('/collections');
+                                }}
+                                className="btn-solid">{t("ShopNow")}</Btn>
+                        </div>
                     </div>
                 </div>
             </div>

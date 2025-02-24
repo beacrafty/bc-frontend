@@ -11,7 +11,7 @@ const Features = () => {
     return (
         <div className="feature-area section-padding">
             <div className="container">
-                <div className="row">
+                <div className="row g-4">
                     <div className="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
                         <div className="single-feature-item">
                             <div className="feature-icon">

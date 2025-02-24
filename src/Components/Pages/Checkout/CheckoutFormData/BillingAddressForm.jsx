@@ -91,15 +91,15 @@ const BillingAddressForm = ({ values, setFieldValue, errors, data }) => {
           <Col xs={12} className="phone-field">
           <div className="form-box position-relative">
             <div className="country-input">
-              <SimpleInputField nameList={[{ name: "billing_address?.phone", type: "number", placeholder: t("EnterPhoneNumber"), require: "true", toplabel: "Phone", colprops: { xs: 12 }, colclass: "country-input-box" }]} />
+              <SimpleInputField nameList={[{ name: "billing_address.phone", type: "number", placeholder: t("EnterPhoneNumber"), require: "true", toplabel: "Phone", colprops: { xs: 12 }, colclass: "country-input-box" }]} />
               <SearchableSelectInput
                 nameList={[
                   {
-                    name: "billing_address?.country_code",
+                    name: "billing_address.country_code",
                     notitle: "true",
                     inputprops: {
-                      name: "billing_address?.country_code",
-                      id: "billing_address?.country_code",
+                      name: "billing_address.country_code",
+                      id: "billing_address.country_code",
                       options: AllCountryCode,
                     },
                   },

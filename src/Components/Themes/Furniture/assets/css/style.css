@@ -9,22 +9,18 @@ img {
 
 /*Section Padding CSS*/
 .section-padding {
-  padding: 120px 0;
-}
+  padding: 80px 0;}
 @media only screen and (min-width: 992px) and (max-width: 1200px) {
   .section-padding {
-    padding: 100px 10px;
-  }
+    padding: 70px 10px;  }
 }
 @media only screen and (min-width: 768px) and (max-width: 991px) {
   .section-padding {
-    padding: 90px 30px !important;
-  }
+    padding: 60px 30px !important;  }
 }
 @media (max-width: 767px) {
   .section-padding {
-    padding: 60px 10px !important;
-  }
+    padding: 60px 10px !important;  }
 }
 
 /*Section Title */
@@ -1863,16 +1859,23 @@ img {
 @media (max-width: 767px) {
   .single-feature-item {
     flex-direction: column;
-    margin-bottom: 30px;
+    margin-bottom: 60px !important;
+    text-align: center;
+  }
+  .single-feature-item .feature-icon {
+    width: 64px;
+    margin: 0 auto;
+  }
+  .single-feature-item .feature-content {
+    max-width: 300px;
+    margin: 0 auto;
+  }
+  .single-feature-item:last-child {
+    margin-bottom: 0 !important;
   }
 }
 .single-feature-item .feature-icon {
   width: 90px;
-}
-@media (max-width: 767px) {
-  .single-feature-item .feature-icon {
-    width: 64px;
-  }
 }
 .single-feature-item .feature-content h5 {
   font-size: 20px;
@@ -2032,6 +2035,15 @@ img {
 @media (max-width: 767px) {
   .about-content-wrap {
     margin-top: 80px;
+  }
+  .button-wrapper {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  .button-wrapper .btn-solid {
+    margin: 20px auto;
+    text-align: center;
   }
 }
 
@@ -4824,7 +4836,61 @@ img {
 .single-choose-inner h5 {
   font-size: 30px;
   font-weight: 500;
-  letter-spacing: -1px;
+}
+@media (max-width: 767px) {
+  /* Center text elements */
+  .section-title,
+  .section-title h1,
+  .section-title h6,
+  .section-title p,
+  .project-content,
+  .banner-content-wrap,
+  .info-content,
+  .single-contact-wrap,
+  .single-counter-box,
+  .single-project-item,
+  .choose-item-wrap,
+  .footer-bottom,
+  .contact-info-wrap,
+  .contact-intro-wrap,
+  .blog-quote-wrap,
+  .comments-form-wrap,
+  .pagination-wrap {
+    text-align: center;
+  }
+
+  /* Center icons */
+  .info-icon {
+    position: static;
+    margin: 0 auto 20px;
+  }
+
+  /* Reset paddings for centered content */
+  .info-content,
+  .choose-item-wrap,
+  .choose-us-img-wrap {
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  /* Center flex items */
+  .banner-section,
+  .single-client,
+  .single-comments-inner {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* Center buttons */
+  .circle-button,
+  .theme-btn {
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+  }
 }
 .single-choose-inner h5 span {
   font-size: 20px;
@@ -4955,14 +5021,3 @@ img {
 .skill-content-wrap {
   padding-right: 60px;
 }
-
-/*
-
-
-
-
-
-
-
-
- */

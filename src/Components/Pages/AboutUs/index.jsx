@@ -14,6 +14,7 @@ import AboutStats from "./components/about-stats";
 import WhyChooseUs from "@/Components/Themes/Furniture/components/why-choose-us";
 import useCustomDataQuery from "@/Utils/Hooks/useCustomDataQuery";
 import { useTranslation } from "react-i18next";
+import Partners from "@/Components/Themes/Furniture/components/partners";
 
 const AboutUsContent = () => {
   const { themeOption, isLoading } = useContext(ThemeOptionContext);
@@ -25,56 +26,18 @@ const AboutUsContent = () => {
   useEffect(() => {
     isLoading && refetch();
   }, [isLoading]);
-  console.log(data);
-
-
 
   if (isLoading) return <Loader />;
   return (
     <>
       <Breadcrumbs title={"AboutUs"} subNavigation={[{ name: "AboutUs" }]} />
-
-      {/* <AboutUsImage /> */}
-
       <AboutUsText contentData={themeOption?.about_us?.about?.[currentLanguage]} />
-
-
       <AboutStats contentData={themeOption?.about_us?.about_stats?.[currentLanguage]} />
-
       <WhyChooseUs contentData={data?.home_why_choose_us?.[currentLanguage]} imageData={data?.home_why_choose_us?.image} />
-
-
-
-      <div className="client-section mt-4 d-flex align-items-center justify-content-center">
-        <div className="container">
-          <div className="row justify-content-center">
-            <div className="client-wrap d-flex flex-wrap justify-content-center align-items-center">
-              <div className="col-3 clients-img-inner text-center">
-                <img src="assets/assets/img/client/AMAZON.png" alt="" className="img-fluid" />
-              </div>
-              <div className="col-3 clients-img-inner text-center">
-                <img src="assets/assets/img/client/EBAY.png" alt="" className="img-fluid" />
-              </div>
-              <div className="col-3 clients-img-inner text-center">
-                <img src="assets/assets/img/client/ETSY.png" alt="" className="img-fluid" />
-              </div>
-              <div className="col-3 clients-img-inner text-center">
-                <img src="assets/assets/img/client/PWL.png" alt="" className="img-fluid" />
-              </div>
-            </div>
-          </div>
-        </div>
+      <div className="py-4">
+        <Partners />
       </div>
-
-
-
-      {/* <AboutUsBanner /> */}
-
       <BrowserFaq contentData={data?.faq?.[currentLanguage]} />
-
-      {/* {themeOption?.about_us?.testimonial?.status && themeOption?.about_us?.testimonial?.reviews?.length && <ClientSection />}
-      {themeOption?.about_us?.team?.status && themeOption?.about_us?.team?.members?.length && <CreativeTeam />}
-      {themeOption?.about_us?.about?.futures && <ServiceSection />} */}
     </>
   );
 };

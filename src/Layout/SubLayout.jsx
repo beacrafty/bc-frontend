@@ -12,12 +12,17 @@ import { useContext, useEffect, useState } from "react";
 import ExitModal from "./ExitModal";
 import Footers from "./Footer";
 import Headers from "./Header";
-import MobileMenu from "./Header/Widgets/MobileMenu";
+// import MobileMenu from "./Header/Widgets/MobileMenu";
 import NewsLetterModal from "./NewsLetterModal";
 import RecentPurchase from "./RecentPurchase";
 import StickyCompare from "./StickyCompare";
 import TapTop from "./TapTop";
 import ThemeCustomizer from "./ThemeCustomizer";
+import dynamic from 'next/dynamic';
+
+const MobileMenu = dynamic(() => import("./Header/Widgets/MobileMenu"), {
+  ssr: false
+});
 
 const SubLayout = ({ children }) => {
   const isTabActive = TabFocusChecker();

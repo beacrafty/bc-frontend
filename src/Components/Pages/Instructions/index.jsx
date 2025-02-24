@@ -1,18 +1,18 @@
-"use client";
+"use client";;
+import ThemeOptionContext from "@/Context/ThemeOptionsContext";
+import { useContext } from "react";
 import { useTranslation } from "react-i18next";
 import '@/Components/Themes/Furniture/assets/css/style.css';
 import '@/Components/Themes/Furniture/assets/css/flaticon.css';
 import '@/Components/Themes/Furniture/assets/css/line-awesome.min.css';
 import '@/Components/Themes/Furniture/assets/css/fontAwesomePro.css';
-import VideoBanner from "@/Components/Themes/Widgets/VideoBanner";
+import Breadcrumbs from "@/Utils/CommonComponents/Breadcrumb";
+import Loader from "@/Layout/Loader";
 
 const InstructionsContent = () => {
   const { i18n } = useTranslation("common");
   const currentLanguage = i18n.resolvedLanguage;
-
-  const videoData = {
-    video_url: "/assets/video/instructions.mp4", // Replace with your actual video path
-  };
+  const { isLoading } = useContext(ThemeOptionContext);
 
   const features = {
     en: [
@@ -98,24 +98,34 @@ const InstructionsContent = () => {
   const currentFeatures = features[currentLanguage] || features.en;
 
   return (
+    <>
+    {isLoading && <Loader />}
+    <Breadcrumbs title={"Instructions"} subNavigation={[{ name: "Instructions" }]} />
     <section className="p-0">
-      {/* Video Section */}
-      <div className="feature-section section-padding">
+
+        <div className="py-4">
         <div className="container">
           <div className="row justify-content-center">
             <div className="col-12">
-              <VideoBanner 
-                videoBannerSrc={videoData.video_url}
-                height="650px"
-                width="100%"
+              <iframe 
+                src="https://www.youtube.com/embed/6vdpxZHoxJE?si=r7oGUZ6Q8F2GexOj&autoplay=1&loop=1"
+                title="YouTube video player"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+                style={{
+                  width: '100%',
+                  height: '680px',
+                  objectFit: 'cover',
+                  borderRadius: '18px',
+                }}
               />
             </div>
           </div>
         </div>
       </div>
 
-      {/* Features Section */}
-      <div className="feature-section section-padding">
+
+      <div className="py-3">
         <div className="container">
           <div className="row">
             {currentFeatures.slice(0, 3).map((feature, index) => (
@@ -146,7 +156,8 @@ const InstructionsContent = () => {
           </div>
         </div>
       </div>
-    </section>
+      </section>
+    </>
   );
 };
 
