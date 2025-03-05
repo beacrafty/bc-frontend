@@ -46,7 +46,7 @@ const Categories = () => {
                     <div className="col-6 col-xl-3 col-lg-3 col-md-6 wow fadeInUp" data-wow-delay=".2s">
                         <a href="category/kitchen" className="single-project-wrapper">
                             <div className="project-bg">
-                                <img src="public/public/assets/assets/img/project/KITCHEN.jpg" alt="" />
+                                <img src="public/assets/assets/img/project/KITCHEN.jpg" alt="" />
                                 <div className="project-details">
                                     <h4>{t("Kitchen")}</h4>
                                     <p></p>
