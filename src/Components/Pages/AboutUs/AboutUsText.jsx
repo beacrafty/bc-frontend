@@ -12,7 +12,7 @@ const AboutUsText = ({ contentData }) => {
         <div className="row gx-lg-5">
           <div className="col-xl-6 col-lg-6 wow fadeInUp" data-wow-delay=".2s">
             <div className="about-img-wrap">
-              <img src="assets/assets/img/about/about-us.jpg" className="rounded-image" alt="" />
+              <img src="public/assets/assets/img/about/about-us.jpg" className="rounded-image" alt="" />
             </div>
           </div>
           <div className="col-xl-6 col-lg-6">

@@ -125,7 +125,7 @@
   "ProductBoxLayout": "Disposition de la boîte de produit",
   "Admin": "Administrateur",
   "KnowItAllFirst": "TOUT SAVOIR EN PREMIER !",
-  "FooterNewsLetterText": "Ne manquez rien de notre boutique en vous inscrivant à notre newsletter.",
+  "FooterNewsLetterText": "Ne manquez rien de notre boutique en vous inscrivant à notre newsletter.",
   "ProductBoxStyle": "Style de la boîte de produit",
   "MyCart": "Mon Panier",
   "EmptyCartDescription": "Il semble que rien n'ait été ajouté à votre panier.",
@@ -179,6 +179,7 @@
   "AddToCart": "Ajouter au panier",
   "ViewMoreDetails": "Voir plus de détails",
   "Code": "Code",
+  "ProductsOnSale": "Produits en solde",
   "Instructions": "Instructions",
   "CopyCode": "Copier le code",
   "ShopNow": "Acheter maintenant",
@@ -655,5 +656,7 @@
   "CustomizePrecisionCraftmanshipDescription": "Nos artisans experts graveront soigneusement le texte choisi avec précision et soin.",
   "CustomizeReadyToPersonalize": "Prêt à personnaliser ?",
   "CustomizeReadyToPersonalizeDescription": "Sélectionnez simplement l'option de personnalisation lors de votre commande ou contactez-nous directement pour des demandes sur mesure. Laissez-nous vous aider à créer un souvenir précieux qui durera toute une vie.",
-  "CustomizeReadyToPersonalizeCTA": "Ajouter au Panier"
+  "CustomizeReadyToPersonalizeCTA": "Ajouter au Panier",
+  "NoSaleProductsAvailable": "Aucun Produit en Solde",
+  "NoCurrentSaleDescription": "Nous n'avons actuellement aucun produit en solde. Revenez bientôt pour découvrir des offres et des réductions exceptionnelles !"
 }

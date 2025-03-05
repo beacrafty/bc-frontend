@@ -1985,7 +1985,7 @@ img {
 }
 @media (max-width: 767px) {
   .image-one {
-    position: relative;
+    display: none;
   }
 }
 
@@ -2002,7 +2002,14 @@ img {
 }
 @media (max-width: 767px) {
   .image-two {
-    right: -30px;
+    position: relative;
+    right: auto;
+    margin: 20px auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: 90%;
+    height: auto;
   }
 }
 

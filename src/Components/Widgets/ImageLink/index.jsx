@@ -36,9 +36,7 @@ const ImageLink = ({ classes = {}, imgUrl, link, height, width, homeBanner = tru
       ) : bgImage ? (
         <div className={`bg-size ${classes}`} style={{ backgroundImage: `url(${imgUrl?.image_url ? storageURL + imgUrl?.image_url : ""})`, borderRadius: "16px" }}></div>
       ) : (
-          <Link href={`/collections`}>
-            <div style={{ width: '100%', height: `${height}px` }}>
-              {imgUrl?.image_url && (
+          <Link href='/collections'>
                 <Image 
                   priority={true} 
                   src={imgUrl?.image_url} 
@@ -47,8 +45,6 @@ const ImageLink = ({ classes = {}, imgUrl, link, height, width, homeBanner = tru
                   height={height} 
                   width={width} 
                 />
-              )}
-            </div>
           </Link>
       )}
     </>

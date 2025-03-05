@@ -15,7 +15,7 @@ const Features = () => {
                     <div className="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".2s">
                         <div className="single-feature-item">
                             <div className="feature-icon">
-                                <img src="assets/assets/img/feature/1.png" alt="" />
+                                <img src="public/assets/assets/img/feature/1.png" alt="" />
                             </div>
                             <div className="feature-content">
                                 <h5>
@@ -30,7 +30,7 @@ const Features = () => {
                     <div className="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".4s">
                         <div className="single-feature-item">
                             <div className="feature-icon">
-                                <img src="assets/assets/img/feature/2.png" alt="" />
+                                <img src="public/assets/assets/img/feature/2.png" alt="" />
                             </div>
                             <div className="feature-content">
                                 <h5>
@@ -45,7 +45,7 @@ const Features = () => {
                     <div className="col-xl-4 col-lg-4 col-md-6 wow fadeInUp" data-wow-delay=".6s">
                         <div className="single-feature-item">
                             <div className="feature-icon">
-                                <img src="assets/assets/img/feature/3.png" alt="" />
+                                <img src="public/assets/assets/img/feature/3.png" alt="" />
                             </div>
                             <div className="feature-content">
                                 <h5>

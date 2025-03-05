@@ -9,9 +9,10 @@ const PaymentSection = ({ values, setFieldValue, }) => {
     const { settingData } = useContext(SettingContext);
     const [intial, setInitial] = useState('');
     useEffect(() => {
-        setFieldValue('payment_method', 'cod');
+        setFieldValue('payment_method', 'paypal');
         setInitial(0);
     }, []);
+    console.log(values?.payment_method)
     return (
         <div className="checkbox-main-box">
             <div className="checkout-title1">

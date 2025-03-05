@@ -1,4 +1,6 @@
 {
+  "NoSaleProductsAvailable": "No Products on Sale",
+  "NoCurrentSaleDescription": "We don't have any products on sale at the moment. Check back soon for exciting deals and discounts!",
   "NoTagsFound": " No Tags Found",  
   "StartSelling":"StartSelling",
   "TotalPrice": "Total Price",
@@ -196,6 +198,7 @@
   "Subscribe": "Subscribe",
   "Categories": "Categories",
   "Instructions": "Instructions",
+  "ProductsOnSale": "Products on Sale",
   "ContactUs": "Contact Us",
   "DownloadApp": "Download App",
   "QuickPages": "Quick Pages",

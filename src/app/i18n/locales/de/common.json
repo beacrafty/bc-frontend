@@ -585,6 +585,7 @@
   "Game": "Spiel",
   "account": "Konto",
   "Instructions": "Anweisungen",
+  "ProductsOnSale": "Produkte im Angebot",
   "ProfessionalService": "Professionelle Dienstleistung",
   "TrustedCompany": "Vertrauenswürdige Firma",
   "NaturalUniqueMaterials": "Natürliche einzigartige Materialien",
@@ -678,5 +679,7 @@
   "CustomizePrecisionCraftmanshipDescription": "Unsere erfahrenen Handwerker gravieren den gewünschten Text sorgfältig und präzise in den Artikel ein.",
   "CustomizeReadyToPersonalize": "Bereit für Ihre Personalisierung?",
   "CustomizeReadyToPersonalizeDescription": "Wählen Sie einfach die Personalisierungsoption bei Ihrer Bestellung aus oder kontaktieren Sie uns direkt für Sonderwünsche. Lassen Sie uns Ihnen helfen, ein wertvolles Andenken zu schaffen, das ein Leben lang hält.",
-  "CustomizeReadyToPersonalizeCTA": "Hinterlassen Sie heute Ihre persönliche Note – personalisieren Sie Ihren Artikel mit uns!"
+  "CustomizeReadyToPersonalizeCTA": "Hinterlassen Sie heute Ihre persönliche Note – personalisieren Sie Ihren Artikel mit uns!",
+  "NoSaleProductsAvailable": "Keine Produkte im Angebot",
+  "NoCurrentSaleDescription": "Derzeit haben wir keine Produkte im Angebot. Schauen Sie bald wieder vorbei für spannende Angebote und Rabatte!"
 }

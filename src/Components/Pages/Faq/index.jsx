@@ -53,7 +53,7 @@ const BrowserFaq = ({ contentData }) => {
               {/* Image Section */}
               <div className="col-xl-6 col-lg-6 wow fadeInUp d-flex align-items-center justify-content-center" data-wow-delay=".8s">
                 <div className="faq-img-wrap">
-                  <img src="assets/assets/img/faq.jpg" alt="FAQ Background" className="img-fluid faq-image" />
+                  <img src="public/assets/assets/img/faq.jpg" alt="FAQ Background" className="img-fluid faq-image" />
                 </div>
               </div>
 

@@ -18,11 +18,11 @@ import SettingContext from "@/Context/SettingContext";
 
 const CollectionContain = () => {
   const [filter, setFilter] = useState({ category: [], brand: [], price: [], attribute: [], rating: [], sortBy: "asc", field: "created_at" });
-  const { themeOption, isLoading } = useContext(ThemeOptionContext);
+  const { themeOption } = useContext(ThemeOptionContext);
   const { menuLoader } = useContext(SettingContext);
   const [category, brand, attribute, price, rating, sortBy, field, layout, paginate] = useCustomSearchParams(["category", "brand", "attribute", "price", "rating", "sortBy", "field", "layout", "paginate"]);
   const collectionLayout = layout?.layout ? layout?.layout : themeOption?.collection?.collection_layout;
-  // const { categoryIsLoading } = useContext(CategoryContext);
+  const { categoryIsLoading } = useContext(CategoryContext);
 
   useEffect(() => {
     setFilter((prev) => {
@@ -59,7 +59,7 @@ const CollectionContain = () => {
 
   return (
     <>
-      {isLoading ? (
+      {categoryIsLoading ? (
         <Loader />
       ) : (
         <>
