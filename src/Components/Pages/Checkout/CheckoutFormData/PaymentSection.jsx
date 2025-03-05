@@ -4,15 +4,22 @@ import { Fragment, useContext, useEffect, useState } from 'react';
 import SettingContext from '@/Context/SettingContext';
 import { ModifyString } from '@/Utils/CustomFunctions/ModifyString';
 
-const PaymentSection = ({ values, setFieldValue, }) => {
+const PaymentSection = ({ values, setFieldValue }) => {
     const { t } = useTranslation('common');
     const { settingData } = useContext(SettingContext);
-    const [intial, setInitial] = useState('');
+    const [initial, setInitial] = useState(0);
+
     useEffect(() => {
-        setFieldValue('payment_method', 'paypal');
-        setInitial(0);
-    }, []);
-    console.log(values?.payment_method)
+        // Find the first active payment method
+        const firstActiveMethod = settingData?.payment_methods?.find(method => method.status);
+        if (firstActiveMethod) {
+            setFieldValue('payment_method', firstActiveMethod.name);
+            // Find the index of first active method
+            const activeIndex = settingData?.payment_methods?.findIndex(method => method.status);
+            setInitial(activeIndex);
+        }
+    }, [settingData?.payment_methods]);
+
     return (
         <div className="checkbox-main-box">
             <div className="checkout-title1">
@@ -29,7 +36,7 @@ const PaymentSection = ({ values, setFieldValue, }) => {
                                             <Input
                                                 className='form-check-input'
                                                 id={elem?.name}
-                                                checked={i == intial}
+                                                checked={i === initial}
                                                 type='radio'
                                                 name='payment_method'
                                                 onChange={() => {
@@ -50,7 +57,6 @@ const PaymentSection = ({ values, setFieldValue, }) => {
             </Row>
         </div>
     );
-
 };
 
 export default PaymentSection;
