@@ -24,19 +24,6 @@ const CollectionContain = () => {
   const collectionLayout = layout?.layout ? layout?.layout : themeOption?.collection?.collection_layout;
   const { categoryIsLoading } = useContext(CategoryContext);
 
-  // Add a check to prevent infinite loading after a timeout
-  useEffect(() => {
-    let timeoutId;
-    if (categoryIsLoading) {
-      timeoutId = setTimeout(() => {
-        window.location.reload();
-      }, 10000); // 10 seconds timeout
-    }
-    return () => {
-      if (timeoutId) clearTimeout(timeoutId);
-    };
-  }, [categoryIsLoading]);
-
   useEffect(() => {
     setFilter((prev) => {
       return {
@@ -72,12 +59,12 @@ const CollectionContain = () => {
 
   return (
     <>
-      {categoryIsLoading || !collectionLayout ? (
+      {categoryIsLoading ? (
         <Loader />
       ) : (
         <>
           <Breadcrumbs title={"Collections"} subNavigation={[{ name: "Collections" }]} />
-          {isCollectionMatch[collectionLayout] || isCollectionMatch["collection_left_sidebar"]}
+          {isCollectionMatch[collectionLayout]}
         </>
       )}
     </>
