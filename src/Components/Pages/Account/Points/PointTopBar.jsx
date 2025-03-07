@@ -6,6 +6,8 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Card, CardBody } from "reactstrap";
 import PointTable from "./PointTable";
+import AccountHeading from "../Common/AccountHeading";
+import { ImagePath } from "@/Utils/Constants";
 import Loader from "@/Layout/Loader";
 
 const PointTopBar = () => {
@@ -37,7 +39,7 @@ const PointTopBar = () => {
         ) : (
           <NoDataFound
             customClass="no-data-added"
-            imageUrl={`public/assets/svg/empty-items.svg`}
+            imageUrl={`/assets/svg/empty-items.svg`}
             title="NoTransactionFound"
             description="YouHaveNotEarnedAnyPointsYet"
             height="300"

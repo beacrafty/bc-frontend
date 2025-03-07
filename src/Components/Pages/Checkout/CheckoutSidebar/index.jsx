@@ -9,6 +9,7 @@ import { useTranslation } from "react-i18next";
 import { Col } from "reactstrap";
 import BillingSummary from "./BillingSummary";
 import SidebarProduct from "./SidebarProduct";
+import { ImagePath } from "@/Utils/Constants";
 
 const CheckoutSidebar = ({ address, values, setFieldValue, errors, addToCartData }) => {
   const [storeCoupon, setStoreCoupon] = useState("");
@@ -101,7 +102,7 @@ const CheckoutSidebar = ({ address, values, setFieldValue, errors, addToCartData
             <BillingSummary country={matchedAddress?.country?.name} values={values} errors={errors} setFieldValue={setFieldValue} data={resData} errorCoupon={errorCoupon} appliedCoupon={appliedCoupon} setAppliedCoupon={setAppliedCoupon} storeCoupon={storeCoupon} setStoreCoupon={setStoreCoupon} isLoading={isLoading} mutate={mutate} addToCartData={addToCartData} />
           </div>
         ) : (
-          <NoDataFound customClass="no-data-added" height={156} width={180} imageUrl={`public/assets/svg/empty-items.svg`} title="EmptyCart" />
+          <NoDataFound customClass="no-data-added" height={156} width={180} imageUrl={`/assets/svg/empty-items.svg`} title="EmptyCart" />
         )}
       </Col>
     </>

@@ -12,7 +12,7 @@ const AboutUsBanner = () => {
 
   return (
     <div className="mt-4" style={{width: "100%"}}>
-        <Image src={`public/assets/about_us_banner_${currentLanguage}.png`} loader={({src, width, quality}) => src} width={200} height={200} style={{width: "100%", height: "auto", borderRadius: 18}}/>
+        <Image src={`/assets/about_us_banner_${currentLanguage}.png`} loader={({src, width, quality}) => src} width={200} height={200} style={{width: "100%", height: "auto", borderRadius: 18}}/>
     </div>
   )
 };

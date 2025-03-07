@@ -5,6 +5,7 @@ import Loader from "@/Layout/Loader";
 import request from "@/Utils/AxiosUtils";
 import { TrackingAPI } from "@/Utils/AxiosUtils/API";
 import Breadcrumb from "@/Utils/CommonComponents/Breadcrumb";
+import { ImagePath } from "@/Utils/Constants";
 import { useQuery } from "@tanstack/react-query";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Col, TabContent, TabPane } from "reactstrap";
@@ -39,7 +40,7 @@ const OrderDetailsTracking = () => {
                   </TabContent>
                 </div>
               ) : (
-                <NoDataFound customClass="no-data-added" imageUrl={`public/assets/svg/empty-items.svg`} title="NoOrderFound" height="300" width="300" />
+                <NoDataFound customClass="no-data-added" imageUrl={`/assets/svg/empty-items.svg`} title="NoOrderFound" height="300" width="300" />
               )}
             </Col>
           </div>

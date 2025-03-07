@@ -9,6 +9,7 @@ import request from "@/Utils/AxiosUtils";
 import { OrderAPI } from "@/Utils/AxiosUtils/API";
 import { showMonthWiseDateAndTime } from "@/Utils/CustomFunctions/DateFormate";
 import { useQuery } from "@tanstack/react-query";
+import { ImagePath } from "@/Utils/Constants";
 import { useTranslation } from "react-i18next";
 import AccountHeading from "../Common/AccountHeading";
 import Loader from "@/Layout/Loader";
@@ -92,7 +93,7 @@ const MyOrders = () => {
             </div>
           </>
         ) : (
-          <NoDataFound customClass="no-data-added" imageUrl={`public/assets/svg/empty-items.svg`} title="NoOrdersFound" description="NoOrdersHaveBeenMadeYet" height="300" width="300" />
+          <NoDataFound customClass="no-data-added" imageUrl={`/assets/svg/empty-items.svg`} title="NoOrdersFound" description="NoOrdersHaveBeenMadeYet" height="300" width="300" />
         )}
       </CardBody>
     </Card>

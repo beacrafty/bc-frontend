@@ -119,7 +119,7 @@ const Offer = () => {
           <NoDataFound 
             customClass='no-data-added text-center'
             title={t('NoSaleProductsAvailable')}
-            imageUrl="public/assets/svg/sale-empty.svg"
+            imageUrl="/assets/svg/sale-empty.svg"
             description={t('NoCurrentSaleDescription')}
             height='350'
             width='350'
@@ -158,7 +158,7 @@ const Offer = () => {
             </Col>
           ))
         ) : (
-          <NoDataFound customClass='no-data-added' title='No Offers Found' imageUrl={"public/assets/svg/empty-items.svg"} description='I regret to inform you that the offer is currently unavailable.' height='300' width='300' />
+          <NoDataFound customClass='no-data-added' title='No Offers Found' imageUrl={"/assets/svg/empty-items.svg"} description='I regret to inform you that the offer is currently unavailable.' height='300' width='300' />
         )}
       </WrapperComponent>
     </>

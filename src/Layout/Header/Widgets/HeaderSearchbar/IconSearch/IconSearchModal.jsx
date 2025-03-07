@@ -4,6 +4,7 @@ import ProductSkeleton from "@/Components/Widgets/SkeletonLoader/ProductSkeleton
 import Btn from "@/Elements/Buttons/Btn";
 import request from "@/Utils/AxiosUtils";
 import { CategoryAPI, ProductAPI } from "@/Utils/AxiosUtils/API";
+import { ImagePath } from "@/Utils/Constants";
 import useOutsideDropdown from "@/Utils/Hooks/useOutsideDropdown";
 import { useQuery } from "@tanstack/react-query";
 import { usePathname, useRouter } from "next/navigation";
@@ -110,7 +111,7 @@ const IconSearchModal = ({ setIsOpen, isOpen }) => {
               ))}
             </Row>
           ) : (
-            <NoDataFound height={345} width={345} imageUrl={`public/assets/svg/empty-items.svg`} customClass={"collection-no-data no-data-added"} description={"Please check if you have misspelt something or try searching with other way."} title={"NoProductFound"} />
+            <NoDataFound height={345} width={345} imageUrl={`/assets/svg/empty-items.svg`} customClass={"collection-no-data no-data-added"} description={"Please check if you have misspelt something or try searching with other way."} title={"NoProductFound"} />
           )}
         </div>
       </ModalBody>

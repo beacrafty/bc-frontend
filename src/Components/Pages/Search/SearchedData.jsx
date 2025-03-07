@@ -4,6 +4,7 @@ import WrapperComponent from "@/Components/Widgets/WrapperComponent";
 import ThemeOptionContext from "@/Context/ThemeOptionsContext";
 import request from "@/Utils/AxiosUtils";
 import { ProductAPI } from "@/Utils/AxiosUtils/API";
+import { ImagePath } from "@/Utils/Constants";
 import { useQuery } from "@tanstack/react-query";
 import { useSearchParams } from "next/navigation";
 import { useContext, useEffect, useState } from "react";
@@ -42,7 +43,7 @@ const SearchedData = ({ data }) => {
           ))}
         </Row>
       ) : (
-        <NoDataFound imageUrl={`public/assets/svg/empty-items.svg`} customClass="collection-no-data no-data-added" title="productsNoFound" description="productsNoFoundDescription" height="300" width="300" u />
+        <NoDataFound imageUrl={`/assets/svg/empty-items.svg`} customClass="collection-no-data no-data-added" title="productsNoFound" description="productsNoFoundDescription" height="300" width="300" u />
       )}
     </WrapperComponent>
   );

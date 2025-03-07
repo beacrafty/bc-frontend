@@ -6,9 +6,11 @@ import { AddressAPI } from "@/Utils/AxiosUtils/API";
 import useCreate from "@/Utils/Hooks/useCreate";
 import { useContext, useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { RiAddLine } from "react-icons/ri";
 import { Card, CardBody } from "reactstrap";
 import AddAddressForm from "./AddAddressForm";
 import AddressData from "./AddressData";
+import { ImagePath } from "@/Utils/Constants";
 
 const AddressHeader = () => {
   const { t } = useTranslation("common");
@@ -54,7 +56,7 @@ const AddressHeader = () => {
             </div>
           </>
         ) : (
-          <NoDataFound customClass="no-data-added" imageUrl={`public/assets/svg/empty-items.svg`} title="NoAddressFound" description="NoAddressDescription" height="300" width="300" />
+          <NoDataFound customClass="no-data-added" imageUrl={`/assets/svg/empty-items.svg`} title="NoAddressFound" description="NoAddressDescription" height="300" width="300" />
         )}
         <div className="checkout-detail">
           <CustomModal modal={modal == "add" || modal == "edit" ? true : false} setModal={setModal} classes={{ modalClass: "theme-modal-2 view-modal address-modal", title: modal == "add" ? "AddAddress" : "EditAddress" }}>
