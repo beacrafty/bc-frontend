@@ -9,11 +9,19 @@ import { ModifyString } from "@/Utils/CustomFunctions/ModifyString";
 const PaymentOptions = ({ values, setFieldValue }) => {
   const { t } = useTranslation("common");
   const { settingData } = useContext(SettingContext);
-  const [intial, setInitial] = useState("");
+  const [initial, setInitial] = useState(0);
+
   useEffect(() => {
-    setFieldValue("payment_method", "cod");
-    setInitial(0);
-  }, []);
+    // Find the first active payment method
+    const firstActiveMethod = settingData?.payment_methods?.find(method => method.status);
+    if (firstActiveMethod) {
+      setFieldValue('payment_method', firstActiveMethod.name);
+      // Find the index of first active method
+      const activeIndex = settingData?.payment_methods?.findIndex(method => method.status);
+      setInitial(activeIndex);
+    }
+  }, [settingData?.payment_methods]);
+
   return (
     <CheckoutCard icon={<RiBankCardLine />}>
       <div className="checkout-title">
@@ -30,13 +38,13 @@ const PaymentOptions = ({ values, setFieldValue }) => {
                       <div className="payment-category w-100">
                         <div className="form-check custom-form-check hide-check-box w-100">
                           <Input
-                            className="form-check-input"
+                            className='form-check-input'
                             id={elem?.name}
-                            checked={i == intial}
-                            type="radio"
-                            name="payment_method"
+                            checked={i === initial}
+                            type='radio'
+                            name='payment_method'
                             onChange={() => {
-                              setFieldValue("payment_method", elem.name);
+                              setFieldValue('payment_method', elem.name);
                               setInitial(i);
                             }}
                           />
