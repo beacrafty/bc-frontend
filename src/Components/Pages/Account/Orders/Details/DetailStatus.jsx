@@ -11,12 +11,12 @@ const DetailStatus = ({ data }) => {
     select: (res) => res?.data?.data,
   });
   const imageObj = {
-    processing: "/assets/svg/tracking/processing.svg",
-    pending: "/assets/svg/tracking/pending.svg",
-    shipped: "/assets/svg/tracking/shipped.svg",
-    delivered: "/assets/svg/tracking/delivered.svg",
-    outfordelivery: "/assets/svg/tracking/out-for-delivery.svg",
-    cancelled: "/assets/svg/tracking/cancelled.svg",
+    processing: "/public/assets/svg/tracking/processing.svg",
+    pending: "/public/assets/svg/tracking/pending.svg",
+    shipped: "/public/assets/svg/tracking/shipped.svg",
+    delivered: "/public/assets/svg/tracking/delivered.svg",
+    outfordelivery: "/public/assets/svg/tracking/out-for-delivery.svg",
+    cancelled: "/public/assets/svg/tracking/cancelled.svg",
   };
   const ModifyWord = (value) => {
     return value
