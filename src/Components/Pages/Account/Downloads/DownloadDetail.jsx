@@ -2,7 +2,6 @@ import NoDataFound from "@/Components/Widgets/NoDataFound";
 import Pagination from "@/Components/Widgets/Pagination";
 import Btn from "@/Elements/Buttons/Btn";
 import request from "@/Utils/AxiosUtils";
-import { ImagePath } from "@/Utils/Constants";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
@@ -88,7 +87,7 @@ const DownloadDetail = () => {
               </div>
             </div>
           )}
-          {!data?.data?.length && <NoDataFound customClass="no-data-added" imageUrl={`/assets/svg/empty-items.svg`} title="NoItemFound" description="NoOrderMadeYet" height="300" width="300" />}
+          {!data?.data?.length && <NoDataFound customClass="no-data-added" imageUrl={`public/assets/svg/empty-items.svg`} title="NoItemFound" description="NoOrderMadeYet" height="300" width="300" />}
         </div>
       </CardBody>
     </Card>

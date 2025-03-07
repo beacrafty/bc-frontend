@@ -94,7 +94,7 @@ const AuthModal = () => {
                   </div>
                 </div>
                 <div className="left-img w-lg-50 d-lg-block d-none">
-                  <Image height={1920} width={1920} src='/assets/images/auth.png' alt="login" />
+                  <Image height={1920} width={1920} src='/public/assets/images/auth.png' alt="login" />
                 </div>
               </div>
             </div>

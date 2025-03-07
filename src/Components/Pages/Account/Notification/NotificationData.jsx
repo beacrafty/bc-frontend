@@ -1,7 +1,6 @@
 import NoDataFound from "@/Components/Widgets/NoDataFound";
 import request from "@/Utils/AxiosUtils";
 import { MarkAsReadAPI, NotificationAPI } from "@/Utils/AxiosUtils/API";
-import { ImagePath } from "@/Utils/Constants";
 import { showMonthWiseDateAndTime } from "@/Utils/CustomFunctions/DateFormate";
 import useCreate from "@/Utils/Hooks/useCreate";
 import { useQuery } from "@tanstack/react-query";
@@ -51,7 +50,7 @@ const NotificationData = () => {
             </ul>
           </>
         ) : (
-          <NoDataFound imageUrl={`/assets/svg/empty-items.svg`} customClass="no-data-added" title="NoNotificationsFound" description="NoNotificationDescription" height="300" width="300" />
+          <NoDataFound imageUrl={`public/assets/svg/empty-items.svg`} customClass="no-data-added" title="NoNotificationsFound" description="NoNotificationDescription" height="300" width="300" />
         )}
       </CardBody>
     </Card>

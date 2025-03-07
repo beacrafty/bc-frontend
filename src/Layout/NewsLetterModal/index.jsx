@@ -78,7 +78,7 @@ const NewsLetterModal = ({ setMakeExitActive }) => {
               </div>
             </div>
             <div className="left-img w-lg-50 d-lg-block d-none">
-              <Image src='/assets/images/auth.png' alt="" className="img-fluid" height={120} width={676} />
+              <Image src='/public/assets/images/auth.png' alt="" className="img-fluid" height={120} width={676} />
             </div>
           </div>
         </ModalBody>

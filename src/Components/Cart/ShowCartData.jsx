@@ -48,7 +48,7 @@ const ShowCartData = () => {
           </Col>
         </>
       ) : (
-        <NoDataFound customClass="no-data-added" imageUrl={`/assets/svg/empty-items.svg`} title="NoItemsAdded" description="NoItemsAddedDescription" height={230} width={270} />
+        <NoDataFound customClass="no-data-added" imageUrl={`public/assets/svg/empty-items.svg`} title="NoItemsAdded" description="NoItemsAddedDescription" height={230} width={270} />
       )}
     </Row>
   );

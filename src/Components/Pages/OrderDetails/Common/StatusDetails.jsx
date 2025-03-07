@@ -3,12 +3,12 @@ import { OrderStatusAPI } from "@/Utils/AxiosUtils/API";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import cancelledImage from "../../../../../public/assets/svg/tracking/cancelled.svg";
-import deliveredImage from "../../../../../public/assets/svg/tracking/delivered.svg";
-import outfordeliveryImage from "../../../../../public/assets/svg/tracking/out-for-delivery.svg";
-import pendingImage from "../../../../../public/assets/svg/tracking/pending.svg";
-import processingImage from "../../../../../public/assets/svg/tracking/processing.svg";
-import shippedImage from "../../../../../public/assets/svg/tracking/shipped.svg";
+import cancelledImage from "@/public/assets/svg/tracking/cancelled.svg";
+import deliveredImage from "@/public/assets/svg/tracking/delivered.svg";
+import outfordeliveryImage from "@/public/assets/svg/tracking/out-for-delivery.svg";
+import pendingImage from "@/public/assets/svg/tracking/pending.svg";
+import processingImage from "@/public/assets/svg/tracking/processing.svg";
+import shippedImage from "@/public/assets/svg/tracking/shipped.svg";
 
 const StatusDetail = ({ data }) => {
   const router = useRouter();
