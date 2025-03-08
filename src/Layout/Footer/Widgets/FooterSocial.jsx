@@ -1,7 +1,7 @@
 import ThemeOptionContext from "@/Context/ThemeOptionsContext";
 import Link from "next/link";
 import React, { useContext } from "react";
-import { RiFacebookFill, RiInstagramFill, RiLinkedinFill } from "react-icons/ri";
+import { RiFacebookFill, RiInstagramFill, RiLinkedinFill, RiYoutubeFill } from "react-icons/ri";
 import { useTranslation } from "react-i18next";
 import NoDataFound from "@/Components/Widgets/NoDataFound";
 
@@ -37,6 +37,11 @@ const FooterSocial = () => {
                 </Link>
               </li>
             )}
+              <li>
+                <Link href="https://www.youtube.com/channel/UC4PzdpDfz2HpEFafKwVCjxA" target="_blank">
+                  <RiYoutubeFill />
+                </Link>
+              </li>
           </ul>
         </div>
         ) : ( 

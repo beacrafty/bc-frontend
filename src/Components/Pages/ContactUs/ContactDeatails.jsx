@@ -2,7 +2,7 @@ import React from "react";
 import { useContext } from "react";
 import ThemeOptionContext from "@/Context/ThemeOptionsContext";
 import { useTranslation } from "react-i18next";
-import { RiFacebookFill, RiInstagramFill, RiLinkedinFill } from "react-icons/ri";
+import { RiFacebookFill, RiInstagramFill, RiLinkedinFill, RiYoutubeFill } from "react-icons/ri";
 
 const ContactDetails = () => {
   const { t } = useTranslation("common");
@@ -14,25 +14,37 @@ const ContactDetails = () => {
   return (
     <div className="contact-title">
       <h2>{t("GetInTouch")}</h2>
-      {/* <p>{t("ContactUsDescription")}</p> */}
       <p>{themeOption?.contact_us?.[currentLanguage]?.description}</p>
       <div className="footer-social">
         <ul>
-          <li>
-            <a target="_blank" href={themeOption?.footer?.[currentLanguage]?.social_media?.facebook}>
-              <RiFacebookFill />
-            </a>
-          </li>
-          <li>
-            <a target="_blank" href={themeOption?.footer?.[currentLanguage]?.social_media?.instagram}>
-              <RiInstagramFill />
-            </a>
-          </li>
-          <li>
-            <a target="_blank" href={themeOption?.footer?.[currentLanguage]?.social_media?.linkedin}>
-              <RiLinkedinFill />
-            </a>
-          </li>
+          {themeOption?.footer?.[currentLanguage]?.social_media?.facebook && (
+            <li>
+              <a target="_blank" href={themeOption?.footer?.[currentLanguage]?.social_media?.facebook}>
+                <RiFacebookFill />
+              </a>
+            </li>
+          )}
+          {themeOption?.footer?.[currentLanguage]?.social_media?.instagram && (
+            <li>
+              <a target="_blank" href={themeOption?.footer?.[currentLanguage]?.social_media?.instagram}>
+                <RiInstagramFill />
+              </a>
+            </li>
+          )}
+          {themeOption?.footer?.[currentLanguage]?.social_media?.linkedin && (
+            <li>
+              <a target="_blank" href={themeOption?.footer?.[currentLanguage]?.social_media?.linkedin}>
+                <RiLinkedinFill />
+              </a>
+            </li>
+          )}
+          {themeOption?.footer?.[currentLanguage]?.social_media?.youtube && (
+            <li>
+              <a target="_blank" href="https://www.youtube.com/channel/UC4PzdpDfz2HpEFafKwVCjxA">
+                <RiYoutubeFill />
+              </a>
+            </li>
+          )}
         </ul>
       </div>
     </div>

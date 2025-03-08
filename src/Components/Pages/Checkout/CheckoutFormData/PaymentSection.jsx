@@ -1,6 +1,13 @@
 import { Col, Input, Label, Row } from 'reactstrap';
 import { useTranslation } from "react-i18next";
 import { Fragment, useContext, useEffect, useState } from 'react';
+import { 
+    RiBankCardLine, 
+    RiPaypalLine, 
+    RiWalletLine, 
+    RiMoneyDollarCircleLine,
+    RiExchangeDollarLine 
+} from 'react-icons/ri';
 import SettingContext from '@/Context/SettingContext';
 import { ModifyString } from '@/Utils/CustomFunctions/ModifyString';
 
@@ -9,12 +16,28 @@ const PaymentSection = ({ values, setFieldValue }) => {
     const { settingData } = useContext(SettingContext);
     const [initial, setInitial] = useState(0);
 
+    // Get payment icon based on payment method name
+    const getPaymentIcon = (methodName) => {
+        switch (methodName.toLowerCase()) {
+            case 'stripe':
+                return <RiBankCardLine className="me-2" />;
+            case 'paypal':
+                return <RiPaypalLine className="me-2" />;
+            case 'wallet':
+                return <RiWalletLine className="me-2" />;
+            case 'cod':
+                return <RiMoneyDollarCircleLine className="me-2" />;
+            case 'moolie':
+                return <RiExchangeDollarLine className="me-2" />;
+            default:
+                return <RiBankCardLine className="me-2" />;
+        }
+    };
+
     useEffect(() => {
-        // Find the first active payment method
         const firstActiveMethod = settingData?.payment_methods?.find(method => method.status);
         if (firstActiveMethod) {
             setFieldValue('payment_method', firstActiveMethod.name);
-            // Find the index of first active method
             const activeIndex = settingData?.payment_methods?.findIndex(method => method.status);
             setInitial(activeIndex);
         }
@@ -45,6 +68,7 @@ const PaymentSection = ({ values, setFieldValue }) => {
                                                 }}
                                             />
                                             <Label className='form-check-label' htmlFor={elem.name}>
+                                                {getPaymentIcon(elem?.name)}
                                                 {ModifyString(elem?.name, 'upper')}
                                             </Label>
                                         </div>
