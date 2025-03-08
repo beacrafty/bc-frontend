@@ -152,14 +152,20 @@ const HeaderCartData = () => {
   return (
     <>
       <div id="cart_side" className={`${cartCanvas ? "open-side" : ""} ${cartStyle === "cart_mini" ? "show-div shopping-cart" : "add_to_cart right right-cart-box"}`}>
-        <a href={Href} className="overlay" onClick={() => setCartCanvas(false)} />
+        <a href="#" className="overlay" onClick={(e) => {
+          e.preventDefault()
+          setCartCanvas(false)
+        }} />
         <div className="cart-inner">
           <div className="cart_top">
             <h3>
               {t("MyCart")} <span>{`(${cartProducts?.length})`}</span>
             </h3>
-            <div className="close-cart" onClick={() => setCartCanvas(false)}>
-              <a href={Href}>
+            <div className="close-cart" onClick={(e) => {
+              e.preventDefault()
+              setCartCanvas(false)
+            }}>
+              <a href="#">
                 <RiCloseFill />
               </a>
             </div>

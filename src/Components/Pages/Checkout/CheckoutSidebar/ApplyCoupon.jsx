@@ -46,7 +46,7 @@ const ApplyCoupon = ({ data, setFieldValue, storeCoupon, setStoreCoupon, values,
     <div className="promo-code-box">
       <div className="promo-title">
         <h5>{t("PromoCode")}</h5>
-        <a href={Href} onClick={() => setToggle(true)}>
+        <a href="#" onClick={(e) => { e.preventDefault(); setToggle(true); }}>
           <RiCouponLine /> {t("ViewAll")}
         </a>
       </div>

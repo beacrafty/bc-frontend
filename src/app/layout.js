@@ -1,6 +1,13 @@
 import "../index.scss";
 import { I18nProvider } from "./i18n/i18n-context";
 import { detectLanguage } from "./i18n/server";
+import { Lato } from 'next/font/google'
+
+const lato = Lato({
+  weight: ['300', '400', '700', '900'],
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 export async function generateMetadata() {
   // fetch data
@@ -35,7 +42,7 @@ export default async function RootLayout({ children }) {
   const lng = await detectLanguage();
   return (
     <I18nProvider language={lng}>
-      <html lang={lng}>
+      <html lang={lng} className={lato.className}>
         <head>
           <link 
             rel="preconnect" 
@@ -45,12 +52,6 @@ export default async function RootLayout({ children }) {
             rel="preconnect" 
             href="https://fonts.gstatic.com" 
             crossOrigin="anonymous"
-          />
-          <link 
-            href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" 
-            rel="stylesheet"
-            media="print"
-            onLoad="this.media='all'"
           />
         </head>
         <body>{children}</body>

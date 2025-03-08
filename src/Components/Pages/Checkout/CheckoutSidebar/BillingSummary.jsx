@@ -100,8 +100,7 @@ const BillingSummary = ({ country, data, values, setFieldValue, isLoading, mutat
     const countryCode = values?.billing_address?.country_code || null;
     setVatPercentage(getVATPercentage(country, countryCode));
   }, [country, values?.billing_address?.country_code]);
-  
-  console.log(values)
+
 
   return (
     <div className="checkout-details">

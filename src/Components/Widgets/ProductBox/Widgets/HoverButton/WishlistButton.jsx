@@ -43,7 +43,10 @@ const WishlistButton = ({ productstate, customClass, hideAction, customAnchor })
           {productWishlist ? <RiHeartFill className="theme-color" /> : <RiHeartLine />}
         </Btn>
       ) : customAnchor ? (
-        <a href={Href} title="Add to Wishlist" className={`wishlist-icon ${productWishlist ? "theme-color" : ""}`} onClick={() => handelWishlist(productstate)}>
+          <a href="#" title="Add to Wishlist" className={`wishlist-icon ${productWishlist ? "theme-color" : ""}`} onClick={(e) => {
+            e.preventDefault();
+            handelWishlist(productstate)
+          }}>
           <i className={`ri-heart-${productWishlist ? "fill" : "line"}`}></i>
         </a>
       ) : (

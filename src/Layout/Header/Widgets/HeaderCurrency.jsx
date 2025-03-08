@@ -23,7 +23,11 @@ const HeaderCurrency = () => {
   return (
     <Dropdown className="theme-form-select" isOpen={dropdownOpen} toggle={toggle}>
       <DropdownToggle caret color="transparent" className="select-dropdown" type="button">
-        <span>{selectedCurrency ? selectedCurrency?.code : settingData?.general?.default_currency?.code}</span>
+        <span>
+          {selectedCurrency 
+            ? `${selectedCurrency?.symbol} ${selectedCurrency?.code}`
+            : `${settingData?.general?.default_currency?.symbol} ${settingData?.general?.default_currency?.code}`}
+        </span>
       </DropdownToggle>
       <DropdownMenu className="dropdown-menu-end sm-dropdown-menu">
         {currencyState?.map((elem, i) => (

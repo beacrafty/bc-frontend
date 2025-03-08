@@ -64,7 +64,7 @@ const HeaderCartBottom = ({ modal, setModal, shippingFreeAmt, shippingCal }) => 
             </Progress>
           </div>
           <div className="sidebar-title">
-            <a href={Href} onClick={clearCart}>
+            <a href="#" onClick={(e) => { e.preventDefault(); clearCart(); }}>
               {t("ClearCart")}
             </a>
           </div>

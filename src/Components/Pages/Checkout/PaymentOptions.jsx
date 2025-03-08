@@ -1,6 +1,6 @@
 import CheckoutCard from "./common/CheckoutCard";
 import { Col, Input, Label, Row } from "reactstrap";
-import { RiBankCardLine } from "react-icons/ri";
+import { RiBankCardLine, RiPaypalLine, RiWalletLine, RiMoneyDollarCircleLine, RiExchangeDollarLine } from "react-icons/ri";
 import { useTranslation } from "react-i18next";
 import { Fragment, useContext, useEffect, useState } from "react";
 import SettingContext from "@/Context/SettingContext";
@@ -21,6 +21,23 @@ const PaymentOptions = ({ values, setFieldValue }) => {
       setInitial(activeIndex);
     }
   }, [settingData?.payment_methods]);
+
+  const getPaymentIcon = (methodName) => {
+    switch (methodName.toLowerCase()) {
+      case 'stripe':
+        return <RiBankCardLine className="me-2" />;
+      case 'paypal':
+        return <RiPaypalLine className="me-2" />;
+      case 'wallet':
+        return <RiWalletLine className="me-2" />;
+      case 'cod':
+        return <RiMoneyDollarCircleLine className="me-2" />;
+      case 'moolie':
+        return <RiExchangeDollarLine className="me-2" />;
+      default:
+        return <RiBankCardLine className="me-2" />;
+    }
+  };
 
   return (
     <CheckoutCard icon={<RiBankCardLine />}>
@@ -49,6 +66,7 @@ const PaymentOptions = ({ values, setFieldValue }) => {
                             }}
                           />
                           <Label className="form-check-label" htmlFor={elem.name}>
+                            {getPaymentIcon(elem?.name)}
                             {ModifyString(elem?.name, "upper")}
                           </Label>
                         </div>
