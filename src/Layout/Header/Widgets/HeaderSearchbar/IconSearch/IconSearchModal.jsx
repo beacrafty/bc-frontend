@@ -71,6 +71,11 @@ const IconSearchModal = ({ setIsOpen, isOpen }) => {
     }
   };
 
+  const handleProductClick = () => {
+    // Close the modal before navigation
+    setIsOpen(false);
+  };
+
   return (
     <Modal centered className="search-modal theme-modal-2" size="xl" isOpen={isOpen} toggle={() => setIsOpen(false)}>
       <ModalHeader tag={"div"}>
@@ -105,13 +110,24 @@ const IconSearchModal = ({ setIsOpen, isOpen }) => {
             <Row className="row row-cols-xl-4 row-cols-md-3 row-cols-2 g-sm-4 g-3 row-empty-cls">
               {searchArr?.slice(0, 4)?.map((item, i) => (
                 <Col key={i}>
-                  <ListProductBox product={item} productBox={2} isOpen={isOpen} />
-                  {/* <ProductBox style="vertical" product={item} /> */}
+                  <ListProductBox 
+                    product={item} 
+                    productBox={2} 
+                    isOpen={isOpen} 
+                    onProductClick={handleProductClick} 
+                  />
                 </Col>
               ))}
             </Row>
           ) : (
-            <NoDataFound height={345} width={345} imageUrl={`/assets/svg/empty-items.svg`} customClass={"collection-no-data no-data-added"} description={"Please check if you have misspelt something or try searching with other way."} title={"NoProductFound"} />
+            <NoDataFound 
+              height={345} 
+              width={345} 
+              imageUrl={`/assets/svg/empty-items.svg`} 
+              customClass={"collection-no-data no-data-added"} 
+              description={"Please check if you have misspelt something or try searching with other way."} 
+              title={"NoProductFound"} 
+            />
           )}
         </div>
       </ModalBody>
