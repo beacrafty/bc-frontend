@@ -38,13 +38,11 @@ const ContactDetails = () => {
               </a>
             </li>
           )}
-          {themeOption?.footer?.[currentLanguage]?.social_media?.youtube && (
             <li>
               <a target="_blank" href="https://www.youtube.com/channel/UC4PzdpDfz2HpEFafKwVCjxA">
                 <RiYoutubeFill />
               </a>
             </li>
-          )}
         </ul>
       </div>
     </div>
