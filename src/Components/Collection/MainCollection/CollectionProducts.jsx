@@ -50,7 +50,7 @@ const CollectionProducts = ({ filter, grid, infiniteScroll, categorySlug }) => {
     queryKey: ["infiniteScroll", filter],
     queryFn: fetchData,
     retryOnMount: false,
-    enabled: false,
+    enabled: true, // Change this to true
     getNextPageParam: ({ page, last_page }) => last_page > page && { page: page + 1 },
   });
 
