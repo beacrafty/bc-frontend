@@ -54,7 +54,7 @@ const CollectionProducts = ({ filter, grid, infiniteScroll, categorySlug }) => {
     getNextPageParam: ({ page, last_page }) => last_page > page && { page: page + 1 },
   });
 
-  const onLoad = () => {
+  const onLoadHandler = () => {
     if (!isLoading && data?.pages?.[data?.pages?.length - 1]?.data?.last_page !== infiniteScrollData.length) {
       setPage(page + 1);
     }
@@ -141,7 +141,7 @@ const CollectionProducts = ({ filter, grid, infiniteScroll, categorySlug }) => {
           </div>
         )
       ) : (
-        <div className="load-more-sec">{fetchStatus != "idle" ? <img src={`${ImagePath}/loader.gif`} /> : <a onClick={() => onLoad()}>{t("LoadMore")}</a>}</div>
+        <div className="load-more-sec">{fetchStatus != "idle" ? <img src={`${ImagePath}/loader.gif`} /> : <a onClick={() => onLoadHandler()}>{t("LoadMore")}</a>}</div>
       )}
     </>
   );

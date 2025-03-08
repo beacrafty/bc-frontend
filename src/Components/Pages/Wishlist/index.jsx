@@ -82,10 +82,20 @@ const WishlistContent = () => {
                         </div>
                         <div className="col">
                           <div className="icon-box d-flex gap-2 justify-content-center">
-                            <a href={Href} className="icon " onClick={() => removeFromWishlist(product)}>
+                            <a 
+                              href="#" 
+                              className="icon" 
+                              onClick={(e) => {
+                                e.preventDefault();
+                                removeFromWishlist(product);
+                              }}
+                            >
                               <RiCloseLine />
                             </a>
-                            <a href={Href} className="cart" onClick={() => addToCart(product)}>
+                            <a href="#" className="cart" onClick={(e) => {
+                              e.preventDefault();
+                              addToCart(product)
+                            }}>
                               <RiShoppingCartLine />
                             </a>
                           </div>
@@ -103,10 +113,20 @@ const WishlistContent = () => {
 
                     <td>
                       <div className="icon-box d-flex gap-2 justify-content-center">
-                        <a href={Href} className="icon " onClick={() => removeFromWishlist(product)}>
+                        <a 
+                          href="#" 
+                          className="icon" 
+                          onClick={(e) => {
+                            e.preventDefault();
+                            removeFromWishlist(product);
+                          }}
+                        >
                           <RiCloseLine />
                         </a>
-                        <a href={Href} className="cart" onClick={() => addToCart(product)}>
+                        <a href="#" className="cart" onClick={(e) => {
+                          e.preventDefault();
+                          addToCart(product)
+                        }}>
                           <RiShoppingCartLine />
                         </a>
                       </div>

@@ -55,7 +55,14 @@ const CartData = ({ elem }) => {
             </h2>
           </Col>
           <Col>
-            <a href={Href} className="icon remove-btn" onClick={removeItem}>
+            <a 
+              href="#" 
+              className="icon remove-btn" 
+              onClick={(e) => {
+                e.preventDefault();
+                removeItem();
+              }}
+            >
               <RiCloseLine />
             </a>
           </Col>
@@ -84,7 +91,14 @@ const CartData = ({ elem }) => {
       </td>
 
       <td>
-        <a href={Href} className="icon remove-btn" onClick={removeItem}>
+        <a 
+          href="#" 
+          className="icon remove-btn" 
+          onClick={(e) => {
+            e.preventDefault();
+            removeItem();
+          }}
+        >
           <RiCloseLine />
         </a>
       </td>
