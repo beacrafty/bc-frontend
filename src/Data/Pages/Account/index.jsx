@@ -1,4 +1,12 @@
-import { RiBankLine, RiCoinLine, RiFileTextLine, RiHomeLine, RiNotificationLine, RiWalletLine, RiMapPinLine, RiDownload2Line, RiMoneyDollarCircleLine } from 'react-icons/ri';
+import {
+  RiCoinLine,
+  RiFileTextLine,
+  RiHomeLine,
+  RiNotificationLine,
+  RiWalletLine,
+  RiMapPinLine,
+  RiMoneyDollarCircleLine,
+} from 'react-icons/ri';
 
 export const sidebarMenu = [
   {
@@ -13,12 +21,12 @@ export const sidebarMenu = [
     id: 'notification',
     path: '/account/notification',
   },
-  {
-    title: 'BankDetails',
-    icon: <RiBankLine className='me-2'/>,
-    id: 'bank-details',
-    path: '/account/bank-details',
-  },
+  // {
+  //   title: 'BankDetails',
+  //   icon: <RiBankLine className='me-2'/>,
+  //   id: 'bank-details',
+  //   path: '/account/bank-details',
+  // },
   {
     title: 'MyWallet',
     icon: <RiWalletLine className='me-2'/>,
