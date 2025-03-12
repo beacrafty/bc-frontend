@@ -18,9 +18,10 @@ const HeaderLanguage = () => {
     { id: 3, title: "French", icon: "fr", image: "fr", isLang: "/fr/" },
   ];
   useEffect(() => {
-    const defaultLanguage = language.find((data) => data.icon == currentLanguage);
+    // Set English as default if no language is selected
+    const defaultLanguage = language.find((data) => data.icon === currentLanguage) || language[0];
     setSelectedLang(defaultLanguage);
-  }, []);
+  }, [currentLanguage]);
   const router = useRouter();
   // To change Language
   const handleChangeLang = (value) => {

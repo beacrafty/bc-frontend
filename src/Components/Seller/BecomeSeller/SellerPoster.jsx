@@ -14,7 +14,19 @@ const SellerPoster = () => {
   return (
     <WrapperComponent classes={{ sectionClass: "about-page section-b-space", fluidClass: "container" }} customCol={true}>
       <Col lg={12}>
-        <div className="banner-section">{themeOption?.seller?.about?.[currentLanguage]?.image_url && <Image src={storageURL + themeOption?.seller?.about?.[currentLanguage]?.image_url} height={386} width={1376} alt={themeOption?.seller?.about?.[currentLanguage]?.title || "B2B"} className="w-100" />}</div>
+        <div className="banner-section">
+          {themeOption?.seller?.about?.[currentLanguage]?.image_url && (
+            <div style={{ position: 'relative', width: '100%', paddingTop: '28%' }}>
+              <Image
+                src={storageURL + themeOption?.seller?.about?.[currentLanguage]?.image_url}
+                alt={themeOption?.seller?.about?.[currentLanguage]?.title || "B2B"}
+                fill
+                style={{ objectFit: 'cover' }}
+                sizes="100vw"
+              />
+            </div>
+          )}
+        </div>
       </Col>
       <Col sm={12}>
         <h4>{themeOption?.seller?.about?.[currentLanguage]?.title?.toLowerCase()}</h4>

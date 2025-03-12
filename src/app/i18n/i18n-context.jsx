@@ -15,8 +15,11 @@ i18next
   .init({
     ...getOptions(),
     detection: {
-      caches: ["cookie"],
+      order: ['cookie', 'localStorage', 'navigator'],
+      caches: ['cookie'],
     },
+    fallbackLng: 'en',
+    load: 'languageOnly',
   });
 
 export function I18nProvider({ children, language }) {

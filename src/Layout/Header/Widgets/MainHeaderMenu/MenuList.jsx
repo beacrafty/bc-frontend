@@ -12,9 +12,7 @@ import ThemeOptionContext from "@/Context/ThemeOptionsContext";
 const MenuList = ({ menu, isOpen, setIsOpen, level }) => {
   const { t } = useTranslation("common");
   const router = useRouter();
-  const redirect = (path) => {
-    router.push(`/${path}`);
-  };
+  const { setMobileSideBar } = useContext(ThemeOptionContext);
   const isAuthenticated = Cookies.get("uat");
   const { setOpenAuthModal } = useContext(ThemeOptionContext);
 
@@ -24,29 +22,56 @@ const MenuList = ({ menu, isOpen, setIsOpen, level }) => {
     if (!isAuthenticated && protectedRoutes.includes(route)) {
       ToastNotification("error", "Unauthenticated");
       setOpenAuthModal(true);
-      // return Cookies.remove("showAuthToast");
+      return;
     }
+    // Close mobile menu after navigation
+    setMobileSideBar(false);
+  };
+
+  const handleMenuClick = (route) => {
+    protectedRoute(route);
+    // Ensure mobile menu is closed even for non-protected routes
+    setMobileSideBar(false);
   };
 
   return (
     <>
       <li className={`${menu.link_type == "sub" && menu.child ? "nav-item dropdown" : "nav-item"} ${menu?.badge_text ? "new-nav-item" : ""} ${menu.mega_menu ? "dropdown-mega" : ""}`}>
         {menu.link_type === "sub" && (
-          <a href={menu.title === "Collections" ? "/collections" : undefined} onClick={() => { const temp = isOpen.slice(); temp[level] = menu.title !== temp[level] && menu.title; setIsOpen(temp); }} className="nav-link dropdown-toggle">
+          <a 
+            href={menu.title === "Collections" ? "/collections" : undefined} 
+            onClick={() => {
+              const temp = isOpen.slice();
+              temp[level] = menu.title !== temp[level] && menu.title;
+              setIsOpen(temp);
+              if (menu.title === "Collections") {
+                setMobileSideBar(false);
+              }
+            }} 
+            className="nav-link dropdown-toggle"
+          >
             <span>{t(menu.title)}</span>
             {menu.badge_text && <label className="new-dropdown">{menu.badge_text}</label>}
           </a>
         )}
 
         {menu.link_type === "link" && menu.is_target_blank === 0 && (
-          <Link onClick={() => protectedRoute(menu.path)} className={`dropdown-item ${isOpen[level] === menu.title ? "show" : ""}`} href={`${menu.path.charAt(0) == "/" ? menu.path : `/${menu.path}`}`}>
+          <Link 
+            onClick={() => handleMenuClick(menu.path)} 
+            className={`dropdown-item ${isOpen[level] === menu.title ? "show" : ""}`} 
+            href={`${menu.path.charAt(0) == "/" ? menu.path : `/${menu.path}`}`}
+          >
             {t(menu.title)}
             {menu.badge_text && <label className={`menu-label ${menu?.badge_color ? menu?.badge_color : ""}`}>{menu?.badge_text}</label>}
           </Link>
         )}
 
         {menu?.is_target_blank === 1 && (
-          <a className={`dropdown-item ${isOpen[level] === menu?.title ? "show" : ""}`} href={menu?.path}>
+          <a 
+            className={`dropdown-item ${isOpen[level] === menu?.title ? "show" : ""}`} 
+            href={menu?.path}
+            onClick={() => setMobileSideBar(false)}
+          >
             {t(menu?.title)}
             {menu?.badge_text && <label className={`menu-label ${menu?.badge_color ? menu?.badge_color : ""}`}>{menu?.badge_text}</label>}
           </a>

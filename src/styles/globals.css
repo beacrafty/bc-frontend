@@ -1,0 +1,15 @@
+.img-zoom-container {
+  position: relative;
+  overflow: hidden;
+}
+
+.img-zoom-lens {
+  border: 1px solid #d4d4d4;
+  cursor: zoom-in;
+}
+
+.img-zoom-result {
+  border: 1px solid #d4d4d4;
+  position: absolute;
+  background-color: white;
+}
